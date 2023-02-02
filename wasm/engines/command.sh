@@ -5,11 +5,11 @@ HERE=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
 
 if [ "$#" != 1 ]; then
     echo "Print the appropriate command and arguments for the given engine."
-    echo "Usage: command.sh <engine>|list"
+    echo "Usage: command.sh <engine>|list|gen"
     exit 1
 fi
 
-ENGINE=$1
+ARG=$1
 shift
 
 # flags that select various tiers in engines
@@ -24,18 +24,20 @@ WIZENG_TIER_JIT="-mode=jit"
 
 # Returns the engine binary for d8, sm, etc.
 function find_binary() {
-    if [ "$2" != "" ]; then
+    if [ "$1" != "" ]; then
         echo $1
         return 0
     fi
-    LINK=$(readlink $HERE/"$3")
+    LINK=$(readlink $HERE/"$2")
     if [ -x "$LINK" ]; then
         echo $LINK
         return 0
     fi
-    echo $1
+    echo $3
 }
 
+# list of all the engines
+ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm"
 # Returns the full engine command line for an engine config, including
 # any JS run scripts and tiering flags.
 function get_engine_cmd() {
@@ -46,46 +48,46 @@ function get_engine_cmd() {
     
     case $engine in
         "sm-default")
-            echo $(find_binary spidermonkey "$SM" sm-link) $JS
+            echo $(find_binary "$SM" sm-link spidermonkey) $JS
             ;;
         "sm-base")
-            echo $(find_binary spidermonkey "$SM" sm-link) $SM_TIER_BASELINE $JS
+            echo $(find_binary "$SM" sm-link spidermonkey) $SM_TIER_BASELINE $JS
             ;;
         "sm-opt")
-            echo $(find_binary spidermonkey "$SM" sm-link) $SM_TIER_OPT $JS
+            echo $(find_binary "$SM" sm-link spidermonkey ) $SM_TIER_OT $JS
             ;;
         "v8-default")
-            echo $(find_binary d8 "$D8" d8-link) $JS --
+            echo $(find_binary "$D8" d8-link d8) $JS --
             ;;
         "v8-liftoff")
-            echo $(find_binary d8 "$D8" d8-link) $V8_TIER_LIFTOFF $JS --
+            echo $(find_binary "$D8" d8-link d8) $V8_TIER_LIFTOFF $JS --
             ;;
         "v8-turbofan")
-            echo $(find_binary d8 "$D8" d8-link) $V8_TIER_TURBOFAN $JS --
+            echo $(find_binary "$D8" d8-link d8) $V8_TIER_TURBOFAN $JS --
             ;;
-        "jsc")
-            echo $(find_binary d8 "$JSC" jsc-link) $JS --
+        "jsc-default")
+            echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
             ;;
         "jsc-int")
-            echo $(find_binary d8 "$JSC" jsc-link) $JSC_TIER_INT $JS --
+            echo $(find_binary "$JSC" jsc-link javascriptcore) $JSC_TIER_INT $JS --
             ;;
         "jsc-bbq")
-            echo $(find_binary javascriptcore "$JSC" jsc-link) $JSC_TIER_BBQ $JS --
+            echo $(find_binary "$JSC" jsc-link javascriptcore) $JSC_TIER_BBQ $JS --
             ;;
         "jsc-omg")
-            echo $(find_binary javascriptcore "$JSC" jsc-link) $JS --
+            echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
             ;;
         "wizeng")
-            echo $(find_binary wizeng "$WIZENG" wizeng-link) $WIZENG_FAST
+            echo $(find_binary "$WIZENG" wizeng-link wizeng) $WIZENG_FAST
             ;;
         "wizeng-jit")
-            echo $(find_binary wizeng "$WIZENG" wizeng-link) $WIZENG_TIER_JIT
+            echo $(find_binary "$WIZENG" wizeng-link wizeng) $WIZENG_TIER_JIT
             ;;
         "wasm3")
-            echo $(find_binary wasm3 "$WASM3" wasm3-link)
+            echo $(find_binary "$WASM3" wasm3-link wasm3)
             ;;
         "iwasm")
-            echo $(find_binary iwasm "$IWASM" iwasm-link)
+            echo $(find_binary "$IWASM" iwasm-link iwasm)
             ;;
         *)
             echo "unknown-engine"
@@ -95,10 +97,22 @@ function get_engine_cmd() {
     return 0;
 }
 
-if [ $ENGINE = list ]; then
-    # TODO
-    echo engine list not yet implemented
-else
-    get_engine_cmd $ENGINE
-    exit 0
-fi
+case $ARG in
+    "list")
+        echo "Available engine commands:"
+        for e in $ENGINES; do
+            echo "  $e"
+        done
+        ;;
+    "gen")
+        for e in $ENGINES; do
+            echo "#!/bin/bash" > $e
+            echo 'HERE=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)' >> $e
+            echo "exec \$(\$HERE/command.sh $e) \"\$@\"" >> $e
+            chmod 755 $e
+        done
+        ;;
+    *)
+        get_engine_cmd $ARG
+        ;;
+esac

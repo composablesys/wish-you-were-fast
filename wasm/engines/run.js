@@ -19,11 +19,13 @@ if (typeof scriptArgs == "object") {
   arguments = scriptArgs
 }
 
-var buffer = typeof readbuffer == "function" ?
-    (readbuffer(arguments[0])) :
-    (read(arguments[0], 'binary'));
+if (arguments.length > 0) {
+  var buffer = typeof readbuffer == "function" ?
+      (readbuffer(arguments[0])) :
+      (read(arguments[0], 'binary'));
 
-var module = new WebAssembly.Module(buffer);
-var instance = new WebAssembly.Instance(module, imports);
-
-instance.exports["_start"]();
+  var module = new WebAssembly.Module(buffer);
+  var instance = new WebAssembly.Instance(module, imports);
+  
+  instance.exports["_start"]();
+}
