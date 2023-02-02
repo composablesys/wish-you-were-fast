@@ -6,10 +6,10 @@ V8_LIFTOFF_FLAGS=-nowasm-tier-up
 HERE=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
 
 # try to find d8 via environment, then symlink
-D8=$(readlink ${D8:=$HERE/d8})
+D8=$(readlink ${D8:=$HERE/d8-link})
 
 if [ -x "$D8" ]; then
-    echo $D8 $V8_LIFTOFF_FLAGS $HERE/run.js --
+    echo $D8 $V8_LIFTOFF_FLAGS $HERE/run.js -- "$@"
 else
     echo error: d8 command not found
     exit 1
