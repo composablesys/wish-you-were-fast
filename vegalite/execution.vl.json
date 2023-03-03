@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "simple bar chart with embedded data",
+    "data": { "url": "./wasm-execution-2.csv", "format":{"type": "csv"}
+    },
+    "height": 300,
+    "width": 300,
+    "mark": "bar",
+    "params": [{
+        "name": "benchmark",
+        "select": {"type": "point", "fields": ["Operation"]},
+        "bind": "legend"
+      }],
+    "encoding": {
+      "x": {"field": "Engine", "type": "nominal", "title": "WASM Engines"},
+      "y": {"field": "Value", "type": "quantitative", "title": "Metric Value"},
+      "color": {
+        "field":"Operation"
+      },
+      "opacity": {
+        "condition": {"param": "benchmark", "value": 1},
+        "value": 0.1
+      },
+      "tooltip": {"field": "Value", "type": "quantitative"}
+    }
+  }

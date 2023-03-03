@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "simple bar chart with embedded data",
+  "data": { "url": "./fakeData.csv", "format":{"type": "csv"}
+  },
+  "height": 400,
+  "width": 400,
+  "layer" : [{
+    "mark": {"type": "line", "tooltip": true},
+    "params": [{
+      "name": "clicker",
+      "value": [{"Engine": "none"}],
+      "select": {"type": "point", "fields": ["Engine"]}, 
+      "bind": "legend"
+    }],
+  "encoding": {
+    "x": {"field": "Date", "type": "temporal", "title": "Year"},
+    "y": {"field": "Value", "type": "quantitative", "title": "Metric Value"},
+    "color": {
+      "condition": {
+        "param": "clicker", "field": "Engine"
+      }, "value": "lightgrey" 
+    },
+    "opacity": {
+      "condition": {
+        "param": "clicker", "value": 1
+      }, "value": 0.1
+     }
+    }
+  }
+]
+  
+}

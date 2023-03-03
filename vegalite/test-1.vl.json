@@ -1,0 +1,212 @@
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"title": {	"text": "Car Sales in Portugal",
+
+						"color": "navy", "fontSize": 30 ,
+						"align": "center",
+						"anchor": "middle",
+						"dy": -40,
+						"subtitle": "data from https://acap.pt/",
+						"subtitleColor": "navy", "subtitleFontSize": 20
+},
+
+"hconcat": [
+  {
+  "title": {	"text": "Total Sales per year/month",
+							"color": "navy", "fontSize": 18
+                        },
+	"width": 400, "height": 600,
+	"data": {"url": "data/data_month_sales.json"},
+	"config": { "legend": {"disable": true}} ,
+
+	"layer":[
+	{
+		"params": [{ "name": "pts" , "select":{"type": "point", "encodings": ["color"] } }],
+		"mark": "line",
+		"encoding": {
+			"x": {	"field": "month",
+							"type": "ordinal" ,
+							"sort": null,
+							"axis": { "labelAngle": 0 , "labelFontSize": 14},
+							"title": ""
+						} ,
+
+			"y": { 	"field": "monthly_sales",
+							"type": "quantitative",
+							"axis": { "labelAngle": 0 , "labelFontSize": 14 , "tickCount": 5  } ,
+ 							"title": ""
+					 },
+			"color": {
+					"condition": { "param": "pts", "field": "year"} ,
+					"value": "lightgray"
+				} ,
+			"size": { "value": 5 }
+
+		}
+	},
+	{
+		"mark": {"type": "point", "filled": true },
+		"encoding": {
+			"tooltip": {"field": "monthly_sales", "type": "quantitative"},
+
+			"x": {"field": "month", "type": "ordinal" , "sort": null } ,
+
+			"y": { "field": "monthly_sales", "type": "quantitative"  },
+			"color": {
+					"condition": { "param": "pts", "field": "year"} ,
+					"value": "lightgray"
+				} ,
+				"size": { "value": 100 } ,
+				"strokeWidth": {"value": 2} ,
+				"stroke":{
+						"condition": { "param": "pts", "value": "black" } ,
+						"value": "lightgray"
+					} ,
+				"fill":  {
+						"condition": { "param": "pts", "field": "year"} ,
+						"value": "lightgray"
+					} ,
+
+				"opacity": {"value": 1}
+		}
+
+	} ,
+	{
+			"data": {"url": "data/data_last_month.json"},
+
+      "mark": {"type": "text", "dx": 30},
+      "encoding": {
+			"x": {"field": "month", "type": "ordinal" , "sort": null } ,
+			"y": { "field": "monthly_sales", "type": "quantitative"  },
+			"text": {"field": "year"} ,
+			"color": {
+					"condition": { "param": "pts", "field": "year"} ,
+					"value": "lightgray"
+				},
+			"size": { "value": 18 }
+
+      }
+    } ,
+		{
+	         "mark": {
+	           "type": "text",
+	           "align": "right",
+	           "baseline": "bottom",
+						 "dx": -20,
+	           "dy": -30,
+	           "x": "width",
+						 "y": "height",
+						 "fontSize": 14,
+	           "text": ["click on a line to select a year" , "shift-click to select more than one"]
+	         }
+				 }
+
+]
+
+
+} ,
+{
+
+	"width": 400, "height": 600,
+	"title": {	"text": "Sales per Brand",
+							"color": "navy", "fontSize": 18
+	},
+
+
+	"data": {"url": "data/data_brand_sales.json"},
+
+	"layer":[
+	{
+
+		"params": [{ "name": "sel_brand" , "select":{"type": "point", "fields": ["Brand"] } }],
+    "transform": [{"filter": {"param": "pts"}}] ,
+
+
+		"mark": { "type": "bar"   },
+		"encoding": {
+			"x": {"field": "monthly_sales", "type": "quantitative" , "aggregate": "sum",
+
+						"axis": { "labelAngle": 0 , "labelFontSize": 14 , "tickCount": 5  } ,
+						"title": ""
+					 } ,
+			"y": { 	"field": "Brand",
+									"type": "nominal" ,
+									"sort": "-x",
+									"title": ""
+						} ,
+			"color": {
+							"condition": { "param": "sel_brand", "empty": false , "field": "Brand" , "legend":false} ,
+							"field": "year"
+				},
+
+				"stroke": { "value": "black" },
+				"width": { "value": 0.3 }
+
+			}
+		} ,
+
+		{
+			"mark": {
+				"type": "text",
+				"align": "right",
+				"baseline": "bottom",
+				"dx": -20,
+				"dy": -30,
+				"x": "width",
+				"y": "height",
+				"fontSize": 14,
+				"text": ["click on a bar to select a Brand" , "shift-click to select more than one"]
+			}
+
+
+		}
+	]
+} ,
+
+{
+
+	"width": 400, "height": 600,
+	"title": {	"text": "Monthly Sales per Brand",
+							"color": "navy", "fontSize": 18
+	},
+		"data": {"url": "data/data_brand_sales.json"},
+	  "transform": [{"filter": {"param": "pts"} }, {"filter": {"param": "sel_brand"} } ] ,
+
+		"encoding": {
+			"x": {	"field": "month", "type": "ordinal" , "sort": null ,
+							"axis": { "labelAngle": 0 , "labelFontSize": 14},
+							"title": ""
+				 } ,
+			"y": { 	"field": "monthly_sales", "type": "quantitative" , "aggregate": "sum" ,
+							"axis": { "labelAngle": 0 , "labelFontSize": 14 , "tickCount": 5 , "titleFontSize": 16 } ,
+							"title": ""
+			 },
+			"color": {
+					"condition": { "param": "sel_brand", "empty": false , "field": "Brand" , "legend":false} ,
+					"value": "lightgray"
+				}
+		},
+
+		"layer": [
+		{
+			"mark": "line",
+			"encoding": {
+				"size":{ "value": 3 }
+			}
+		},
+		{
+			"mark": "point",
+			"encoding": {
+				"size": { "value": 50 } ,
+				"fill": {
+					"condition": { "param": "sel_brand", "empty": false , "field": "Brand" , "legend":false} ,
+					"value": "lightgray"
+				}
+			}
+
+		}
+]
+
+}
+]
+}

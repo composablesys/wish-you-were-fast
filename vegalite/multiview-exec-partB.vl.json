@@ -1,0 +1,17 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "simple bar chart with embedded data",
+    "height": 400,
+    "width": 400,
+    "data": { "url": "./inputExecutionData.csv", "format":{"type": "csv"}},
+    "mark": {"type": "point", "size": 0.1},
+    "encoding": {
+        "x": {"field": "Date", "type": "temporal", "title": "Date"},
+        "y": {"field": "Value", "type": "quantitative", "title": "Metric Value"},
+        "color": {
+          "field": "Engine"
+        },
+        "tooltip": [{"field": "Date", "type": "temporal"}, {"field": "Operation", "type": "nominal"},   
+        {"field": "Engine", "type": "nominal"}, {"field": "Value", "type": "quantitative"}]
+      }
+}
