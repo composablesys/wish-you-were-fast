@@ -7,7 +7,8 @@ var imports = {
     "fd_close": empty,
     "proc_exit": x => quit(x), 
     "args_sizes_get": empty,
-    "args_get": empty
+    "args_get": empty,
+    "fd_fdstat_get" : empty
   }
 };
 
