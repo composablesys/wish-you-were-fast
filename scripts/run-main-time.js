@@ -3,7 +3,7 @@ function doexit(x) { outtime(); quit(x); }
 
 function clock_time_get() { console.log(arguments[0]); }
 
-function outtime() { console.log("main:time_us   : " + ((performance.now() - before) / 1000)); }
+function outtime() { console.log("main:time_us   : " + ((performance.now() - before) * 1000)); }
 
 var imports = {
   wasi_snapshot_preview1: {

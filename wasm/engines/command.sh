@@ -20,7 +20,10 @@ JSC_TIER_OMG="--useWasmLLInt=false --useOMGJIT=false --useBBQJIT=true --wasmBBQU
 JSC_TIER_BBQ="--useWasmLLInt=false --useOMGJIT=false --useBBQJIT=true"
 SM_TIER_BASELINE="--wasm-compiler=baseline"
 SM_TIER_OPT="--wasm-compiler=optimizing"
+IWASM_INT="--interp"
+IWASM_FAST_JIT="--fast-jit"
 WIZENG_TIER_JIT="-mode=jit"
+WASMER_SINGLE_PASS="--singlepass"
 
 # Returns the engine binary for d8, sm, etc.
 function find_binary() {
@@ -37,7 +40,7 @@ function find_binary() {
 }
 
 # list of all the engines
-ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm"
+ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base"
 # Returns the full engine command line for an engine config, including
 # any JS run scripts and tiering flags.
 function get_engine_cmd() {
@@ -86,8 +89,23 @@ function get_engine_cmd() {
         "wasm3")
             echo $(find_binary "$WASM3" wasm3-link wasm3)
             ;;
-        "iwasm")
-            echo $(find_binary "$IWASM" iwasm-link iwasm)
+        "wasmtime")
+            echo $(find_binary "$WASMTIME" wasmtime-link wasmtime)
+            ;;
+        "iwasm-int")
+            echo $(find_binary "$IWASM" iwasm-link iwasm) $IWASM_INT
+            ;;
+        "iwasm-fjit")
+            echo $(find_binary "$IWASM" iwasm-link iwasm) $IWASM_FAST_JIT
+            ;;
+        "wazero")
+            echo $(find_binary "$WAZERO" wazero-link wazero) run
+            ;;
+        "wasmer")
+            echo $(find_binary "$WASMER" wasmer-link wasmer) run
+            ;;
+        "wasmer-base")
+            echo $(find_binary "$WASMER" wasmer-link wasmer) run --singlepass
             ;;
         *)
             echo "unknown-engine"
