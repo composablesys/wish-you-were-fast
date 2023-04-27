@@ -1,0 +1,41 @@
+PostgresQL DB Schema for WASM benchmarking
+
+1. Create a database 'wasm_benchmark' on PostgresQL
+
+2. Create a summary table using the following syntax
+CREATE TABLE summary (
+    exp_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    exp_label VARCHAR NOT NULL,
+    benchmark_suite VARCHAR(100) NOT NULL,
+    benchmark_item VARCHAR(100) NOT NULL,
+    engine VARCHAR(100) NOT NULL,
+    version VARCHAR(100) NOT NULL,
+    config VARCHAR(40) NOT NULL,
+    machine VARCHAR(25) NOT NULL,
+    metric_type metric NOT NULL,
+    avg NUMERIC(10,7) NOT NULL,
+    percentile_5 NUMERIC(10,7) NOT NULL,
+    percentile_95 NUMERIC(10,7) NOT NULL,
+    min NUMERIC(10,7) NOT NULL,
+    max NUMERIC(10,7) NOT NULL,
+    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+
+3. Create a raw data table with the following syntax
+CREATE TABLE raw (
+    exp_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    exp_label VARCHAR NOT NULL,
+    benchmark_suite VARCHAR(100) NOT NULL,
+    benchmark_item VARCHAR(100) NOT NULL,
+    engine VARCHAR(100) NOT NULL,
+    version VARCHAR(100) NOT NULL,
+    config VARCHAR(40) NOT NULL,
+    machine VARCHAR(25) NOT NULL,
+    execution_samples NUMERIC(10,7)[] NOT NULL,
+    memory_samples NUMERIC(10,7)[] NOT NULL,
+    preprocess_samples NUMERIC(10,7)[] NOT NULL,
+    aot_samples NUMERIC(10,7)[] NOT NULL,
+    jit_samples NUMERIC(10,7)[] NOT NULL,
+    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+

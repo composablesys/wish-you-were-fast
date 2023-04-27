@@ -1,0 +1,40 @@
+1. Granular view #1 - Display all geomean 
+SELECT 
+    exp_date, benchmark_suite, benchmark_item, engine, version, config,
+    machine, metric_type, avg FROM summary
+WHERE 
+    exp_label = 'NIGHTLYRUN' AND benchmark_item = "GEOMEAN"
+
+
+2. Fine view #2 - show for all selected data range
+SELECT 
+    exp_date, benchmark_suite, benchmark_item, engine, version, config,
+    machine, metric_type, avg FROM summary
+WHERE 
+    exp_data BETWEEN value1 AND value2 AND exp_label = 'NIGHTLYRUN' AND benchmark_item != "GEOMEAN"
+    
+
+3. Fine view #3 - show violin plot for one DATE and one benchmark suite
+SELECT
+    percentile_95,
+    min,
+    max,
+    metric_type,
+    engine, 
+    version,
+    config,
+    machine,
+WHERE 
+    exp_data = value1 AND exp_label = 'NIGHTLYRUN' AND benchmark_suite = value2 AND benchmark_item != "GEOMEAN"
+
+
+Note: The API Server currently has slightly modified queries, since the database does not have "GEOMEAN" values yet.
+"GEOMEAN" is a tag assigned to "benchmark_item" column in the SUMMARY table, to store the geometric mean for each 
+engine + config across all "benchmark_item" in a "benchmark_suite".
+
+Once the geometric mean values are added to the database, with the corresponding "benchmark_item" column storing string
+"GEOMEAN", the API queries should be replaced with the above mentioned queries.
+
+
+
+    

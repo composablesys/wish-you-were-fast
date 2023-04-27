@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embedding Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.7.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.3"></script>
+  </head>
+  <body>
+    <div id="chart"></div>
+
+    <script type="text/javascript">
+        var vlSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "concat": [{
+            "title": "Geometric mean of WASM engines",
+            "height": 650,
+            "width": 1000,
+            "data": {name: 'dbData'},
+            "transform": [{"filter": {"param": "suite"}}, {"filter": {"param": "metric"}}],
+            "encoding": {
+                "x": {"field": "Date", "type": "temporal", "title": "Year 2022"},
+                "y": {"aggregate": "mean", "field": "Value", "type": "quantitative", "title": "Metric Value"},
+                "color": {
+                    "field": "Engine"
+                }
+            },
+            "layer": [{"mark": "line"}, 
+                { "params": [{
+                "name": "suite",
+                "select": {"type": "point", "fields": ["Suite"]},
+                "bind": {"name": "Suite","input": "select", "options": ["PolybenchC", "Others"]}
+                },{ 
+                "name": "window", 
+                "select": {"type": "interval", "encodings": ["x"]
+                }},
+                {
+                "name": "metric",
+                "select": {"type": "point", "fields": ["MetricType"]},
+                "bind": {"name": "MetricType","input": "select", "options": ["execution_time", "Others"]}
+                }],
+                "mark": {"type": "circle", "tooltip": true},
+                "encoding": {
+                "opacity": {
+                    "value": 1
+                },
+                "size": {
+                    "value": 30
+                }
+                }
+            }]
+        }]
+     };
+        vegaEmbed('#chart', vlSpec).then(function (res) {
+            async function logJSONData() {
+                var response = await fetch("http://localhost:6363/get_all_mean");
+                var jsonData = await response.json();
+                res.view.insert('dbData', jsonData.data).run();
+            }
+            logJSONData();
+        });
+    </script>
+  </body>
+</html>

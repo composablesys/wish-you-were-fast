@@ -1,55 +1,60 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "concat": [{
-      "title": "Geometric mean of WASM engines",
-      "height": 500,
-      "width": 500,
-      "data": { "url": "./inputExecutionData.csv", "format":{"type": "csv"}},
-      "params": [{
-        "name": "test",
-        "select": {"type": "point", "fields": ["Benchmark"]},
-        "bind": {"name": "Benchmark","input": "select", "options": ["PolybenchC", "Others"]}
-      },{ 
-        "name": "window", 
-        "select": {"type": "interval", "encodings": ["x"]
-        }}],
-      "transform": [{"filter": {"param": "test"}}],
-      "mark": {"type": "point", "size": 3, "filled": true, "tooltip": true},
-      "encoding": {
-          "x": {"field": "Date", "type": "temporal", "title": "Year 2022"},
-          "y": {"aggregate": "mean", "field": "Value", "type": "quantitative", "title": "Metric Value"},
-          "color": {
-            "field": "Engine"
-          }
-        }
-    }, {
-      "height": 500,
-      "width": 500,
-      "data": { "url": "./inputExecutionData.csv", "format":{"type": "csv"}},
-      "mark": {"type": "point", "size": 25, "filled": false},
-      "transform": [{"filter": {"param": "window", "empty": false}}],
-      "params": [{
-        "name": "clicker",
-        "value": [{"Engine": "sm-base"}],
-        "select": {"type": "point", "fields": ["Engine"]}, 
-        "bind": "legend"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "concat": [{
+    "title": "Geometric mean of WASM engines",
+    "height": 500,
+    "width": 500,
+    "data": { "url": "./newData.csv", "format":{"type": "csv"}},
+    "params": [{
+      "name": "test",
+      "select": {"type": "point", "fields": ["Benchmark"]},
+      "bind": {"name": "Benchmark","input": "select", "options": ["PolybenchC", "Others"]}
+    },{ 
+      "name": "window", 
+      "select": {"type": "interval", "encodings": ["x"]
+      }},
+      {
+        "name": "trial",
+        "select": {"type": "point", "fields": ["MetricType"]},
+        "bind": {"name": "MetricType","input": "select", "options": ["execution_time", "Others"]}
       }],
-      "encoding": {
-          "x": {"field": "Date", "type": "temporal", "title": "Date"},
-          "y": {"field": "Value", "type": "quantitative", "title": "Metric Value"},
-          "color": {
-            "condition": {
-              "param": "clicker", "field": "Engine", "legend": {"direction": "vertical", "orient": "top"}
-            }, "value": "lightgrey"
-          },
-          "shape": {"field": "Operation", "type": "nominal", "legend": {"direction": "vertical", "orient": "top"}},
-          "opacity": {
-            "condition": {
-              "param": "clicker", "value": 1
-            }, "value": 0.0
-           },
-          "tooltip": [{"field": "Date", "type": "temporal"}, {"field": "Operation", "type": "nominal"},   
-          {"field": "Engine", "type": "nominal"}, {"field": "Value", "type": "quantitative"}]
+    "transform": [{"filter": {"param": "test"}}, {"filter": {"param": "trial"}}],
+    "mark": {"type": "point", "size": 3, "filled": true, "tooltip": true},
+    "encoding": {
+        "x": {"field": "Date", "type": "temporal", "title": "Year 2022"},
+        "y": {"aggregate": "mean", "field": "Value", "type": "quantitative", "title": "Metric Value"},
+        "color": {
+          "field": "Engine"
         }
-    }]
+      }
+  }, {
+    "height": 500,
+    "width": 500,
+    "data": { "url": "./newData.csv", "format":{"type": "csv"}},
+    "mark": {"type": "point", "size": 25, "filled": false},
+    "transform": [{"filter": {"param": "window", "empty": false}}],
+    "params": [{
+      "name": "clicker",
+      "value": [{"Engine": "sm-base"}],
+      "select": {"type": "point", "fields": ["Engine"]}, 
+      "bind": "legend"
+    }],
+    "encoding": {
+        "x": {"field": "Date", "type": "temporal", "title": "Date"},
+        "y": {"field": "Value", "type": "quantitative", "title": "Metric Value"},
+        "color": {
+          "condition": {
+            "param": "clicker", "field": "Engine", "legend": {"direction": "vertical", "orient": "top"}
+          }, "value": "lightgrey"
+        },
+        "shape": {"field": "Operation", "type": "nominal", "legend": {"direction": "vertical", "orient": "top"}},
+        "opacity": {
+          "condition": {
+            "param": "clicker", "value": 1
+          }, "value": 0.0
+         },
+        "tooltip": [{"field": "Date", "type": "temporal"}, {"field": "Operation", "type": "nominal"},   
+        {"field": "Engine", "type": "nominal"}, {"field": "Value", "type": "quantitative"}, {"field": "Version", "type": "nominal"}]
+      }
+  }]
 }
