@@ -36,7 +36,7 @@ function compare_baseline_compilers() {
 function compare_interpreters() {
     for b in $@; do
 	echo --- $b --------
-	runbin "wizeng" /project/titzer/wizard-engine/bin/wizeng.x86-64-linux $b
+	runbin "wizeng-int" /project/titzer/wizard-engine/bin/wizeng.x86-64-linux -mode=int $b
 	runbin "iwasm-int" /project/titzer/wish-you-were-fast/wasm/engines/iwasm-int $b
 	runbin "wasm3" /project/titzer/wish-you-were-fast/wasm/engines/wasm3 $b
     done

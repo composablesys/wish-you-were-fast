@@ -8,6 +8,7 @@ var imports = {
     "proc_exit": x => quit(x), 
     "args_sizes_get": empty,
     "args_get": empty,
+    "clock_time_get": empty,
     "fd_fdstat_get" : empty
   }
 };
