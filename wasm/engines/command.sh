@@ -40,7 +40,7 @@ function find_binary() {
 }
 
 # list of all the engines
-ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base"
+ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base wavm"
 # Returns the full engine command line for an engine config, including
 # any JS run scripts and tiering flags.
 function get_engine_cmd() {
@@ -106,6 +106,9 @@ function get_engine_cmd() {
             ;;
         "wasmer-base")
             echo $(find_binary "$WASMER" wasmer-link wasmer) run --singlepass
+            ;;
+        "wavm")
+            echo $(find_binary "$WAVM" wavm-link wavm) run
             ;;
         *)
             echo "unknown-engine"
