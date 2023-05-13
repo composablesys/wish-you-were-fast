@@ -13,7 +13,7 @@ ARG=$1
 shift
 
 # flags that select various tiers in engines
-V8_TIER_LIFTOFF="--nowasm-tier-up"
+V8_TIER_LIFTOFF="--liftoff-only"
 V8_TIER_TURBOFAN="--noliftoff"
 JSC_TIER_INT="--useOMGJIT=false --useBBQJIT=false"
 JSC_TIER_OMG="--useWasmLLInt=false --useOMGJIT=false --useBBQJIT=true --wasmBBQUsesAir=false --webAssemblyBBQB3OptimizationLevel=2"
@@ -24,6 +24,11 @@ IWASM_INT="--interp"
 IWASM_FAST_JIT="--fast-jit"
 WIZENG_TIER_JIT="-mode=jit"
 WASMER_SINGLE_PASS="--singlepass"
+
+# Potential flags of interest
+# v8: --lazy-compile-dispatcher-max-threads
+# v8: --single-threaded
+# v8: --wasm-lazy-compilation
 
 # Returns the engine binary for d8, sm, etc.
 function find_binary() {
