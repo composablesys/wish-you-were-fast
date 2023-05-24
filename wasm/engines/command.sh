@@ -12,7 +12,7 @@ fi
 ARG=$1
 shift
 
-# flags that select various tiers in engines
+# Web engines have particularly complicated flags.
 V8_TIER_LIFTOFF="--liftoff-only"
 V8_TIER_TURBOFAN="--noliftoff"
 JSC_TIER_INT="--useOMGJIT=false --useBBQJIT=false"
@@ -20,12 +20,8 @@ JSC_TIER_OMG="--useWasmLLInt=false --useOMGJIT=false --useBBQJIT=true --wasmBBQU
 JSC_TIER_BBQ="--useWasmLLInt=false --useOMGJIT=false --useBBQJIT=true"
 SM_TIER_BASELINE="--wasm-compiler=baseline"
 SM_TIER_OPT="--wasm-compiler=optimizing"
-IWASM_INT="--interp"
-IWASM_FAST_JIT="--fast-jit"
-WIZENG_TIER_JIT="-mode=jit"
-WASMER_SINGLE_PASS="--singlepass"
 
-# Potential flags of interest
+# Potential V8 flags of interest
 # v8: --lazy-compile-dispatcher-max-threads
 # v8: --single-threaded
 # v8: --wasm-lazy-compilation
@@ -45,7 +41,7 @@ function find_binary() {
 }
 
 # list of all the engines
-ENGINES="sm-default sm-base sm-opt v8-default v8-liftoff v8-turbofan jsc-default jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base wavm"
+ENGINES="sm sm-base sm-opt v8 v8-liftoff v8-turbofan jsc jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base wavm"
 # Returns the full engine command line for an engine config, including
 # any JS run scripts and tiering flags.
 function get_engine_cmd() {
@@ -55,7 +51,7 @@ function get_engine_cmd() {
     JS=$HERE/run.js
     
     case $engine in
-        "sm-default")
+        "sm")
             echo $(find_binary "$SM" sm-link spidermonkey) $JS
             ;;
         "sm-base")
@@ -64,7 +60,7 @@ function get_engine_cmd() {
         "sm-opt")
             echo $(find_binary "$SM" sm-link spidermonkey ) $SM_TIER_OT $JS
             ;;
-        "v8-default")
+        "v8")
             echo $(find_binary "$D8" d8-link d8) $JS --
             ;;
         "v8-liftoff")
@@ -73,7 +69,7 @@ function get_engine_cmd() {
         "v8-turbofan")
             echo $(find_binary "$D8" d8-link d8) $V8_TIER_TURBOFAN $JS --
             ;;
-        "jsc-default")
+        "jsc")
             echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
             ;;
         "jsc-int")
@@ -86,10 +82,16 @@ function get_engine_cmd() {
             echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
             ;;
         "wizeng")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng) $WIZENG_FAST
+            echo $(find_binary "$WIZENG" wizeng-link wizeng)
+            ;;
+        "wizeng-int")
+            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=int
             ;;
         "wizeng-jit")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng) $WIZENG_TIER_JIT
+            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=jit
+            ;;
+        "wizeng-dyn")
+            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=dyn
             ;;
         "wasm3")
             echo $(find_binary "$WASM3" wasm3-link wasm3)
@@ -98,10 +100,10 @@ function get_engine_cmd() {
             echo $(find_binary "$WASMTIME" wasmtime-link wasmtime)
             ;;
         "iwasm-int")
-            echo $(find_binary "$IWASM" iwasm-link iwasm) $IWASM_INT
+            echo $(find_binary "$IWASM" iwasm-link iwasm) --interp
             ;;
         "iwasm-fjit")
-            echo $(find_binary "$IWASM" iwasm-link iwasm) $IWASM_FAST_JIT
+            echo $(find_binary "$IWASM" iwasm-link iwasm) --fast-jit
             ;;
         "wazero")
             echo $(find_binary "$WAZERO" wazero-link wazero) run
