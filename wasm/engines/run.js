@@ -1,6 +1,23 @@
+if ((typeof WScript) != "undefined") {
+  arguments = WScript.Arguments
+}
+
+if ((typeof scriptArgs) == "object") {
+  arguments = scriptArgs
+}
+
+if ((typeof arguments) == "undefined") {
+  arguments = [];
+}
+
 function empty() { }
 
-var start_time = performance.now();
+function ticksms() {
+    if ((typeof performance) == "undefined") return +Date.now();
+    return performance.now();
+}
+
+var start_time = ticksms();
 var log = false;
 var stdout = false;
 
@@ -34,7 +51,7 @@ var imports = {
     "args_get": empty,
     "clock_time_get": (clock_id, lag, ptr) => {
 	if (log) console.log("clock");
-	var result = (performance.now() - start_time) * 1000000;
+	var result = (ticksms() - start_time) * 1000000;
 	if (log) console.log(result);
 	var index = ptr >> 2;
 	var uint32_array = new Uint32Array(memory.buffer);
@@ -46,7 +63,7 @@ var imports = {
 	if (log) console.log("random(" + ptr + ", " + len + ")");
 	var uint8_array = new Uint8Array(memory.buffer);
 	for (var i = ptr; i < len; i++) {
-	    uint8_array[i] = (performance.now() * 1000000) & 0xFF + i;
+	    uint8_array[i] = (ticksms() * 1000000) & 0xFF + i;
 	}
 	return 0;
     },

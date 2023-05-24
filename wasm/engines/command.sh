@@ -26,22 +26,32 @@ SM_TIER_OPT="--wasm-compiler=optimizing"
 # v8: --single-threaded
 # v8: --wasm-lazy-compilation
 
-# Returns the engine binary for d8, sm, etc.
-function find_binary() {
-    if [ "$1" != "" ]; then
-        echo $1
-        return 0
+function print_command() {
+    env=$1
+    shift
+    link=$1
+    shift
+    path=$1
+    shift
+
+    if [ "$env" != "" ]; then
+        printf "%s" $env
+    else
+	link=$(readlink $HERE/"$link")
+	if [ -x "$link" ]; then
+            printf "%s" $link
+	else
+            printf "%s" $(which $path)
+	fi
     fi
-    LINK=$(readlink $HERE/"$2")
-    if [ -x "$LINK" ]; then
-        echo $LINK
-        return 0
-    fi
-    echo $3
+
+    printf " %s" "$ENGINE_OPTIONS"
+    printf " %s" "$@"
 }
 
 # list of all the engines
-ENGINES="sm sm-base sm-opt v8 v8-liftoff v8-turbofan jsc jsc-int jsc-bbq jsc-omg wizeng wizeng-jit wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base wavm"
+ENGINES="sm sm-base sm-opt v8 v8-liftoff v8-turbofan jsc jsc-int jsc-bbq jsc-omg wizeng wizeng-int wizeng-jit wizeng-dyn wasm3 iwasm-int iwasm-fjit wasmtime wazero wasmer wasmer-base wavm"
+
 # Returns the full engine command line for an engine config, including
 # any JS run scripts and tiering flags.
 function get_engine_cmd() {
@@ -52,70 +62,70 @@ function get_engine_cmd() {
     
     case $engine in
         "sm")
-            echo $(find_binary "$SM" sm-link spidermonkey) $JS
+            print_command "$SM" sm-link spidermonkey $JS
             ;;
         "sm-base")
-            echo $(find_binary "$SM" sm-link spidermonkey) $SM_TIER_BASELINE $JS
+            print_command "$SM" sm-link spidermonkey $SM_TIER_BASELINE $JS
             ;;
         "sm-opt")
-            echo $(find_binary "$SM" sm-link spidermonkey ) $SM_TIER_OT $JS
+            print_command "$SM" sm-link spidermonkey  $SM_TIER_OT $JS
             ;;
         "v8")
-            echo $(find_binary "$D8" d8-link d8) $JS --
+            print_command "$D8" d8-link d8 $JS --
             ;;
         "v8-liftoff")
-            echo $(find_binary "$D8" d8-link d8) $V8_TIER_LIFTOFF $JS --
+            print_command "$D8" d8-link d8 $V8_TIER_LIFTOFF $JS --
             ;;
         "v8-turbofan")
-            echo $(find_binary "$D8" d8-link d8) $V8_TIER_TURBOFAN $JS --
+            print_command "$D8" d8-link d8 $V8_TIER_TURBOFAN $JS --
             ;;
         "jsc")
-            echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
+            print_command "$JSC" jsc-link javascriptcore $JS --
             ;;
         "jsc-int")
-            echo $(find_binary "$JSC" jsc-link javascriptcore) $JSC_TIER_INT $JS --
+            print_command "$JSC" jsc-link javascriptcore $JSC_TIER_INT $JS --
             ;;
         "jsc-bbq")
-            echo $(find_binary "$JSC" jsc-link javascriptcore) $JSC_TIER_BBQ $JS --
+            print_command "$JSC" jsc-link javascriptcore $JSC_TIER_BBQ $JS --
             ;;
         "jsc-omg")
-            echo $(find_binary "$JSC" jsc-link javascriptcore) $JS --
+            print_command "$JSC" jsc-link javascriptcore $JS --
             ;;
         "wizeng")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng)
+            print_command "$WIZENG" wizeng-link wizeng
             ;;
         "wizeng-int")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=int
+            print_command "$WIZENG" wizeng-link wizeng -mode=int
             ;;
         "wizeng-jit")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=jit
+            print_command "$WIZENG" wizeng-link wizeng -mode=jit
             ;;
         "wizeng-dyn")
-            echo $(find_binary "$WIZENG" wizeng-link wizeng) -mode=dyn
+            print_command "$WIZENG" wizeng-link wizeng -mode=dyn
             ;;
         "wasm3")
-            echo $(find_binary "$WASM3" wasm3-link wasm3)
+            print_command "$WASM3" wasm3-link wasm3
             ;;
         "wasmtime")
-            echo $(find_binary "$WASMTIME" wasmtime-link wasmtime)
+            print_command "$WASMTIME" wasmtime-link wasmtime
             ;;
         "iwasm-int")
-            echo $(find_binary "$IWASM" iwasm-link iwasm) --interp
+            print_command "$IWASM" iwasm-link iwasm --interp
             ;;
         "iwasm-fjit")
-            echo $(find_binary "$IWASM" iwasm-link iwasm) --fast-jit
+            print_command "$IWASM" iwasm-link iwasm --fast-jit
             ;;
         "wazero")
-            echo $(find_binary "$WAZERO" wazero-link wazero) run
+            print_command "$WAZERO" wazero-link wazero run
             ;;
         "wasmer")
-            echo $(find_binary "$WASMER" wasmer-link wasmer) run
+            print_command "$WASMER" wasmer-link wasmer run
             ;;
         "wasmer-base")
-            echo $(find_binary "$WASMER" wasmer-link wasmer) run --singlepass
+            print_command "$WASMER" wasmer-link wasmer run --singlepass
             ;;
         "wavm")
-            echo $(find_binary "$WAVM" wavm-link wavm) run
+            print_command "$WAVM" wavm-link wavm run
             ;;
         *)
             echo "unknown-engine"

@@ -1,3 +1,3 @@
 #!/bin/bash
 HERE=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
-exec $($HERE/command.sh jsc-default) "$@"
+exec $($HERE/command.sh v8) "$@"
