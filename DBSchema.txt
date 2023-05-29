@@ -2,6 +2,9 @@ PostgresQL DB Schema for WASM benchmarking
 
 1. Create a database 'wasm_benchmark' on PostgresQL
 
+2. Create the metric type
+CREATE TYPE metric AS ENUM ('main_time', 'total_time', 'setup_time', 'compile_time', 'rss_bytes');
+
 2. Create a summary table using the following syntax
 CREATE TABLE summary (
     exp_date DATE NOT NULL DEFAULT CURRENT_DATE,
@@ -19,7 +22,7 @@ CREATE TABLE summary (
     min NUMERIC(10,7) NOT NULL,
     max NUMERIC(10,7) NOT NULL,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 3. Create a raw data table with the following syntax
 CREATE TABLE raw (
@@ -31,11 +34,8 @@ CREATE TABLE raw (
     version VARCHAR(100) NOT NULL,
     config VARCHAR(40) NOT NULL,
     machine VARCHAR(25) NOT NULL,
-    execution_samples NUMERIC(10,7)[] NOT NULL,
-    memory_samples NUMERIC(10,7)[] NOT NULL,
-    preprocess_samples NUMERIC(10,7)[] NOT NULL,
-    aot_samples NUMERIC(10,7)[] NOT NULL,
-    jit_samples NUMERIC(10,7)[] NOT NULL,
+    metric_type metric NOT NULL;
+    samples NUMERIC(10,7)[] NOT NULL,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
+);
 
