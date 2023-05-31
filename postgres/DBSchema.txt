@@ -34,7 +34,7 @@ CREATE TABLE raw (
     version VARCHAR(100) NOT NULL,
     config VARCHAR(40) NOT NULL,
     machine VARCHAR(25) NOT NULL,
-    metric_type metric NOT NULL;
+    metric_type metric NOT NULL,
     samples NUMERIC(10,7)[] NOT NULL,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
