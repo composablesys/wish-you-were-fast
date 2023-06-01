@@ -10,7 +10,7 @@ BLUE='\[[0;34m\]'      ; LIGHTBLUE='\[[1;34m\]'
 LIGHTGRAY='\[[0;37m\]' ; WHITE='\[[1;37m\]' 
 RED='\[[0;31m\]'       ; LIGHTRED='\[[1;31m\]'
 
-WYWF=/project/titzer/wish-you-were-fast
+WYWF=$(cd .. && pwd)
 
 TAGGING_CONFIGS="jit-notags aggtags aggtags-o aggtags-l jit lazytags"
 SPEEDUP_CONFIGS="int jit nok nokfold noisel nomr"
