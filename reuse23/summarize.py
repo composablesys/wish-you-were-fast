@@ -419,8 +419,5 @@ if __name__ == "__main__":
         upload_sum(exp_label, version, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
         upload_raw(exp_label, version, machine, table_name)
-    # for testing
-    elif sys.argv[1] == "RAW_SAMPLES":
-        get_raw_samples("polybench.covariance.wavm.txt")
     else:
         print('No function specified')
