@@ -1,0 +1,1 @@
+Folder for all of our trial experiments with run.bash
