@@ -388,9 +388,9 @@ if __name__ == "__main__":
     if data_dir is None:
         print('Data directory not set')
 
-    exp_label = os.environ.get('EXP_LABEL', 'cgo2024')
+    exp_label = os.environ.get('EXP_LABEL', 'carlexa20') # change to experiment label
     version = os.environ.get('VERSION', '-')
-    machine = os.environ.get('MACHINE', 'ryzen-9')
+    machine = os.environ.get('MACHINE', 'i7-4790') # change to machine name
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
     exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
