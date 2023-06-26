@@ -1,0 +1,532 @@
+compile_speed :  us/byte
+liftoff count: 71
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1610
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          43 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         136 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         137 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1614 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         750 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         295 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .082105 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1639
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          39 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         128 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         130 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1639 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         693 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         334 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .083584 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1474
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          44 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         134 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         135 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1473 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         745 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         308 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .075169 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1486
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          41 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         133 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         134 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1495 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         684 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         298 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .075781 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1723
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          44 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         136 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         136 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1722 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         814 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         392 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .087867 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 2076
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          43 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         134 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         135 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        2068 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         780 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         311 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .105869 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1817
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          44 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         134 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         136 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1817 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         763 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         338 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .092661 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 2101
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          35 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         119 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         120 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        2104 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         720 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         298 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .107144 us/byte
+liftoff count: 72
+liftoff in_bytes: 19609
+liftoff out_bytes: 52512
+liftoff us: 1689
+turbofan count: 0
+turbofan in_bytes: 0
+turbofan out_bytes: 0
+turbofan us: 0
++----------------------------------------------------------------+-------------+
+| Name                                                           | Value       |
++----------------------------------------------------------------+-------------+
+| c:V8.CompileLazyMicroSeconds                                   |           0 |
+| t:V8.CompileLazyMicroSeconds                                   |           0 |
+| c:V8.CompileMicroSeconds                                       |           1 |
+| t:V8.CompileMicroSeconds                                       |          42 |
+| c:V8.CompileScript.CacheBehaviour                              |           1 |
+| t:V8.CompileScript.CacheBehaviour                              |           7 |
+| c:V8.CompileScriptMicroSeconds                                 |           1 |
+| t:V8.CompileScriptMicroSeconds                                 |         132 |
+| c:V8.CompileScriptMicroSeconds.NoCache.Other                   |           1 |
+| t:V8.CompileScriptMicroSeconds.NoCache.Other                   |         133 |
+| c:V8.ExecuteMicroSeconds                                       |           0 |
+| t:V8.ExecuteMicroSeconds                                       |           0 |
+| c:V8.LiftoffBailoutReasons                                     |          36 |
+| t:V8.LiftoffBailoutReasons                                     |           0 |
+| c:V8.WasmCompileFunctionMicroSeconds.wasm                      |          36 |
+| t:V8.WasmCompileFunctionMicroSeconds.wasm                      |        1695 |
+| c:V8.WasmCompileModuleMicroSeconds.wasm                        |           1 |
+| t:V8.WasmCompileModuleMicroSeconds.wasm                        |         797 |
+| c:V8.WasmFunctionsPerModule.wasm                               |           1 |
+| t:V8.WasmFunctionsPerModule.wasm                               |          36 |
+| c:V8.WasmInstantiateModuleMicroSeconds.wasm                    |           1 |
+| t:V8.WasmInstantiateModuleMicroSeconds.wasm                    |         352 |
+| c:V8.WasmMaxMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMaxMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmMemoryAllocationResult                                |           1 |
+| t:V8.WasmMemoryAllocationResult                                |           0 |
+| c:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| t:V8.WasmMemoryProtectionKeysSupport                           |           1 |
+| c:V8.WasmMinMemPagesCount.wasm                                 |           1 |
+| t:V8.WasmMinMemPagesCount.wasm                                 |         128 |
+| c:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| t:V8.WasmModuleNumberOfCodeSpaces                              |           1 |
+| c:V8.WasmModuleSizeBytes.wasm                                  |           1 |
+| t:V8.WasmModuleSizeBytes.wasm                                  |       20857 |
+| c:V8.WasmModulesPerEngine                                      |           1 |
+| t:V8.WasmModulesPerEngine                                      |           1 |
+| c:V8.WasmModulesPerIsolate                                     |           1 |
+| t:V8.WasmModulesPerIsolate                                     |           1 |
+| c:V8.CompilationCacheMisses                                    |           1 |
+| c:V8.GlobalHandles                                             |           8 |
+| c:V8.MegamorphicStubCacheMisses                                |           0 |
+| c:V8.MegamorphicStubCacheProbes                                |           0 |
+| c:V8.RegExpEntryNative                                         |           0 |
+| c:V8.WasmGeneratedCodeBytes                                    |       55884 |
+| c:V8.WasmRelocBytes                                            |        1458 |
+| c:V8.WriteBarriers                                             |           0 |
++----------------------------------------------------------------+-------------+
+compile_speed : .086133 us/byte

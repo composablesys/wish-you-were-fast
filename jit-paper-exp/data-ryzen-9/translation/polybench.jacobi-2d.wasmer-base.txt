@@ -1,0 +1,299 @@
+compile us: 111
+compile in_bytes: 17980 bytes
+compile_speed : .006173 us/byte
+load us: 107
+instantiate us: 1568
+main us: 48814
+insantiate in_bytes: 17980 bytes
+compile_speed :  us/byte
+load us: 114
+instantiate us: 1369
+main us: 49257
+insantiate in_bytes: 17980 bytes
+compile_speed :  us/byte
+load us: 98
+instantiate us: 1164
+main us: 46855
+instantiate in_bytes: 17980 bytes
+compile_speed : .064738 us/byte
+load us: 114
+instantiate us: 1330
+main us: 49038
+instantiate in_bytes: 17980 bytes
+compile_speed : .073971 us/byte
+load us: 101
+instantiate us: 1247
+main us: 49038
+instantiate in_bytes: 17980 bytes
+compile_speed : .069354 us/byte
+load us: 117
+instantiate us: 1349
+main us: 48856
+instantiate in_bytes: 17980 bytes
+compile_speed : .075027 us/byte
+load us: 95
+instantiate us: 1234
+main us: 48667
+instantiate in_bytes: 17980 bytes
+compile_speed : .068631 us/byte
+load us: 107
+instantiate us: 1292
+main us: 48978
+instantiate in_bytes: 17980 bytes
+compile_speed : .071857 us/byte
+load us: 101
+instantiate us: 1309
+main us: 49386
+instantiate in_bytes: 17980 bytes
+compile_speed : .072803 us/byte
+load us: 104
+instantiate us: 1312
+main us: 49033
+instantiate in_bytes: 17980 bytes
+compile_speed : .072969 us/byte
+load us: 162
+instantiate us: 1833
+main us: 53144
+instantiate in_bytes: 17980 bytes
+compile_speed : .101946 us/byte
+load us: 105
+instantiate us: 1256
+main us: 49904
+instantiate in_bytes: 17980 bytes
+compile_speed : .069855 us/byte
+load us: 105
+instantiate us: 1249
+main us: 48780
+instantiate in_bytes: 17980 bytes
+compile_speed : .069466 us/byte
+load us: 97
+instantiate us: 1272
+main us: 49051
+instantiate in_bytes: 17980 bytes
+compile_speed : .070745 us/byte
+load us: 109
+instantiate us: 1322
+main us: 49278
+instantiate in_bytes: 17980 bytes
+compile_speed : .073526 us/byte
+load us: 113
+instantiate us: 1276
+main us: 49163
+instantiate in_bytes: 17980 bytes
+compile_speed : .070967 us/byte
+load us: 109
+instantiate us: 1297
+main us: 48360
+instantiate in_bytes: 17980 bytes
+compile_speed : .072135 us/byte
+load us: 104
+instantiate us: 1272
+main us: 49146
+instantiate in_bytes: 17980 bytes
+compile_speed : .070745 us/byte
+load us: 102
+instantiate us: 1270
+main us: 48590
+instantiate in_bytes: 17980 bytes
+compile_speed : .070634 us/byte
+load us: 105
+instantiate us: 1340
+main us: 48419
+instantiate in_bytes: 17980 bytes
+compile_speed : .074527 us/byte
+load us: 114
+instantiate us: 1307
+main us: 48755
+instantiate in_bytes: 17980 bytes
+compile_speed : .072691 us/byte
+load us: 101
+instantiate us: 1247
+main us: 48534
+instantiate in_bytes: 17980 bytes
+compile_speed : .069354 us/byte
+load us: 109
+instantiate us: 1296
+main us: 48786
+instantiate in_bytes: 17980 bytes
+compile_speed : .072080 us/byte
+load us: 95
+instantiate us: 1182
+main us: 47139
+instantiate in_bytes: 17980 bytes
+compile_speed : .065739 us/byte
+load us: 108
+instantiate us: 1313
+main us: 48984
+instantiate in_bytes: 17980 bytes
+compile_speed : .073025 us/byte
+load us: 108
+instantiate us: 1351
+main us: 48151
+instantiate in_bytes: 17980 bytes
+compile_speed : .075139 us/byte
+load us: 105
+instantiate us: 1354
+main us: 49109
+instantiate in_bytes: 17980 bytes
+compile_speed : .075305 us/byte
+load us: 105
+instantiate us: 1369
+main us: 49164
+instantiate in_bytes: 17980 bytes
+compile_speed : .076140 us/byte
+singlepass us: 1883
+load us: 2605
+instantiate us: 3627
+main us: 48297
+singlepass in_bytes: 17980 bytes
+compile_speed : .104727 us/byte
+singlepass us: 1849
+load us: 2096
+instantiate us: 3088
+main us: 49632
+singlepass in_bytes: 17980 bytes
+compile_speed : .102836 us/byte
+singlepass us: 1711
+load us: 1990
+instantiate us: 2995
+main us: 49210
+singlepass in_bytes: 17980 bytes
+compile_speed : .095161 us/byte
+singlepass us: 1808
+load us: 2059
+instantiate us: 3080
+main us: 48895
+singlepass in_bytes: 17980 bytes
+compile_speed : .100556 us/byte
+singlepass us: 1810
+load us: 2082
+instantiate us: 3083
+main us: 49433
+singlepass in_bytes: 17980 bytes
+compile_speed : .100667 us/byte
+singlepass us: 1705
+load us: 1967
+instantiate us: 2982
+main us: 49084
+singlepass in_bytes: 17980 bytes
+compile_speed : .094827 us/byte
+singlepass us: 1887
+load us: 2155
+instantiate us: 3149
+main us: 48697
+singlepass in_bytes: 17980 bytes
+compile_speed : .104949 us/byte
+singlepass us: 1825
+load us: 2079
+instantiate us: 3067
+main us: 47012
+singlepass in_bytes: 17980 bytes
+compile_speed : .101501 us/byte
+singlepass us: 1825
+load us: 2078
+instantiate us: 3080
+main us: 46812
+singlepass in_bytes: 17980 bytes
+compile_speed : .101501 us/byte
+singlepass us: 1728
+load us: 2000
+instantiate us: 3035
+main us: 48883
+singlepass in_bytes: 17980 bytes
+compile_speed : .096106 us/byte
+singlepass us: 1956
+load us: 2205
+instantiate us: 3189
+main us: 49230
+singlepass in_bytes: 17980 bytes
+compile_speed : .108787 us/byte
+singlepass us: 1651
+load us: 1905
+instantiate us: 2875
+main us: 48812
+singlepass in_bytes: 17980 bytes
+compile_speed : .091824 us/byte
+singlepass us: 1800
+load us: 2062
+instantiate us: 3064
+main us: 48790
+singlepass in_bytes: 17980 bytes
+compile_speed : .100111 us/byte
+singlepass us: 1784
+load us: 2049
+instantiate us: 3020
+main us: 47705
+singlepass in_bytes: 17980 bytes
+compile_speed : .099221 us/byte
+singlepass us: 1989
+load us: 2250
+instantiate us: 3261
+main us: 49124
+singlepass in_bytes: 17980 bytes
+compile_speed : .110622 us/byte
+singlepass us: 1875
+load us: 2149
+instantiate us: 3296
+main us: 46678
+singlepass in_bytes: 17980 bytes
+compile_speed : .104282 us/byte
+singlepass us: 1724
+load us: 1977
+instantiate us: 3014
+main us: 49157
+singlepass in_bytes: 17980 bytes
+compile_speed : .095884 us/byte
+singlepass us: 1879
+load us: 2134
+instantiate us: 3156
+main us: 49039
+singlepass in_bytes: 17980 bytes
+compile_speed : .104505 us/byte
+singlepass us: 1758
+load us: 2034
+instantiate us: 3082
+main us: 48360
+singlepass in_bytes: 17980 bytes
+compile_speed : .097775 us/byte
+singlepass us: 1744
+load us: 1999
+instantiate us: 2992
+main us: 49198
+singlepass in_bytes: 17980 bytes
+compile_speed : .096996 us/byte
+singlepass us: 1794
+load us: 2060
+instantiate us: 3069
+main us: 49630
+singlepass in_bytes: 17980 bytes
+compile_speed : .099777 us/byte
+singlepass us: 1712
+load us: 1960
+instantiate us: 2948
+main us: 46926
+singlepass in_bytes: 17980 bytes
+compile_speed : .095216 us/byte
+singlepass us: 1863
+load us: 2126
+instantiate us: 3155
+main us: 49265
+singlepass in_bytes: 17980 bytes
+compile_speed : .103615 us/byte
+singlepass us: 1932
+load us: 2196
+instantiate us: 3257
+main us: 48240
+singlepass in_bytes: 17980 bytes
+compile_speed : .107452 us/byte
+singlepass us: 1783
+load us: 2057
+instantiate us: 3118
+main us: 46788
+singlepass in_bytes: 17980 bytes
+compile_speed : .099165 us/byte
+singlepass us: 1797
+load us: 2082
+instantiate us: 3148
+main us: 48484
+singlepass in_bytes: 17980 bytes
+compile_speed : .099944 us/byte

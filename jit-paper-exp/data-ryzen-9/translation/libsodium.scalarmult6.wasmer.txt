@@ -1,0 +1,35 @@
+cranelift us: 15544
+load us: 16048
+instantiate us: 17264
+230370000
+main us: 46184
+cranelift in_bytes: 59411 bytes
+compile_speed : .261635 us/byte
+cranelift us: 15828
+load us: 16325
+instantiate us: 17505
+214400000
+main us: 42992
+cranelift in_bytes: 59411 bytes
+compile_speed : .266415 us/byte
+cranelift us: 15293
+load us: 15793
+instantiate us: 16930
+214035000
+main us: 42910
+cranelift in_bytes: 59411 bytes
+compile_speed : .257410 us/byte
+cranelift us: 15265
+load us: 15756
+instantiate us: 16964
+215195000
+main us: 43161
+cranelift in_bytes: 59411 bytes
+compile_speed : .256938 us/byte
+cranelift us: 15551
+load us: 16065
+instantiate us: 17304
+216760000
+main us: 43459
+cranelift in_bytes: 59411 bytes
+compile_speed : .261752 us/byte

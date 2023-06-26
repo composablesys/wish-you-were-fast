@@ -1,0 +1,27 @@
+opt count: 0
+opt in_bytes: 0
+opt out_bytes: 0
+opt us: 0
+base count: 60
+base in_bytes: 29388
+base out_bytes: 78630
+base us: 1210
+compile_speed : .041173 us/byte
+opt count: 0
+opt in_bytes: 0
+opt out_bytes: 0
+opt us: 0
+base count: 60
+base in_bytes: 29388
+base out_bytes: 82320
+base us: 1155
+compile_speed : .039301 us/byte
+opt count: 0
+opt in_bytes: 0
+opt out_bytes: 0
+opt us: 0
+base count: 60
+base in_bytes: 29388
+base out_bytes: 82320
+base us: 1164
+compile_speed : .039608 us/byte

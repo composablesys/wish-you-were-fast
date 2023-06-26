@@ -1,0 +1,951 @@
+Sat May 13 03:20:52 AM EDT 2023
+----
+392420000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6339      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.069913  μs/bytes
+validate:time_us         : 1054      μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.018637  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9846      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087051  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78502     μs
+probes:fired             : 0         count
+----
+395185000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6105      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067332  μs/bytes
+validate:time_us         : 846       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014959  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9935      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087837  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 79053     μs
+probes:fired             : 0         count
+----
+393480000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6080      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067057  μs/bytes
+validate:time_us         : 853       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015083  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9864      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087210  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78710     μs
+probes:fired             : 0         count
+----
+392905000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6092      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067189  μs/bytes
+validate:time_us         : 852       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015065  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9903      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087555  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78596     μs
+probes:fired             : 0         count
+----
+412185000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6142      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067740  μs/bytes
+validate:time_us         : 851       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015047  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9944      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087917  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 82453     μs
+probes:fired             : 0         count
+----
+392905000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6080      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067057  μs/bytes
+validate:time_us         : 857       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015153  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9880      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087351  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78595     μs
+probes:fired             : 0         count
+----
+415530000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6078      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067035  μs/bytes
+validate:time_us         : 858       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015171  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9879      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087342  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 83121     μs
+probes:fired             : 0         count
+----
+392035000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6075      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067001  μs/bytes
+validate:time_us         : 854       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015100  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9882      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087369  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78422     μs
+probes:fired             : 0         count
+----
+391975000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6074      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.066990  μs/bytes
+validate:time_us         : 851       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015047  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9876      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087316  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78409     μs
+probes:fired             : 0         count
+----
+399795000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6070      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.066946  μs/bytes
+validate:time_us         : 837       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014800  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9883      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087378  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 79974     μs
+probes:fired             : 0         count
+----
+393890000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6071      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.066957  μs/bytes
+validate:time_us         : 850       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015030  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9872      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087280  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78792     μs
+probes:fired             : 0         count
+----
+393935000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6080      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067057  μs/bytes
+validate:time_us         : 858       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015171  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9862      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087192  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78803     μs
+probes:fired             : 0         count
+----
+408515000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6082      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067079  μs/bytes
+validate:time_us         : 845       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014941  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9908      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087599  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 81717     μs
+probes:fired             : 0         count
+----
+391980000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6085      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067112  μs/bytes
+validate:time_us         : 851       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015047  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9911      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087625  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78412     μs
+probes:fired             : 0         count
+----
+390190000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6100      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067277  μs/bytes
+validate:time_us         : 844       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014924  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9919      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087696  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78053     μs
+probes:fired             : 0         count
+----
+390255000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6074      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.066990  μs/bytes
+validate:time_us         : 855       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015118  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9857      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087148  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78065     μs
+probes:fired             : 0         count
+----
+391930000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6072      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.066968  μs/bytes
+validate:time_us         : 846       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014959  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9884      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087387  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78401     μs
+probes:fired             : 0         count
+----
+393690000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6110      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067387  μs/bytes
+validate:time_us         : 858       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.015171  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9896      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087493  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78753     μs
+probes:fired             : 0         count
+----
+391375000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6079      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067046  μs/bytes
+validate:time_us         : 846       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014959  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9889      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.087431  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78292     μs
+probes:fired             : 0         count
+----
+378190000
+pregen:time_us           : 5         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 7381      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.081405  μs/bytes
+validate:time_us         : 1127      μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.019928  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 10639     μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.094062  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75655     μs
+probes:fired             : 0         count
+----
+379495000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5905      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.065127  μs/bytes
+validate:time_us         : 817       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014446  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9591      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084796  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75913     μs
+probes:fired             : 0         count
+----
+385500000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5867      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064707  μs/bytes
+validate:time_us         : 828       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014641  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9550      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084434  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 77114     μs
+probes:fired             : 0         count
+----
+376200000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5855      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064575  μs/bytes
+validate:time_us         : 818       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014464  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9515      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084124  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75254     μs
+probes:fired             : 0         count
+----
+377625000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5860      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064630  μs/bytes
+validate:time_us         : 829       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014658  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9507      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084053  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75540     μs
+probes:fired             : 0         count
+----
+378645000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5860      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064630  μs/bytes
+validate:time_us         : 821       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014517  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9533      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084283  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75744     μs
+probes:fired             : 0         count
+----
+381660000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5849      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064509  μs/bytes
+validate:time_us         : 812       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014358  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9518      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084151  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76347     μs
+probes:fired             : 0         count
+----
+392115000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5860      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064630  μs/bytes
+validate:time_us         : 814       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014393  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9510      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084080  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78437     μs
+probes:fired             : 0         count
+----
+378095000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5885      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064906  μs/bytes
+validate:time_us         : 828       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014641  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9564      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084557  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75633     μs
+probes:fired             : 0         count
+----
+380610000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5861      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064641  μs/bytes
+validate:time_us         : 817       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014446  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9521      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084177  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76136     μs
+probes:fired             : 0         count
+----
+379195000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5883      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064884  μs/bytes
+validate:time_us         : 822       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014535  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9532      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084274  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75853     μs
+probes:fired             : 0         count
+----
+405080000
+pregen:time_us           : 6         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 8426      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.092931  μs/bytes
+validate:time_us         : 1803      μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.031881  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 11221     μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.099207  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 81034     μs
+probes:fired             : 0         count
+----
+377560000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 6104      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.067321  μs/bytes
+validate:time_us         : 939       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.016603  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9669      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.085486  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75529     μs
+probes:fired             : 0         count
+----
+380280000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5899      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.065060  μs/bytes
+validate:time_us         : 836       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014782  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9582      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084716  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76071     μs
+probes:fired             : 0         count
+----
+379055000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5879      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064840  μs/bytes
+validate:time_us         : 821       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014517  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9548      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084416  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75825     μs
+probes:fired             : 0         count
+----
+382075000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5876      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064807  μs/bytes
+validate:time_us         : 817       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014446  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9552      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084451  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76430     μs
+probes:fired             : 0         count
+----
+379835000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5870      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064740  μs/bytes
+validate:time_us         : 826       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014605  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9558      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084504  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75982     μs
+probes:fired             : 0         count
+----
+387480000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5892      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064983  μs/bytes
+validate:time_us         : 820       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014499  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9587      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084761  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 77511     μs
+probes:fired             : 0         count
+----
+533595000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5865      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064685  μs/bytes
+validate:time_us         : 821       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014517  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9542      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084363  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 106734    μs
+probes:fired             : 0         count
+----
+384590000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5850      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064520  μs/bytes
+validate:time_us         : 816       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014428  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9529      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084248  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76933     μs
+probes:fired             : 0         count
+----
+377875000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5892      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064983  μs/bytes
+validate:time_us         : 824       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014570  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9574      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084646  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75590     μs
+probes:fired             : 0         count
+----
+378915000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5896      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.065027  μs/bytes
+validate:time_us         : 825       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014588  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9580      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084699  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75798     μs
+probes:fired             : 0         count
+----
+377895000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5897      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.065038  μs/bytes
+validate:time_us         : 822       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014535  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9575      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084655  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75593     μs
+probes:fired             : 0         count
+----
+377560000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5892      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064983  μs/bytes
+validate:time_us         : 827       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014623  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9572      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084628  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75526     μs
+probes:fired             : 0         count
+----
+381370000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5884      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064895  μs/bytes
+validate:time_us         : 822       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014535  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9566      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084575  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76288     μs
+probes:fired             : 0         count
+----
+377145000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5874      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064785  μs/bytes
+validate:time_us         : 823       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014552  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9545      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084389  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75443     μs
+probes:fired             : 0         count
+----
+394515000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5890      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064961  μs/bytes
+validate:time_us         : 828       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014641  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9589      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084778  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 78917     μs
+probes:fired             : 0         count
+----
+378540000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5869      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064729  μs/bytes
+validate:time_us         : 826       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014605  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9548      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084416  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75723     μs
+probes:fired             : 0         count
+----
+376500000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5872      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064763  μs/bytes
+validate:time_us         : 820       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014499  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9547      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084407  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 75314     μs
+probes:fired             : 0         count
+----
+385040000
+pregen:time_us           : 2         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5889      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064950  μs/bytes
+validate:time_us         : 821       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014517  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9568      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084593  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 77023     μs
+probes:fired             : 0         count
+----
+383045000
+pregen:time_us           : 3         μs
+pregen:bytes             : 34951     bytes
+load:time_us             : 5883      μs
+load:bytes               : 90669     bytes
+load:time_per_byte       : 0.064884  μs/bytes
+validate:time_us         : 823       μs
+validate:bytes           : 56553     bytes
+validate:time_per_byte   : 0.014552  μs/bytes
+spc:in_bytes             : 113106    bytes
+spc:code_bytes           : 506038    bytes
+spc:data_bytes           : 0         bytes
+spc:time_us              : 9553      μs
+spc:functions            : 108       functions
+spc:time_per_byte        : 0.084460  μs/bytes
+start:time_us            : 0         μs
+main:time_us             : 76623     μs
+probes:fired             : 0         count

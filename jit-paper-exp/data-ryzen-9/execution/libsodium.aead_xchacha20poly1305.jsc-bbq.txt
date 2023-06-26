@@ -1,0 +1,10 @@
+Exception: RuntimeError: Out of bounds memory access (evaluating 'instance.exports["_start"]()')
+<?>.wasm-function[23]@[wasm code]
+<?>.wasm-function[59]@[wasm code]
+<?>.wasm-function[60]@[wasm code]
+<?>.wasm-function[9]@[wasm code]
+global code@/home/titzer/jit-paper/exp/engines/run.js:99:29
+
+=={ FAILED }=============================================
+process exited with rc = 3
+=========================================================
