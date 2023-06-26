@@ -90,7 +90,7 @@ function run_command_multiple() {
 }
 
 function print_suite() {
-    printf "\nSuite: $SUITE"
+    printf "\nSuite: $suite"
     shift
     printf "\n"
 }
