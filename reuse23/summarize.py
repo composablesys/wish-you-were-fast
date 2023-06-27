@@ -2,7 +2,7 @@
 
 import os, fnmatch, psycopg2, json, sys, math
 from prettytable import PrettyTable 
-import common
+import common # common.py file
 import numpy as np
 from datetime import datetime, date
 
