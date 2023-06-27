@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Geomean for Execution Experiment</title>
+<title>Geomean Bar Chart for {{engine}} Engine</title>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
@@ -15,31 +15,11 @@
 {% endblock %} 
 
 {% block body %}
-    <h1>Geomean for Execution Experiment</h1>
+    <h1>Geomean for {{engine}} Engine</h1>
     <!-- Container for the visualization -->
-    <div id="mainVis"></div>
     <div id="popup"></div>
 
     <script>
-        // Assign the specification to a local variable vlSpec.
-        var vlSpec = {
-          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": '/get_all_execution'},
-            "mark": {
-              "type": "line",
-              "point": true
-            },
-              /*"transform": [{
-              "calculate": "/zoomInto/" + datum.engine, "as": "url"
-            }],*/
-            "encoding": {
-              "x": {"timeUnit": "date", "field": "experiment date", "type": "temporal"},
-              "y": {"field": "total time", "type": "quantitative"},
-              "color": {"field": "engine", "type": "nominal"},
-            }
-        };
-
-        /*
         var popupVis = {
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
             "data": {"url": '/get_suites/{{engine}}'},
@@ -53,10 +33,8 @@
               "color": {"field": "suite", "type": "nominal"}
             }
         };
-        */
   
         // Embed the visualization in the container with id `vis`
-        vegaEmbed('#mainVis', vlSpec);
-        //vegaEmbed('#popup', popupVis);
+        vegaEmbed('#popup', popupVis);
     </script>
 {% endblock %} 

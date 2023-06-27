@@ -45,21 +45,22 @@ class statusCheck(Resource):
       return {"data":1}
 
 configs = ['int', 'jit', 'nok', 'nokfold','noisel','nomr']
-
+suites = ['ostrich', 'libsodium', 'polybench']
 # total_time metric
+# must change table to correct one to collect data
 @api.route('/get_all_execution')
 class getExecution(Resource):
    def get(self):
       results = []
       conn = psycopg2.connect(database=db,user=user,password=pwd)
       cur = conn.cursor()
-      cur.execute("SELECT DISTINCT engine FROM testSummary3")
+      cur.execute("SELECT DISTINCT engine FROM testSummary6")
       engines = cur.fetchall()
-      cur.execute("SELECT DISTINCT exp_date FROM testSummary3")
+      cur.execute("SELECT DISTINCT exp_date FROM testSummary6")
       exp_dates = cur.fetchall()
       for engine in engines:
          for date in exp_dates:
-            cur.execute("SELECT avg FROM testSummary3 WHERE engine = %s and exp_date = %s", (engine[0], date[0]))
+            cur.execute("SELECT avg FROM testSummary6 WHERE engine = %s and exp_date = %s", (engine[0], date[0]))
             data = cur.fetchall()
             values = [row[0] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
@@ -72,6 +73,28 @@ class getExecution(Resource):
 def home():
    return render_template('index.html')
 
+@api.route('/get_suites/<string:engine>')
+class getSuites(Resource):
+   def get(self, engine):
+      results = []
+      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      cur = conn.cursor()
+      cur.execute("SELECT DISTINCT exp_date FROM testSummary6")
+      exp_dates = cur.fetchall()
+      for suite in suites:
+         for date in exp_dates:
+            cur.execute("SELECT avg FROM testSummary6 WHERE engine = %s and exp_date = %s and benchmark_suite = %s", (engine, date[0], suite))
+            data = cur.fetchall()
+            values = [row[0] for row in data]
+            geomean = round(math.sqrt(sum(values)), 6)
+            results.append({'experiment date': str(date[0]), 'total time': geomean, 'suite': suite})
+      cur.close()
+      conn.close()
+      return results
+
+@app.route('/zoomInto/<string:engine>')
+def zoom(engine):
+   return render_template('popup.html', engine=engine)
 # calculates geomean given a suite in speedup experiment and returns a json format with geomean like 
 # [{config: int, geomean: 0.968178}, {config: jit, geomean: 0.669872}, {config: nok, geomean: 0.001414}, {config: nokfold, geomean: 0.605595}, 
 # {config: noisel, geomean: 0.614007}, {config: nomr, geomean: 1.116099}]
