@@ -2,6 +2,7 @@
 
 import os, fnmatch, psycopg2, json, sys, math
 from prettytable import PrettyTable 
+import common
 import numpy as np
 from datetime import datetime, date
 
@@ -392,22 +393,11 @@ if __name__ == "__main__":
     version = os.environ.get('VERSION', '-')
     machine = os.environ.get('MACHINE', 'ryzen-9')
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
-    exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
+    exp = common.exp # for the PrettyTable
 
-    suites = []
-    s_names = os.environ.get('SUITES', 'polybench,ostrich,libsodium')
-    sn = s_names.split(',')
-    for s in sn:
-        suites.append(s)
-
-    configs = []
-    c_names = os.environ.get('CONFIGS', 'int,jit,nok,nokfold,noisel,nomr')
-    if exp == 'speedup': c_names = 'int,jit,nok,nokfold,noisel,nomr'
-    elif exp == 'execution': c_names = 'iwasm-fjit,iwasm-int,jsc-bbq,jsc-int,jsc-omg,sm-base,sm-opt,v8-liftoff,v8-turbofan,wasm3,wasmer-base,wasmer,wasmnow,wasmtime,wavm,wazero,wizeng-int,wizeng-jit'
-    cn = c_names.split(',')
-    for c in cn:
-        configs.append(c)
+    suites = common.assign_suites()
+    configs = common.assign_configs()
 
     ''' HARD CODE TO CHANGE '''
     LABEL = 'main:time_us'
