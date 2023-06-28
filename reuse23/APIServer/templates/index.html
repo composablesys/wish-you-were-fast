@@ -29,6 +29,11 @@
               "type": "line",
               "point": true
             },
+            "params": [{
+              "name": "engine",
+              "select": {"type": "point", "fields": ["engine"]},
+              "bind": "legend"
+            }],
               /*"transform": [{
               "calculate": "/zoomInto/" + datum.engine, "as": "url"
             }],*/
@@ -36,6 +41,10 @@
               "x": {"timeUnit": "date", "field": "experiment date", "type": "temporal"},
               "y": {"field": "total time", "type": "quantitative"},
               "color": {"field": "engine", "type": "nominal"},
+              "opacity": {
+                "condition": {"param": "engine", "value": 1},
+                "value": 0.2
+              }
             }
         };
 
