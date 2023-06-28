@@ -1,6 +1,7 @@
 import os
 
 exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
+# tagging, bselines, alltiers
 
 def assign_suites():
     suites = []
@@ -29,3 +30,4 @@ def get_benchmarks(suite):
         benchmarks = ['SRAD', 'back-propagation', 'crc', 'fft', 'hmm', 'lavamd', 'lud', 'nqueens', 'nw', 'page-rank', 'spmv']
     elif suite == 'libsodium':
         benchmarks = ['aead_chacha20poly1305', 'aead_chacha20poly13052', 'aead_xchacha20poly1305', 'auth', 'auth2', 'auth3', 'auth6', 'box', 'box2', 'box_easy', 'box_seal', 'box_seed', 'chacha20', 'codecs', 'generichash', 'generichash2', 'generichash3', 'hash', 'hash3', 'kdf', 'kdf_hkdf', 'keygen', 'onetimeauth', 'onetimeauth2', 'randombytes', 'scalarmult', 'scalarmult2', 'scalarmult5', 'scalarmult6', 'scalarmult7', 'secretbox', 'secretbox2', 'secretbox_easy', 'secretstream_xchacha20poly1305', 'shorthash', 'sign2', 'siphashx24', 'stream3', 'stream4']
+    return benchmarks
