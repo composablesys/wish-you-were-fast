@@ -69,9 +69,15 @@ class getExecution(Resource):
       conn.close()
       return results
    
-@app.route('/main')
-def home():
+# working version with interactive line highlight
+@app.route('/main1')
+def home1():
    return render_template('index.html')
+
+# version to use selections to filter data in another graph through changing url
+@app.route('/main2/<string:engine>')
+def home2(engine):
+   return render_template('index2.html', engine=engine)
 
 @api.route('/get_suites/<string:engine>')
 class getSuites(Resource):
@@ -159,6 +165,11 @@ class getAllTest(Resource):
 @app.route('/display_geomean/<suite>')
 def display(suite):
    return render_template('geomeanVegalite.html', suite=suite)
+
+# testing for clicking to change another graph
+@app.route('/testInteractiveClick')
+def interactive():
+   return render_template('testInteractiveClick.html')
 
 @api.route('/get_all_mean')
 class getAllMean(Resource):

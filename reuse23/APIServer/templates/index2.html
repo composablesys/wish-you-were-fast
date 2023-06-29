@@ -15,9 +15,10 @@
 {% endblock %} 
 
 {% block body %}
-    <h1>Geomean for Execution Experiment (Interactive Line Highlight)</h1>
+    <h1>Geomean for Execution Experiment and </h1>
     <!-- Container for the visualization -->
     <div id="mainVis"></div>
+    <div id="zoomView"></div>
 
     <script>
         // Assign the specification to a local variable vlSpec.
@@ -47,6 +48,7 @@
               "description": "transparent layer to make it easier to trigger selection",
               "params": [{
                 "name": "hover",
+                //"value": [{"engine": "jsc"}], //i don't understand what this is
                 "select": {
                   "type": "point",
                   "fields": ["engine"],
@@ -71,7 +73,58 @@
             "config": {"view": {"stroke": null}}
         };
   
+        var zoom = {
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+            "data": {"url": "/get_suites/{{engine}}"},
+            "encoding": {
+              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment date", "type": "temporal", "title": "experiment date"},
+              "y": {"field": "total time", "type": "quantitative", "title": "total time"},
+              "color": {
+                "condition": {
+                  "param": "hover",
+                  "field": "suite", 
+                  "type": "nominal",
+                  "legend": null
+                },
+                "value": "grey"
+              },
+              "opacity": {
+                "condition": {
+                  "param": "hover",
+                  "value": 1},
+                "value": 0.2
+              }
+            },
+            "layer": [{
+              "description": "transparent layer to make it easier to trigger selection",
+              "params": [{
+                "name": "hover",
+                //"value": [{"suite": "jsc"}], //i don't understand what this is
+                "select": {
+                  "type": "point",
+                  "fields": ["suite"],
+                  "on": "mouseover"
+                }
+              }],
+              "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+            }, {
+              "mark": "line"
+            }, {
+              "encoding": {
+                "x": {"aggregate": "max", "field": "experiment date"},
+                "y": {"aggregate": {"argmax": "experiment date"}, "field": "total time"}
+              },
+              "layer": [{
+                "mark": {"type": "circle"}
+              }, {
+                "mark": {"type": "text", "align": "left", "dx": 4},
+                "encoding": {"text": {"field": "suite", "type": "nominal"}}
+              }]
+            }],
+            "config": {"view": {"stroke": null}}
+        };
         // Embed the visualization in the container with id `vis`
         vegaEmbed('#mainVis', vlSpec);
+        vegaEmbed('#zoomView', zoom);
     </script>
 {% endblock %} 
