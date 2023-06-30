@@ -64,7 +64,7 @@ class getExecution(Resource):
             data = cur.fetchall()
             values = [row[0] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
-            results.append({'experiment date': str(date[0]), 'total time': geomean, 'engine': engine[0]})
+            results.append({'experiment_date': str(date[0]), 'total_time': geomean, 'engine': engine[0]})
       cur.close()
       conn.close()
       return results
@@ -73,6 +73,11 @@ class getExecution(Resource):
 @app.route('/main1')
 def home1():
    return render_template('index.html')
+
+# essentially main graph but clicking on line will direct to main2 with given engine line
+@app.route('/main3')
+def home3():
+   return render_template('index3.html')
 
 # version to use selections to filter data in another graph through changing url
 @app.route('/main2/<string:engine>')
@@ -93,7 +98,7 @@ class getSuites(Resource):
             data = cur.fetchall()
             values = [row[0] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
-            results.append({'experiment date': str(date[0]), 'total time': geomean, 'suite': suite})
+            results.append({'experiment_date': str(date[0]), 'total_time': geomean, 'suite': suite})
       cur.close()
       conn.close()
       return results

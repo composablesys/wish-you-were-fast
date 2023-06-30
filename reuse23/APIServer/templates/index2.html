@@ -26,8 +26,8 @@
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
             "data": {"url": "/get_all_execution"},
             "encoding": {
-              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment date", "type": "temporal", "title": "experiment date"},
-              "y": {"field": "total time", "type": "quantitative", "title": "total time"},
+              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "experiment date"},
+              "y": {"field": "total_time", "type": "quantitative", "title": "total time"},
               "color": {
                 "condition": {
                   "param": "hover",
@@ -60,8 +60,8 @@
               "mark": "line"
             }, {
               "encoding": {
-                "x": {"aggregate": "max", "field": "experiment date"},
-                "y": {"aggregate": {"argmax": "experiment date"}, "field": "total time"}
+                "x": {"aggregate": "max", "field": "experiment_date"},
+                "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
               },
               "layer": [{
                 "mark": {"type": "circle"}
@@ -77,8 +77,8 @@
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
             "data": {"url": "/get_suites/{{engine}}"},
             "encoding": {
-              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment date", "type": "temporal", "title": "experiment date"},
-              "y": {"field": "total time", "type": "quantitative", "title": "total time"},
+              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "experiment date"},
+              "y": {"field": "total_time", "type": "quantitative", "title": "total time"},
               "color": {
                 "condition": {
                   "param": "hover",
@@ -111,8 +111,8 @@
               "mark": "line"
             }, {
               "encoding": {
-                "x": {"aggregate": "max", "field": "experiment date"},
-                "y": {"aggregate": {"argmax": "experiment date"}, "field": "total time"}
+                "x": {"aggregate": "max", "field": "experiment_date"},
+                "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
               },
               "layer": [{
                 "mark": {"type": "circle"}
