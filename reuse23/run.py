@@ -1,18 +1,23 @@
 import os, subprocess
 import common # common.py file
 
+'''
+How to Run Script
+- Set DATA_DIR, EXP, and BTIME_OPTIONS(if applicable)
+- Execute command: $ python3 reuse23/run.py
+
+Notes:
+- Script assumes its being ran in wish-you-were-fast directory so hardcoded paths reflect that
+    - data_dir,cmd, and wasmfile
+    - $ python3 reuse23/run.py 
+- Script assumes btime is a function on the server
+'''
+
 ''' TODO automatically download and build engines
 - Get engine version from json
     -  Go to URL for download and build
     - Set up error notification if build fails
- '''
-'''
- Notes:
- - Script assumes its being ran in wish-you-were-fast directory so hardcoded paths reflect that
-    - data_dir,cmd, and wasmfile
-    - $ python3 reuse23/run.py 
- - Script assumes btime is a function on the server
- - Once all engines are built, adjust check_running() functions; maybe combine them
+- Once all engines are built, adjust check_running() functions; maybe combine them
  '''
 
 # checks if an engine is running; helper function for check_running_configs() 
@@ -26,7 +31,7 @@ def check_running_engines():
             working_engines.append(eng)
     return working_engines
 
-# checks if an engine has a working config setting; command line varies by engine
+# checks if an engine has a working config setting; command line call varies by engine
 def check_running_configs():
     working_configs = []
     engines = check_running_engines()
@@ -50,7 +55,7 @@ def check_running_configs():
 def btime(cmd, wasmfile, runs, datafile):
     if btime_options == '-f':
         command = ['btime', btime_options, '-l', str(runs), cmd, wasmfile] # array of command line arguments to parse
-    else: command = ['btime', '-l', str(runs), cmd, wasmfile] # array of command line arguments to parse
+    else: command = ['btime', '-l', str(runs), cmd, wasmfile]
     try:
         result = subprocess.run(command, capture_output=True, text=True) # runs the command line, captures output as text
         if result.returncode == 0: # if the command worked, records the results in a file
@@ -81,13 +86,12 @@ def run_execution_experiment(suite):
 
 if __name__ == "__main__":
 
+    exp = common.exp
     suites = common.assign_suites()
     all_configs = common.assign_configs()
     configs = check_running_configs()
-    # data_dir = os.environ.get('DATA_DIR') 
-    data_dir = 'reuse23/run_experiments/' # directory for results to go to
+    data_dir = os.environ.get('DATA_DIR') # directory for results to go to; 'reuse23/run_experiments/'
     btime_options = os.environ.get('BTIME_OPTIONS') # must either be '-l' or '-f'
-    exp = common.exp
 
     if exp == 'execution':
         if not os.path.exists(data_dir+exp):

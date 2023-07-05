@@ -1,8 +1,7 @@
 import os
 
-# exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
-# tagging, bselines, alltiers
-exp = 'execution'
+exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
+# execution, tagging, baselines, alltiers
 
 def assign_suites():
     suites = []
