@@ -69,12 +69,13 @@ class getExecution(Resource):
       conn.close()
       return results
    
-# working version with interactive line highlight
+''' working version of main graph with interactive line highlight '''
 @app.route('/main1')
 def home1():
    return render_template('index.html')
 
-# essentially main graph but clicking on line will direct to main2 with given engine line
+''' working version with clickable main graph that directs to specific engine's graph '''
+# essentially main graph but clicking on line will direct to main4 with given engine line
 @app.route('/main3')
 def home3():
    return render_template('index3.html')
@@ -83,6 +84,11 @@ def home3():
 @app.route('/main2/<string:engine>')
 def home2(engine):
    return render_template('index2.html', engine=engine)
+
+''' version in-progress where clicking on different engines on main graph filters data in another graph '''
+@app.route('/main4/<string:engine>')
+def home4(engine):
+   return render_template('index4.html', engine=engine)
 
 @api.route('/get_suites/<string:engine>')
 class getSuites(Resource):
