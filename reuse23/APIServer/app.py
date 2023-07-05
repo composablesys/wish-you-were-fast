@@ -18,12 +18,9 @@ How to run this script:
     "user": "username",
     "pwd": "password", 
     }
-3. Set the data directory path using 'export DATA_DIR=/path/to/data' 
-    ex. export DATA_DIR=/home/cvenen/python/speedup/
-4. Run the script with 'python3 app.py --data_dir $DATA_DIR'
+3. Run the script with 'python3 app.py'
 '''
 
-data_dir = os.environ.get('DATA_DIR')
 DATA_TABLE = 'testSummary1'
 
 with open('config.json', 'r') as config_file:
@@ -85,7 +82,7 @@ def home3():
 def home2(engine):
    return render_template('index2.html', engine=engine)
 
-''' version in-progress where clicking on different engines on main graph filters data in another graph '''
+''' working version where clicking on different engines on main graph filters data in another graph '''
 @app.route('/main4/<string:engine>')
 def home4(engine):
    return render_template('index4.html', engine=engine)

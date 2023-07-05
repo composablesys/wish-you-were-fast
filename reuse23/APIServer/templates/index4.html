@@ -53,31 +53,11 @@
                 }
                 },
               {
-                "description": "transparent layer to make it easier to trigger selection",
-                "params": [{
-                  "name": "hover",
-                  //"value": [{"engine": "jsc"}], //i don't understand what this is
-                  "select": {
-                    "type": "point",
-                    "fields": ["engine"],
-                    "on": "mouseover"
-                  }
-                }],
-                "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
-              }, {
-                "mark": "line"
-              }, // {
-              //   "encoding": {
-              //     "x": {"aggregate": "max", "field": "experiment_date"},
-              //     "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
-              //   },
-              //   "layer": [{
-              //     "mark": {"type": "circle"}
-              //   }, {
-              //     "mark": {"type": "text", "align": "left", "dx": 4},
-              //     "encoding": {"text": {"field": "engine", "type": "nominal"}}
-              //   }]
-              // }
+                "mark": "line",
+                "encoding": {
+                  "color": {"field": "engine", "type": "nominal"}
+                }
+              }
             ],
         };
   
