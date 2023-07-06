@@ -1,0 +1,14 @@
+#!/bin/sh
+MYDIR="$(dirname $(readlink -f $0))"
+# Shipped binaries have a relpath to the interpreter, so update passed args with fullpaths and cd to ${MYDIR}
+args_update_relpaths_to_abs() {
+    for arg in "$@"; do
+      [ "${arg}" = "${arg#/}" ] && [ -e "${arg}" ] && arg="$(readlink -f -- "${arg}")"
+      printf %s "${arg}" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' /"
+    done
+echo " "
+}
+eval "set -- $(args_update_relpaths_to_abs "$@")"
+cd "${MYDIR}"
+export LD_LIBRARY_PATH="${MYDIR}/lib"
+exec "${MYDIR}/bin/jsc" "$@"
