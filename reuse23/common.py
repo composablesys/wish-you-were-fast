@@ -3,6 +3,10 @@ import os
 exp = os.environ.get('EXP', 'execution') # for the PrettyTable
 # speedup, execution, tagging, baselines, alltiers
 
+def assign_engines(): # TODO jsc
+    engines = ['iwasm','sm', 'jsc', 'v8', 'wasm3', 'wasmer', 'wasmnow', 'wasmtime', 'wavm', 'wazero', 'wizeng']
+    return engines
+
 def assign_suites():
     suites = []
     s_names = os.environ.get('SUITES', 'polybench ostrich libsodium')

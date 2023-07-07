@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+LD_LIBRARY_PATH="/home/cvenen/.jsvu/engines/javascriptcore/lib" exec "/home/cvenen/.jsvu/engines/javascriptcore/lib/ld-linux-x86-64.so.2" "/home/cvenen/.jsvu/engines/javascriptcore/javascriptcore" "$@"
