@@ -17,20 +17,22 @@
 {% block body %}
     <h1>Geomeans for Execution Experiment</h1>
     <!-- Container for the visualization -->
-    <span>
+    <div class="grid-container">
+      <span>
         <h2>All Engines for Execution Experiment</h2>
         <div id="mainVis"></div>
-    </span>
-    <span>
+      </span>
+     <span>
         <h2>{{engine}} Engine</h2>
         <div id="zoomView"></div>
-    </span>
-
+      </span>
+      </div>
     <script>
         // Assign the specification to a local variable vlSpec.
         //print({{engine}}
         var vlSpec = {
-          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+            "width": "container",
+            "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
             "data": {"url": "/get_all_execution"},
             "encoding": {
               "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal"},
@@ -62,6 +64,7 @@
         };
   
         var zoom = {
+          "width": "container",
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
             "data": {"url": "/get_suites/{{engine}}"},
             "encoding": {

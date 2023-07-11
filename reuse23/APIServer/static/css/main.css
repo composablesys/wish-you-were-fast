@@ -1,0 +1,53 @@
+h1 { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+} 
+
+h3 { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 15.4px; 
+} 
+
+p { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 20px; 
+}
+
+h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 18px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 550; 
+    line-height: 24px; 
+}
+
+#mainVis {
+    width: 70%;
+}
+
+#zoomView {
+    width: 30%;
+}
+
+.grid-container {
+    display: grid;
+    grid: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+.grid-container > div {
+    padding: 20px 0;
+}
