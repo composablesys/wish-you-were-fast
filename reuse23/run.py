@@ -4,7 +4,7 @@ from datetime import datetime
 
 '''
 How to Run Script
-- Set DATA_DIR (directory to make the engines + data), EXP (defaults to 'execution'), and BTIME_OPTIONS(if applicable)
+- Set DATA_DIR (directory to put the data), EXP (defaults to 'execution'), and BTIME_OPTIONS(if applicable)
 - Execute command: $ python3 wish-you-were-fast/reuse23/run.py
 
 Notes:
@@ -93,8 +93,6 @@ def run_execution_experiment(suite):
 
 if __name__ == "__main__":
 
-    engines = common.assign_engines() # for building/updating engines
-
     exp = common.exp
     suites = common.assign_suites()
     all_configs = common.assign_configs()
@@ -108,4 +106,3 @@ if __name__ == "__main__":
         for suite in suites:
             benchmarks = common.get_benchmarks(suite)
             run_execution_experiment(suite)   
-    
