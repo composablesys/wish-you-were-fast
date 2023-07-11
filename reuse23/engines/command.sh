@@ -108,7 +108,7 @@ function get_engine_cmd() {
             echo $(find_binary "$WAZERO" wazero-link wazero) $ENGINE_OPTIONS run
             ;;
         "wasmer")
-            echo $(find_binary "$WASMER" wasmer-link wasmer) $ENGINE_OPTIONS
+            echo $(find_binary "$WASMER" wasmer-link wasmer) $ENGINE_OPTIONS run
             ;;
         "wasmer-base")
             echo $(find_binary "$WASMER" wasmer-link wasmer) $ENGINE_OPTIONS run --singlepass

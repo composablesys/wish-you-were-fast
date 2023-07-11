@@ -14,16 +14,16 @@ Notes:
 - Script assumes btime and jsvu are functions on the server
 '''
 # checks if an engine has a working config setting; command line call varies by engine/configuration
-def check_running_configs(): # TODO wasmer-base, wasmnow, wavm, wazero
+def check_running_configs(): # TODO iwasm, wasmer-base, wasmnow, wavm, wazero
     working_configs = []
     for config in all_configs:
         exit_code = -1
         if config in ['wasm3', 'wasmtime', 'wasmer']: 
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link --version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
-        elif 'iwasm-' in config:
-            command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' --version'], shell=True, stdout=subprocess.DEVNULL)
-            exit_code = command.wait()
+        # elif 'iwasm-' in config:
+        #     command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' --version'], shell=True, stdout=subprocess.DEVNULL)
+        #     exit_code = command.wait()
         elif 'wizeng-' in config:
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' -version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
@@ -37,7 +37,21 @@ def check_running_configs(): # TODO wasmer-base, wasmnow, wavm, wazero
 def make_timestamp():
     return str(datetime.today())
 
-def btime(cmd, wasmfile, datafile): # runs 10 times
+# helper function for get_version()
+def get_engine(config):
+    if 'v8' in config:
+        return 'd8'
+    elif '-' in config:
+        return config[:config.find('-')]
+    else: return config
+
+def get_version(config):
+    engine = get_engine(config)
+    target = os.readlink('wish-you-were-fast/reuse23/engines/'+engine+'-link')
+    version = target[target.find('-v')+2:]
+    return version
+
+def btime(cmd, wasmfile, datafile, config): # runs 10 times
     if btime_options == '-f':
         command = ['btime', btime_options, '-l', '10', cmd, wasmfile] # array of command line arguments to parse
     else: command = ['btime', '-l', '10', cmd, wasmfile]
@@ -46,6 +60,7 @@ def btime(cmd, wasmfile, datafile): # runs 10 times
         if result.returncode == 0: # if the command worked, records the results in a file
             with open(datafile, 'w') as file:
                 file.write(make_timestamp() + '\n')
+                file.write('version: ' + get_version(config) + '\n')
                 file.write(result.stdout)
         else:
             print("execution failed: " + cmd + ' ' + wasmfile)
@@ -54,7 +69,7 @@ def btime(cmd, wasmfile, datafile): # runs 10 times
     except subprocess.CalledProcessError as e:
         print('An error occured while running btime:', e)
 
-def wasmer_btime(cmd, wasmfile, datafile): # specific function because cache has to be cleared each run
+def wasmer_btime(cmd, wasmfile, datafile, config): # specific function because cache has to be cleared each run
     if btime_options == '-f':
         command = ['btime', btime_options, '-l', '1', cmd, wasmfile]
     else: command = ['btime', '-l', '1', cmd, wasmfile]
@@ -63,6 +78,8 @@ def wasmer_btime(cmd, wasmfile, datafile): # specific function because cache has
         if result.returncode == 0:
             with open(datafile, 'w') as file:
                 file.write(make_timestamp() + '\n')
+                file.write('version: ' + get_version(config) + '\n')
+                file.write()
                 for i in range(10):
                     subprocess.run(['./wish-you-were-fast/reuse23/engines/wasmer-link', 'cache', 'clean'], stderr=subprocess.DEVNULL) # Output not printed
                     result = subprocess.run(command, capture_output=True, text=True)
@@ -85,8 +102,8 @@ def run_btime_experiment(suite):
                 datafile = data_dir+exp+'/'+suite+'.'+b+'.'+config+'.txt' # stores results
         
             cmd = './wish-you-were-fast/reuse23/engines/'+config # command to execute the wasm file
-            if 'wasmer' in config: wasmer_btime(cmd, wasmfile, datafile)
-            else: btime(cmd, wasmfile, datafile)
+            if 'wasmer' in config: wasmer_btime(cmd, wasmfile, datafile, config)
+            else: btime(cmd, wasmfile, datafile, config)
 
 def run_execution_experiment(suite):
     run_btime_experiment(suite)

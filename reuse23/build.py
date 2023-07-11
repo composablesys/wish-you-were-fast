@@ -30,13 +30,13 @@ def build_engine():
         elif eng == 'wasmtime':
             subprocess.run(['curl https://wasmtime.dev/install.sh -sSf | bash'], shell=True) 
         elif eng == 'wasmer':
-            subprocess.run(['curl https://get.wasmer.io -sSfL | sh'], shell=True)
+            subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
             wasm3_git.pull() # git pull to update 
-        elif eng == 'iwasm':
-            iwasm_git = git.cmd.Git(engine_dir('iwasm'))
-            iwasm_git.pull() 
+        # elif eng == 'iwasm': # TODO fix iwasm build
+        #     iwasm_git = git.cmd.Git(engine_dir('iwasm'))
+        #     iwasm_git.pull() 
         else: continue
     
         if version_exists(eng) == False: 
