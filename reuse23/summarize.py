@@ -25,7 +25,7 @@ TABLE Command
     'python3 summarize.py TABLE --data_dir $DATA_DIR'
 
 UPLOAD Commands
-5. Run the script with option to set METRIC_TYPE= EXP= SUITES=, CONFIGS=, EXP_LABEL=, ENGINE=, VERSION=, MACHINE=, and TABLE_NAME=
+5. Run the script with option to set METRIC_TYPE= EXP= SUITES=, CONFIGS=, EXP_LABEL=, ENGINE=, MACHINE=, and TABLE_NAME=
     '*variable instatiations* python3 summarize.py UPLOAD_SUM --data_dir $DATA_DIR'
     '*variable instatiations* python3 summarize.py UPLOAD_RAW --data_dir $DATA_DIR'
 
@@ -287,8 +287,9 @@ def get_timestamp(file):
             timestamp = f.readline() # reads the first line; timestamp should be on first line
             return datetime.fromtimestamp(int(timestamp[:timestamp.index('\n')]))
     elif exp == 'execution':
-        ti_m = int(os.path.getmtime(path))
-        return datetime.fromtimestamp(ti_m)
+        with open(path, 'r') as f:
+            timestamp = f.readline()
+            return timestamp[:timestamp.index(' ')]
     
 # reads time stamp format from header of txt file and converts to date form for database entry
 def get_date(file):
@@ -298,10 +299,21 @@ def get_date(file):
             timestamp = f.readline()
             return date.fromtimestamp(int(timestamp[:timestamp.index('\n')]))
     elif exp == 'execution':
-        # if someone copies and deletes original directory, creation date will be wrong
-        ti_m = os.path.getmtime(path)
-        return date.fromtimestamp(ti_m)
-    
+        with open(path, 'r') as f:
+            timestamp = f.readline()
+            return timestamp[:timestamp.index('.')]
+
+# reads version from second line of txt file with format "version: __"
+def get_version(file):
+    path = PATH + file
+    if exp == 'speedup':
+        return '-'
+    elif exp == 'execution':
+        with open(path, 'r') as f:
+            f.readline() # first line
+            version = f.readline() # second line where version is
+            return version[9:]
+
 def get_raw_samples(file):
     path = PATH + file
     times = []
@@ -328,7 +340,7 @@ def get_raw_samples(file):
 '''
 functions to insert data into DB
 '''
-def upload_sum(exp_label, version, machine, table_name):
+def upload_sum(exp_label, machine, table_name):
     for file in sorted(os.listdir(PATH)):
         if not fnmatch.fnmatch(file,'*0.*.*.txt') and (exp == 'speedup' or metric_type == 'total_time') and get_avg(file) !=0:
             insert = get_avg(file)
@@ -347,14 +359,14 @@ def upload_sum(exp_label, version, machine, table_name):
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, avg, percentile_5, percentile_95,
             min, max, time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), version, get_config(file), machine, metric_type,
+            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(file), get_config(file), machine, metric_type,
             insert, get_pct_5(file), get_pct_95(file), get_min(file), get_max(file), get_timestamp(file)))
         conn.commit()
         cur.close()
         conn.close()
     print('UPLOAD_SUM COMPLETE')
 
-def upload_raw(exp_label, version, machine, table_name):
+def upload_raw(exp_label, machine, table_name):
     for file in sorted(os.listdir(PATH)):
         if exp == 'speedup' and get_avg(file) != 0:
             insert = get_samples(file)
@@ -375,7 +387,7 @@ def upload_raw(exp_label, version, machine, table_name):
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, samples, time) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), version, get_config(file), machine, metric_type, insert, 
+            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(), get_config(file), machine, metric_type, insert, 
             get_timestamp(file)))
         conn.commit()
         cur.close()
@@ -390,7 +402,6 @@ if __name__ == "__main__":
         print('Data directory not set')
 
     exp_label = os.environ.get('EXP_LABEL', 'cgo2024')
-    version = os.environ.get('VERSION', '-')
     machine = os.environ.get('MACHINE', 'ryzen-9')
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
@@ -406,8 +417,8 @@ if __name__ == "__main__":
     if sys.argv[1] == 'TABLE':
         table(suites, configs)
     elif sys.argv[1] == 'UPLOAD_SUM':
-        upload_sum(exp_label, version, machine, table_name)
+        upload_sum(exp_label, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
-        upload_raw(exp_label, version, machine, table_name)
+        upload_raw(exp_label, machine, table_name)
     else:
         print('No function specified')
