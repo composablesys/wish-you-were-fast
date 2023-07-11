@@ -1,4 +1,4 @@
-import os, subprocess, json, shutil
+import os, subprocess
 import common # common.py file
 from datetime import datetime
 
@@ -13,47 +13,16 @@ Notes:
     - $ python3 wish-you-were-fast/reuse23/run.py 
 - Script assumes btime and jsvu are functions on the server
 '''
-
-# assumes jsvu is installed and set up
-def build_engine(): # TODO automatically download and build engine; set up notification
-    engines = []
-    for eng in engines:
-        if not os.path.exists(data_dir + 'build/' + eng): # make a dir for an engine
-            os.mkdir(data_dir + 'build/' + eng)
-
-        if eng in ['v8', 'jsc', 'sm']: # built by jsvu
-            # subprocess.run(['jsvu --engines=javascriptcore,v8,spidermonkey'], shell=True) # run the jsvu command to update the engines
-            shutil.copy('.jsvu/bin/'+eng, 'wish-you-were-fast/reuse23/build/'+eng+'/'+eng+'-v'+get_version(eng)) # copies and renames built engine
-        elif eng == 'wasmtime':
-            # subprocess.run(['curl https://wasmtime.dev/install.sh -sSf | bash'])
-            shutil.copy('.wasmtime/bin/'+eng, 'wish-you-were-fast/reuse23/build/'+eng+'/'+eng+'-v'+get_version(eng))
-    return
-
-def get_version(engine): # helper function for building engine (naming engine with version number)
-    if engine in ['v8', 'jsc', 'sm']:
-        with open('.jsvu/status.json') as status:
-            data = json.load(status)
-        if engine == 'sm':
-            version = data['spidermonkey']
-        elif engine == 'jsc':
-            version = data['javascriptcore']
-        else: version = data[engine]
-    elif engine == 'wasmtime':
-        output = subprocess.run(['./.wasmtime/bin/wasmtime --version'], shell=True, capture_output=True, text=True)
-        temp = output.stdout.strip()
-        version = temp[temp.find('-cli ')+5:].split('\n')[0] # output ex: 'wasmtime-cli 10.0.1'
-    return version
-
-def make_timestamp():
-    return str(datetime.today())
-
-# checks if an engine has a working config setting; command line call varies by engine
-def check_running_configs(): # TODO iwasm, v8, wasmer, wasmnow, wavm, wazero
+# checks if an engine has a working config setting; command line call varies by engine/configuration
+def check_running_configs(): # TODO wasmer-base, wasmnow, wavm, wazero
     working_configs = []
     for config in all_configs:
         exit_code = -1
-        if config in ['wasm3', 'wasmtime']: 
+        if config in ['wasm3', 'wasmtime', 'wasmer']: 
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link --version'], shell=True, stdout=subprocess.DEVNULL)
+            exit_code = command.wait()
+        elif 'iwasm-' in config:
+            command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' --version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
         elif 'wizeng-' in config:
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' -version'], shell=True, stdout=subprocess.DEVNULL)
@@ -64,6 +33,9 @@ def check_running_configs(): # TODO iwasm, v8, wasmer, wasmnow, wavm, wazero
         if exit_code == 0: # config works if exit code = 0
             working_configs.append(config)
     return working_configs
+
+def make_timestamp():
+    return str(datetime.today())
 
 def btime(cmd, wasmfile, datafile): # runs 10 times
     if btime_options == '-f':
@@ -82,6 +54,26 @@ def btime(cmd, wasmfile, datafile): # runs 10 times
     except subprocess.CalledProcessError as e:
         print('An error occured while running btime:', e)
 
+def wasmer_btime(cmd, wasmfile, datafile): # specific function because cache has to be cleared each run
+    if btime_options == '-f':
+        command = ['btime', btime_options, '-l', '1', cmd, wasmfile]
+    else: command = ['btime', '-l', '1', cmd, wasmfile]
+    try:
+        result = subprocess.run(command, stdout=subprocess.DEVNULL)
+        if result.returncode == 0:
+            with open(datafile, 'w') as file:
+                file.write(make_timestamp() + '\n')
+                for i in range(10):
+                    subprocess.run(['./wish-you-were-fast/reuse23/engines/wasmer-link', 'cache', 'clean'], stderr=subprocess.DEVNULL) # Output not printed
+                    result = subprocess.run(command, capture_output=True, text=True)
+                    file.write(result.stdout)
+        else:
+            print("execution failed: " + cmd + ' ' + wasmfile)
+    except FileNotFoundError:
+        print('The btime executable was not found')
+    except subprocess.CalledProcessError as e:
+        print('An error occured while running btime:', e)
+
 def run_btime_experiment(suite):
     for b in benchmarks:
         for config in configs:
@@ -93,7 +85,8 @@ def run_btime_experiment(suite):
                 datafile = data_dir+exp+'/'+suite+'.'+b+'.'+config+'.txt' # stores results
         
             cmd = './wish-you-were-fast/reuse23/engines/'+config # command to execute the wasm file
-            btime(cmd, wasmfile, datafile)
+            if 'wasmer' in config: wasmer_btime(cmd, wasmfile, datafile)
+            else: btime(cmd, wasmfile, datafile)
 
 def run_execution_experiment(suite):
     run_btime_experiment(suite)
@@ -110,8 +103,9 @@ if __name__ == "__main__":
     btime_options = os.environ.get('BTIME_OPTIONS') # must either be '-l' or '-f'
 
     if exp == 'execution':
-        if not os.path.exists(data_dir+'experiments'+exp):
-            os.mkdir(data_dir+'experiments'+exp)
+        if not os.path.exists(data_dir+exp):
+            os.mkdir(data_dir+exp)
         for suite in suites:
             benchmarks = common.get_benchmarks(suite)
-            run_execution_experiment(suite)
+            run_execution_experiment(suite)   
+    
