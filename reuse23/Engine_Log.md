@@ -8,14 +8,23 @@ Last Updated: July 12, 2023
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
 **V8:** 11.7.105
+
 **SpiderMonkey:** 114.0, 116.0
+
 **JavaScriptCore:** 264545, 265838
+
 **Wasmer:** 
+
 **Wasmtime:**
+
 **Wasm3:**
+
 **Wizard:**
+
 **Wavm:**
+
 **iWasm:**
+
 **Wazero:**
 
 ## Engine Installation
