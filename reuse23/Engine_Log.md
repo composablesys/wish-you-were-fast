@@ -17,16 +17,18 @@ The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are
 ### Wasmer
 
 Following the instructions of the [Wasmer Repo](https://github.com/wasmerio/wasmer), execute the following code (no dependencies required).
-
-```$ curl https://get.wasmer.io -sSfL | sh```
+```
+$ curl https://get.wasmer.io -sSfL | sh
+```
 
 The engine is built in `.wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
 
 ### Wasmtime
 
 Following the instructions of the [Wasmtime Repo](https://github.com/bytecodealliance/wasmtime), exectue the following code (no dependencies required).
-
-```$ curl https://wasmtime.dev/install.sh -sSf | bash```
+```
+$ curl https://wasmtime.dev/install.sh -sSf | bash
+```
 
 The engine is built in `./wasmtime/bin/`. The engine updates through build.py running the previous command.
 
