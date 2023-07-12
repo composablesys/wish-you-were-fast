@@ -79,7 +79,6 @@ def wasmer_btime(cmd, wasmfile, datafile, config): # specific function because c
             with open(datafile, 'w') as file:
                 file.write(make_timestamp() + '\n')
                 file.write('version: ' + get_version(config) + '\n')
-                file.write()
                 for i in range(10):
                     subprocess.run(['./wish-you-were-fast/reuse23/engines/wasmer-link', 'cache', 'clean'], stderr=subprocess.DEVNULL) # Output not printed
                     result = subprocess.run(command, capture_output=True, text=True)
@@ -122,4 +121,4 @@ if __name__ == "__main__":
             os.mkdir(data_dir+exp)
         for suite in suites:
             benchmarks = common.get_benchmarks(suite)
-            run_execution_experiment(suite)   
+            run_execution_experiment(suite)    
