@@ -1,10 +1,10 @@
-# reuse23
+# Engine Testing Log & Installation Guide
 
 This engine log keeps track of the engine configurations that have been tested and contains instructions on how to build the engines for Linux.
 
 ## Testing Log
 
-7/12/2023: v8-v11.7.105, sm-v116.0b1, jsc-v265838, wasmer-v4.0.0, wasmtime-v10.0.1, wasm3-v0.5.0, wizeng-v23α.1346
+**7/12/2023:** v8-v11.7.105, sm-v116.0b1, jsc-v265838, wasmer-v4.0.0, wasmtime-v10.0.1, wasm3-v0.5.0, wizeng-v23α.1346
 
 ## Engine Installation
 
