@@ -420,5 +420,12 @@ if __name__ == "__main__":
         upload_sum(exp_label, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
         upload_raw(exp_label, machine, table_name)
+    elif sys.argv[1] == 'TIMESTAMP_VERSION':
+        print("hi")
+        '''
+        print("timestamp (expected 2023-07-12 09:27:59): " + get_timestamp('polybench.2mm.jsc-bbq.txt'))
+        print("date (expected 2023-07-12): " + get_date('polybench.2mm.jsc-bbq.txt'))
+        print("version (expected 265838): " + get_version('polybench.2mm.jsc-bbq.txt'))
+        '''
     else:
         print('No function specified')
