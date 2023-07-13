@@ -25,7 +25,7 @@ TABLE Command
     'python3 summarize.py TABLE --data_dir $DATA_DIR'
 
 UPLOAD Commands
-5. Run the script with option to set METRIC_TYPE= EXP= SUITES=, CONFIGS=, EXP_LABEL=, ENGINE=, MACHINE=, and TABLE_NAME=
+5. Run the script with option to set METRIC_TYPE=, EXP=, EXP_LABEL=, MACHINE=, and TABLE_NAME=
     '*variable instatiations* python3 summarize.py UPLOAD_SUM --data_dir $DATA_DIR'
     '*variable instatiations* python3 summarize.py UPLOAD_RAW --data_dir $DATA_DIR'
 
@@ -289,7 +289,7 @@ def get_timestamp(file):
     elif exp == 'execution':
         with open(path, 'r') as f:
             timestamp = f.readline()
-            return timestamp[:timestamp.index(' ')]
+            return timestamp[:timestamp.index('.')]
     
 # reads time stamp format from header of txt file and converts to date form for database entry
 def get_date(file):
@@ -301,7 +301,7 @@ def get_date(file):
     elif exp == 'execution':
         with open(path, 'r') as f:
             timestamp = f.readline()
-            return timestamp[:timestamp.index('.')]
+            return timestamp[:timestamp.index(' ')]
 
 # reads version from second line of txt file with format "version: __"
 def get_version(file):
@@ -312,7 +312,7 @@ def get_version(file):
         with open(path, 'r') as f:
             f.readline() # first line
             version = f.readline() # second line where version is
-            return version[9:]
+            return version[9:version.index('\n')]
 
 def get_raw_samples(file):
     path = PATH + file
@@ -387,7 +387,7 @@ def upload_raw(exp_label, machine, table_name):
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, samples, time) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(), get_config(file), machine, metric_type, insert, 
+            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(file), get_config(file), machine, metric_type, insert, 
             get_timestamp(file)))
         conn.commit()
         cur.close()
@@ -401,8 +401,8 @@ if __name__ == "__main__":
     if data_dir is None:
         print('Data directory not set')
 
-    exp_label = os.environ.get('EXP_LABEL', 'cgo2024')
-    machine = os.environ.get('MACHINE', 'ryzen-9')
+    exp_label = os.environ.get('EXP_LABEL', 'carlexa20')
+    machine = os.environ.get('MACHINE', 'i7-4790')
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
     exp = common.exp # for the PrettyTable
@@ -420,12 +420,5 @@ if __name__ == "__main__":
         upload_sum(exp_label, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
         upload_raw(exp_label, machine, table_name)
-    elif sys.argv[1] == 'TIMESTAMP_VERSION':
-        print("hi")
-        '''
-        print("timestamp (expected 2023-07-12 09:27:59): " + get_timestamp('polybench.2mm.jsc-bbq.txt'))
-        print("date (expected 2023-07-12): " + get_date('polybench.2mm.jsc-bbq.txt'))
-        print("version (expected 265838): " + get_version('polybench.2mm.jsc-bbq.txt'))
-        '''
     else:
         print('No function specified')
