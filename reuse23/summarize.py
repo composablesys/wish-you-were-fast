@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, fnmatch, psycopg2, json, sys, math
+import os, fnmatch, psycopg2, json, sys, math, linecache
 from prettytable import PrettyTable 
 import common # common.py file
 import numpy as np
@@ -122,7 +122,7 @@ def geomean(suite, configs):
             file = suite + '.' + line_item + '.' + config + '.txt'
             if exp == 'speedup' and os.path.exists(PATH + file):
                 values.append(float(get_avg(file)))
-            elif exp == 'execution' and get_difference(file) != None:
+            elif exp == 'execution' and os.path.exists(file) == True and get_difference(file) != None:
                 if float(get_difference(file)) < 0:
                     exclusions.append(file)
                 else:
@@ -149,13 +149,15 @@ def make_row(suite, line_item, configs):
                 row.append(avg)
         if exp == 'execution': # table is for 'main_time'
             file1 = file + config +'.txt'
-            file2 = get_zero_file(file1)
-            if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
-                with open(PATH + file1, 'r') as f1, open(PATH + file2, 'r') as f2: 
-                    if is_number(f1.readline()) and is_number(f2.readline()):
-                        row.append(get_difference(file1))
-                    else:
-                        row.append('-')
+            if os.path.exists(PATH + file1):
+                file2 = get_zero_file(file1)
+                if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
+                        if is_number(linecache.getline(PATH + file1, 3)) and is_number(linecache.getline(PATH + file2, 3)): # only reads third line where data list starts
+                            row.append(get_difference(file1))
+                        else:
+                            row.append('-')
+            else:
+                row.append('-')
     return row
 
 def table(suites, configs):
