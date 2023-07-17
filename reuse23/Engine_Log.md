@@ -39,7 +39,7 @@ Following the instructions of the [Wasmer Repo](https://github.com/wasmerio/wasm
 ```
 $ curl https://get.wasmer.io -sSfL | sh
 ```
-The engine is built in `.wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
+The engine is built in `./wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
 
 ### Wasmtime
 
