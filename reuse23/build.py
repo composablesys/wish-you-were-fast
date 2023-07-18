@@ -4,14 +4,17 @@ import common
 
 # helper fupipnction for build_engine() to find directory where engine is built
 def engine_dir(engine):
+    dir = "Engine does not exist."
     if engine in ['v8','jsc','sm']:
         dir = 'jsvu'
-    elif engine in ['wasmtime', 'wasmer','wasm3']:
+    elif engine in ['wasmtime', 'wasmer','wasm3', 'wazero']:
         dir = engine
     elif engine == 'iwasm':
         dir = 'wasm-micro-runtime/product-mini/platforms/linux'
     elif engine == 'wizeng':
         dir = 'wizard-engine'
+    elif engine == 'wavm':
+        dir = 'WAVM'
     return dir
     
 '''Notes
@@ -27,9 +30,9 @@ def build_engine():
             os.mkdir(build_dir + eng)
 
         if eng in ['v8', 'jsc', 'sm']: # built by jsvu
-            subprocess.run(['jsvu', '--engines=javascriptcore,v8,spidermonkey'], shell=True) # run the jsvu command to update the engines
+            subprocess.run(['jsvu --engines=javascriptcore,v8,spidermonkey'], shell=True) # run the jsvu command to update the engines
         elif eng == 'wasmtime':
-            subprocess.run(['curl', 'https://wasmtime.dev/install.sh', '-sSf', '|', 'bash'], shell=True) 
+            subprocess.run(['curl https://wasmtime.dev/install.sh -sSf | bash'], shell=True) 
         elif eng == 'wasmer':
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
@@ -70,23 +73,8 @@ def get_version(engine): # TODO wasmnow, wavm, wazero, wizeng
         elif engine == 'jsc':
             version = data['javascriptcore']
         else: version = data[engine]
-    elif engine in ['wasmtime', 'wasmer']: # FIXME get version from git log (these are NOT repos)
-        output = subprocess.run(['./.'+engine+'/bin/'+engine+' --version'], shell=True, capture_output=True, text=True)
-        temp = output.stdout.strip()
-        if engine == 'wasmtime': version = temp[temp.find('-cli ')+5:].split('\n')[0] # output ex: 'wasmtime-cli 10.0.1'
-        elif engine == 'wasmer': version = temp[temp.find('r')+2:].split('\n')[0] # output ex: 'wasmer 4.0.0'
-    elif engine == 'wasm3':
-        path = str(pathlib.Path.home()) + "/wasm-micro-runtime/"
-        result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=path)
-        version = result.stdout
-    elif engine in ['wasm3', 'iwasm']: # FIXME get version from git log (these are repos)
-        output = subprocess.run(['./'+engine_dir(engine)+'/build/'+engine+' --version'], shell=True, capture_output=True, text=True)
-        temp = output.stdout.strip()
-        if engine == 'wasm3': version = temp[temp.find('Wasm3 v')+7:temp.find('on')-1].split('\n')[0] # output ex: 'Wasm3 v0.5.0 on x86_64'
-        # elif engine == 'iwasm': version = temp[temp.find('m')+2:].split('\n')[0]
-    elif engine == 'wizeng':
-        # assumes user has wizard-engine directory in home directory
-        path = str(pathlib.Path.home()) + "/wizard-engine/"
+    else:
+        path = str(pathlib.Path.home()) + "/" + engine_dir(engine) + "/"
         result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=path)
         version = result.stdout
     return version
