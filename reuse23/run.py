@@ -14,12 +14,13 @@ Notes:
 - Script assumes btime and jsvu are functions on the server
 '''
 # checks if an engine has a working config setting; command line call varies by engine/configuration
-def check_running_configs(): # TODO iwasm, wasmer-base, wasmnow, wavm, wazero
+def check_running_configs(): # TODO iwasm, wasmer-base, wazero
     working_configs = []
     for config in all_configs:
         exit_code = -1
-        if config in ['wasm3', 'wasmtime', 'wasmer']: 
-            command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link --version'], shell=True, stdout=subprocess.DEVNULL)
+        if config in ['wasm3', 'wasmtime', 'wasmer', 'wavm']: 
+            if config == 'wavm': command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link version'], shell=True, stdout=subprocess.DEVNULL)
+            else: command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link --version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
         # elif 'iwasm-' in config:
         #     command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' --version'], shell=True, stdout=subprocess.DEVNULL)
