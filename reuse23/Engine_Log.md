@@ -24,7 +24,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **Wasmer:** 
 
-**Wasmtime:**
+**Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee
 
 **Wasm3:**
 
@@ -52,11 +52,15 @@ The engine is built in `./wasmer/bin/`. The engine updates through build.py runn
 
 ### Wasmtime
 
-Following the instructions of the [Wasmtime Repo](https://github.com/bytecodealliance/wasmtime), exectue the following code (no dependencies required).
+[Wasmtime](https://github.com/bytecodealliance/wasmtime) installation requires [Rust toolchain](https://www.rust-lang.org/tools/install) to be installed. Clone the repo and initialize the git submodules with the following command in the repo
 ```
-$ curl https://wasmtime.dev/install.sh -sSf | bash
+$ git submodule update --init
 ```
-The engine is built in `./wasmtime/bin/`. The engine updates through build.py running the previous command.
+Then run this command in the root of the repository to make an optimized build
+```
+$ cargo build --release
+```
+The engine is built in `./wasmtime/target/release`. The engine updates through build.py running `git pull`.
 
 ### Wasm3
 

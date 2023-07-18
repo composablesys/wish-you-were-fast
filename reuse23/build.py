@@ -7,8 +7,10 @@ def engine_dir(engine):
     dir = "Engine does not exist."
     if engine in ['v8','jsc','sm']:
         dir = '.jsvu/bin/'
-    elif engine in ['wasmtime', 'wasmer']:
+    elif engine == 'wasmer': #FIXME
         dir = '.'+engine+'/bin/'
+    elif engine == 'wasmtime':
+        dir = 'wasmtime/target/release/'
     elif engine == 'wasm3':
         dir = 'wasm3/build/'
     elif engine == 'iwasm': 
@@ -22,7 +24,7 @@ def engine_dir(engine):
     return dir
 
 def build_engine(): 
-    engines = ['wazero'] # remove after testing; jsvu and wasmtime have NOT been tested
+    engines = ['wasmtime'] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -30,7 +32,8 @@ def build_engine():
         if eng in ['v8', 'jsc', 'sm']: # built by jsvu
             subprocess.run(['jsvu --engines=javascriptcore,v8,spidermonkey'], shell=True) # run the jsvu command to update the engines
         elif eng == 'wasmtime':
-            subprocess.run(['curl https://wasmtime.dev/install.sh -sSf | bash'], shell=True) 
+            wasmtime_git = git.cmd.Git('wasmtime')
+            wasmtime_git.pull()
         elif eng == 'wasmer':
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
