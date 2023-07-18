@@ -3,15 +3,11 @@
 This engine log keeps track of the engine configurations that have been tested and contains instructions on how to build the engines for x86-64-linux with Ubuntu 20.04.
 
 ## Built Engines Log
-Last Updated: July 12, 2023
+Last Updated: July 18, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
-<details>
-<summary>**V8:**</summary>
-<br>
-- 11.7.105
-</details>
+**V8:** 11.7.105
 
 **SpiderMonkey:** 114.0, 116.0
 
@@ -69,7 +65,7 @@ The engine is built in `./wasm3/build/`. The engine updates through build.py run
 
 Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-engine/blob/master/doc/Building.md). The engine is built in `wizard-engine/bin/`. The engine updates through build.py running `git pull`. The `wizeng-x86-64-linux` is used for testing.
 
-### Wavm TODO
+### Wavm
 
 [Wavm](https://github.com/WAVM/WAVM) installation requires CMake and LLVM (instructions in repo). Once the prerequisites are built and engine is cloned, Wavm can alternatively be built using the following commands in the repo
 ```
