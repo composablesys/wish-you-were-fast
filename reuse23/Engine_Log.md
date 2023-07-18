@@ -7,7 +7,11 @@ Last Updated: July 12, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
-**V8:** 11.7.105
+<details>
+<summary>**V8:**</summary>
+<br>
+- 11.7.105
+</details>
 
 **SpiderMonkey:** 114.0, 116.0
 
@@ -21,7 +25,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **Wizard:**
 
-**Wavm:**
+**Wavm:** 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
 
 **iWasm:**
 
@@ -67,7 +71,14 @@ Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-en
 
 ### Wavm TODO
 
-Clone the [wavm repo](https://github.com/WAVM/WAVM).
+[Wavm](https://github.com/WAVM/WAVM) installation requires CMake and LLVM (instructions in repo). Once the prerequisites are built and engine is cloned, Wavm can alternatively be built using the following commands in the repo
+```
+$ mkdir build_dir && cd build_dir
+$ cmake ..
+$ make
+```
+
+The engine is built in `WAVM/build_dir/bin/`. The engine updates through build.py running `git pull`.
 
 ### iWasm TODO
 
