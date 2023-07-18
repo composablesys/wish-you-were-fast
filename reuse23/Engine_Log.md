@@ -2,6 +2,15 @@
 
 This engine log keeps track of the engine configurations that have been tested and contains instructions on how to build the engines for x86-64-linux with Ubuntu 20.04.
 
+To update engine symlink, navigate to `wish-you-were-fast/reuse23/engine` and excute the following command:
+```
+# If symlink already exists
+$ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name> ./<engine name>-link
+
+# If creating a new symlink
+$ ln -s ~/wish-you-were-fast/reuse23/build/<engine name> ./<engine name>-link
+```    
+
 ## Built Engines Log
 Last Updated: July 18, 2023
 
@@ -25,7 +34,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **iWasm:**
 
-**Wazero:**
+**Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459
 
 ## Engine Installation
 
