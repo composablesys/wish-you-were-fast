@@ -11,18 +11,18 @@ def engine_dir(engine):
         dir = '.'+engine+'/bin/'
     elif engine == 'wasm3':
         dir = 'wasm3/build/'
-    elif engine == 'wazero':
-        dir = 'wazero' #TODO update path to engine
     elif engine == 'iwasm': 
         dir = 'wasm-micro-runtime/product-mini/platforms/linux'
     elif engine == 'wizeng':
         dir = 'wizard-engine/bin/'
     elif engine == 'wavm':
         dir = 'WAVM/build_dir/bin/'
+    elif engine == 'wazero':
+        dir = 'wazero/'
     return dir
 
 def build_engine(): 
-    engines = [] # remove after testing; jsvu and wasmtime have NOT been tested
+    engines = ['wazero'] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -42,6 +42,9 @@ def build_engine():
         elif eng == 'wavm':
             wavm_git = git.cmd.Git('WAVM')
             wavm_git.pull()
+        elif eng == 'wazero':
+            wazero_git = git.cmd.Git('wazero')
+            wazero_git.pull()
         # elif eng == 'iwasm': # TODO fix iwasm build
         #     iwasm_git = git.cmd.Git(engine_dir('iwasm'))
         #     iwasm_git.pull() 
@@ -49,7 +52,7 @@ def build_engine():
     
         if version_exists(eng) == False: 
             dir = engine_dir(eng) 
-            if engine == 'wizeng':
+            if eng == 'wizeng':
                 shutil.copy(dir+'wizeng.x86-64-linux', build_dir+eng+'/'+eng+'-v'+get_version(eng))
             else: #TODO make sure works with wazero and iwasm
                 shutil.copy(dir+eng, build_dir+eng+'/'+eng+'-v'+get_version(eng))
@@ -81,8 +84,9 @@ def get_version(engine): # TODO wasmnow, wazero, wizeng
 
 if __name__ == "__main__":
     build_dir = os.environ.get('BUILD_DIR','wish-you-were-fast/reuse23/build/') # directory to put builds in
-    engine = os.environ.get('ENGINE', 'wizeng')
-    if sys.argv[1] == 'VERSION_TESTING':
-        print(get_version(engine))
+    build_engine()
+    #engine = os.environ.get('ENGINE', 'wizeng')
+    #if sys.argv[1] == 'VERSION_TESTING':
+    #    print(get_version(engine))
 
    
