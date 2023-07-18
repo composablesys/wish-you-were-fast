@@ -35,7 +35,7 @@ In order to build and update v8, sm, and jsc, [jsvu](https://github.com/GoogleCh
 
 ### Wasmer
 
-Following the instructions of the [Wasmer Repo](https://github.com/wasmerio/wasmer), execute the following code (no dependencies required).
+Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home directory. Following the instructions of the repo, execute the following code (no dependencies required).
 ```
 $ curl https://get.wasmer.io -sSfL | sh
 ```
@@ -51,7 +51,8 @@ The engine is built in `./wasmtime/bin/`. The engine updates through build.py ru
 
 ### Wasm3
 
-[Wasm3](https://github.com/bytecodealliance/wasm-micro-runtime/tree/main) installation requires [CMake](https://cmake.org/install/). Once [CMake](https://cmake.org/install/) is installed, clone the [Wasm3 Repo](https://github.com/bytecodealliance/wasm-micro-runtime/tree/main). In the repo, execute the following commands
+[Wasm3](https://github.com/wasm3/wasm3) installation requires [CMake](https://cmake.org/install/). Once [CMake](https://cmake.org/install/) is installed, clone the [Wasm3 Repo](https://github.com/wasm3/wasm3). 
+In the repo, execute the following commands
 ```
 $ mkdir build && cd build
 $ cmake ..
@@ -66,9 +67,14 @@ Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-en
 
 ### Wavm TODO
 
+Clone the [wavm repo](https://github.com/WAVM/WAVM).
+
 ### iWasm TODO
+
+Clone the [iwasm repo](https://github.com/bytecodealliance/wasm-micro-runtime).
+
 ### Wazero TODO
 
-
+Clone the [wazero repo](https://github.com/tetratelabs/wazero).
 
 
