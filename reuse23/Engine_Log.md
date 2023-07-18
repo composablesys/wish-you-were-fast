@@ -91,6 +91,33 @@ Clone the [iwasm repo](https://github.com/bytecodealliance/wasm-micro-runtime).
 
 ### Wazero TODO
 
-Clone the [wazero repo](https://github.com/tetratelabs/wazero).
+[Wazero](https://github.com/tetratelabs/wazero) installation requires [go](https://go.dev/doc/install). Clone the wazero repo and use the following commands in the repo
+```
+$ go build
+$ go ./cmd/wazero
+```
 
+The engine is built in `wazero/`. The engine updates through build.py running `git pull`.
 
+#### how to install go
+
+On the go install page, download the tar. In your local terminal, go to the directory where it was downloaded and run the following command to copy the file to the remote host
+```
+$ scp go1.20.6.linux-amd64.tar.gz <username>@<server>:/home/<username>
+```
+In your remote terminal, extract tar in the directory where you copied it to by running the following command
+```
+$ sudo tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz
+```
+Edit .bashrc to update the path
+```
+$ vi .bashrc
+```
+`shift + G` to get to the bottom of that file and add `export PATH=$PATH:/usr/local/go/bin`. Close the file and source it by running the following command
+```
+$ source .bashrc
+```
+Verify that you've installed go with the command
+```
+$ go version
+```
