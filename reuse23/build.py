@@ -2,29 +2,27 @@ import os, subprocess, json, shutil, sys, pathlib
 import git
 import common
 
-# helper fupipnction for build_engine() to find directory where engine is built
+# helper function for build_engine() to find directory where engine is built
 def engine_dir(engine):
     dir = "Engine does not exist."
     if engine in ['v8','jsc','sm']:
-        dir = 'jsvu'
-    elif engine in ['wasmtime', 'wasmer','wasm3', 'wazero']:
-        dir = engine
-    elif engine == 'iwasm':
+        dir = '.jsvu/bin/'
+    elif engine in ['wasmtime', 'wasmer']:
+        dir = '.'+engine+'/bin/'
+    elif engine == 'wasm3':
+        dir = 'wasm3/build/'
+    elif engine == 'wazero':
+        dir = 'wazero' #TODO update path to engine
+    elif engine == 'iwasm': 
         dir = 'wasm-micro-runtime/product-mini/platforms/linux'
     elif engine == 'wizeng':
-        dir = 'wizard-engine'
+        dir = 'wizard-engine/bin/'
     elif engine == 'wavm':
-        dir = 'WAVM'
+        dir = 'WAVM/build_dir/bin/'
     return dir
-    
-'''Notes
-- JSVU must be installed
-- Must have wasm3 git repo copied in home directory
-- Must have iwasm git repo copied in home directory (wasm-micro-runtime)
-'''
 
 def build_engine(): 
-    engines = [] # remove after testing
+    engines = [] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -41,6 +39,9 @@ def build_engine():
         elif eng == 'wizeng':
             wizeng_git = git.cmd.Git('wizard-engine')
             wizeng_git.pull()
+        elif eng == 'wavm':
+            wavm_git = git.cmd.Git('WAVM')
+            wavm_git.pull()
         # elif eng == 'iwasm': # TODO fix iwasm build
         #     iwasm_git = git.cmd.Git(engine_dir('iwasm'))
         #     iwasm_git.pull() 
@@ -48,12 +49,10 @@ def build_engine():
     
         if version_exists(eng) == False: 
             dir = engine_dir(eng) 
-            if eng in ['v8', 'sm', 'jsc', 'wasmtime', 'wasmer']:
-                shutil.copy('.'+dir+'/bin/'+eng, build_dir+eng+'/'+eng+'-v'+get_version(eng)) # jsvu, wasmtime, wasmer
-            elif eng == 'wasm3':
-                shutil.copy(dir+'/build/'+eng, build_dir+eng+'/'+eng+'-v'+get_version(eng)) # wasm3
-            elif eng == 'wizeng':
-                shutil.copy(dir+'/bin/wizeng.x86-64-linux',  build_dir+eng+'/'+eng+'-v'+get_version(eng)) # wizeng
+            if engine == 'wizeng':
+                shutil.copy(dir+'wizeng.x86-64-linux', build_dir+eng+'/'+eng+'-v'+get_version(eng))
+            else: #TODO make sure works with wazero and iwasm
+                shutil.copy(dir+eng, build_dir+eng+'/'+eng+'-v'+get_version(eng))
 
 # checks if this engine version already exists
 def version_exists(engine):
@@ -62,7 +61,7 @@ def version_exists(engine):
 
 # FIXME change how the engine gets the version number (hash number from git log)
 # helper function for building engine (naming engine with version number)
-def get_version(engine): # TODO wasmnow, wavm, wazero, wizeng
+def get_version(engine): # TODO wasmnow, wazero, wizeng
     version = 'error_get_version'
     command = "git log --pretty=format:'%H' -1"
     if engine in ['v8', 'jsc', 'sm']:
@@ -85,4 +84,5 @@ if __name__ == "__main__":
     engine = os.environ.get('ENGINE', 'wizeng')
     if sys.argv[1] == 'VERSION_TESTING':
         print(get_version(engine))
+
    
