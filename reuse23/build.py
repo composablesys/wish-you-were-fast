@@ -34,14 +34,17 @@ def build_engine():
         elif eng == 'wasmtime': #FIXME with correct way to update
             wasmtime_git = git.cmd.Git('wasmtime')
             wasmtime_git.pull()
+            path = str(pathlib.Path.home()) + "/wasmtime"
+            subprocess.run('cargo clean', shell=True, cwd=path)
+            subprocess.run('cargo build --release', shell=True, cwd=path)
         elif eng == 'wasmer': #FIXME with source build update
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
             wasm3_git.pull()
             path = str(pathlib.Path.home()) + "/" + engine_dir(eng)
-            subprocess.run('cmake ..', shell=True, cwd = path)
-            subprocess.run('make', shell=True, cwd = path)
+            subprocess.run('cmake ..', shell=True, cwd=path)
+            subprocess.run('make', shell=True, cwd=path)
         elif eng == 'wizeng':
             wizeng_git = git.cmd.Git('wizard-engine')
             wizeng_git.pull()
@@ -55,8 +58,7 @@ def build_engine():
             wazero_git = git.cmd.Git('wazero')
             wazero_git.pull()
             path = str(pathlib.Path.home()) + "/" + engine_dir(eng)
-            subprocess.run('go build', shell=True, cwd = path)
-            subprocess.run('go ./cmd/wazero', shell=True, cwd = path)
+            subprocess.run('go build ./cmd/wazero', shell=True, cwd=path)
         elif eng == 'iwasm': 
             iwasm_git = git.cmd.Git(engine_dir('iwasm'))
             iwasm_git.pull() 
