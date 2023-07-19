@@ -5,10 +5,10 @@ This engine log keeps track of the engine configurations that have been tested a
 To update engine symlink, navigate to `wish-you-were-fast/reuse23/engine` and excute the following command:
 ```
 # If symlink already exists
-$ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name> ./<engine name>-link
+$ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
 
 # If creating a new symlink
-$ ln -s ~/wish-you-were-fast/reuse23/build/<engine name> ./<engine name>-link
+$ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
 ```    
 
 ## Built Engines Log
@@ -16,25 +16,74 @@ Last Updated: July 19, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
-**V8:** 11.7.105
+<details>
+<summary><b>V8 Versions<b></summary>
+<br>
+11.7.105
+</details>
 
-**SpiderMonkey:** 114.0, 116.0
+<details>
+<summary><b>SpiderMonkey Versions</b></summary>
+<br>
+- 114.0
+- 116.0
+</details>
 
-**JavaScriptCore:** 264545, 265838
+<details>
+<summary><b>JavaScriptCore Versions</b></summary>
+<br>
+- 264545
+- 265838
+</details>
 
-**Wasmer:** 77898a7767eb7057834fdc1a80b239e6b68cf44e
+<details>
+<summary><b>Wasmer Versions</b></summary>
+<br>
+- 77898a7767eb7057834fdc1a80b239e6b68cf44e
+</details>
 
-**Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee, fe69c0437602a59e718de04f1d40bebf0bf51662
+<details>
+<summary><b>Wasmtime Versions</b></summary>
+<br>
+- 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5
+- a45abadbc39a57dd3e404231e2751a80cdafa4b0
+- dfd6885365b83a40830cf66bcc11e1059e8072ee
+- fe69c0437602a59e718de04f1d40bebf0bf51662
+</details>
 
-**Wasm3:** 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52, 772f8f4648fcba75f77f894a6050db121e7651a2
+<details>
+<summary><b>Wasm3 Versions</b></summary>
+<br>
+- 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52
+- 772f8f4648fcba75f77f894a6050db121e7651a2
+</details>
 
-**Wizard:** 45502370cb260e0d6017c2344466e41584e4c18f, d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5, 991d10b6993147ddc1b18c16b2b92139a079275f
+<details>
+<summary><b>Wizard Versions</b></summary>
+<br>
+- 45502370cb260e0d6017c2344466e41584e4c18f
+- d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5
+- 991d10b6993147ddc1b18c16b2b92139a079275f
+</details>
 
-**Wavm:** 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
+<details>
+<summary><b>Wavm Versions</b></summary>
+<br>
+- 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
+</details>
 
-**iWasm:** 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
+<details>
+<summary><b>iWasm Versions</b></summary>
+<br>
+- 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
+</details>
 
-**Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459, b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d
+<details>
+<summary><b>Wazero Versions</b></summary>
+<br>
+- 1cdb72d43163a6c3edd33319b382a0feb0f4d459
+- b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d
+</details>
 
 ## Engine Installation
 
@@ -70,8 +119,7 @@ cargo build --release
 
 ### Wasm3
 
-[Wasm3](https://github.com/wasm3/wasm3) installation requires [CMake](https://cmake.org/install/). Once [CMake](https://cmake.org/install/) is installed, clone the [Wasm3 Repo](https://github.com/wasm3/wasm3). 
-In the repo, execute the following commands
+[Wasm3](https://github.com/wasm3/wasm3) installation requires [CMake](https://cmake.org/install/). Once [CMake](https://cmake.org/install/) is installed, clone the repo and execute the following commands in `wasm/`
 ```
 $ mkdir build && cd build
 $ cmake ..
@@ -91,7 +139,7 @@ Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-en
 
 ### Wavm
 
-[Wavm](https://github.com/WAVM/WAVM) installation requires CMake and LLVM (instructions in repo). Once the prerequisites are built and engine is cloned, Wavm can alternatively be built using the following commands in the repo
+[Wavm](https://github.com/WAVM/WAVM) installation requires CMake and LLVM (instructions in repo). Once the prerequisites are built and repo is cloned, Wavm can alternatively be built using the following commands in the repo
 ```
 $ mkdir build_dir && cd build_dir
 $ cmake ..
@@ -105,13 +153,26 @@ $ cmake ..
 $ make
 ```
 
-### iWasm TODO
+### iWasm
 
-Clone the [iwasm repo](https://github.com/bytecodealliance/wasm-micro-runtime).
+[iWasm](https://github.com/bytecodealliance/wasm-micro-runtime) installation requires CMake and other dependencies (instructions in repo). Once prerequisties are built and repo is cloned, build iWasm with the `Fast JIT` mode. May have to use the following code opposed to repo instructions
+```
+$ cd product-mini/platforms/linux/
+$ mkdir build && cd build
+$ cmake .. -DWAMR_DISABLE_WRITE_GS_BASE=1 -DWAMR_BUILD_FAST_JIT=1
+$ make
+```
+
+The engine is built in `wasm-micro-runtime/product-mini/platforms/linux/build/`. The engine updates through build.py running the following commands
+```
+$ git pull
+$ cmake .. -DWAMR_DISABLE_WRITE_GS_BASE=1 -DWAMR_BUILD_FAST_JIT=1
+$ make
+```
 
 ### Wazero
 
-[Wazero](https://github.com/tetratelabs/wazero) installation requires [go](https://go.dev/doc/install). Clone the wazero repo and use the following commands in the repo
+[Wazero](https://github.com/tetratelabs/wazero) installation requires [Go](https://go.dev/doc/install). Clone the Wazero repo and use the following commands in the repo
 ```
 $ go build
 $ go ./cmd/wazero
@@ -119,9 +180,9 @@ $ go ./cmd/wazero
 
 The engine is built in `wazero/`. The engine updates through build.py running `git pull` and `go build ./cmd/wazero`.
 
-#### how to install go
+#### How to Install Go
 
-On the go install page, download the tar. In your local terminal, go to the directory where it was downloaded and run the following command to copy the file to the remote host
+On the [Go Installation Page](https://go.dev/doc/install), download the tar. In your local terminal, go to the directory where it was downloaded and run the following command to copy the file to the remote host
 ```
 $ scp go1.20.6.linux-amd64.tar.gz <username>@<server>:/home/<username>
 ```
@@ -129,7 +190,7 @@ In your remote terminal, extract tar in the directory where you copied it to by 
 ```
 $ sudo tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz
 ```
-Edit .bashrc to update the path
+Edit `.bashrc` to update the path
 ```
 $ vi .bashrc
 ```
