@@ -114,7 +114,7 @@ if __name__ == "__main__":
     all_configs = common.assign_configs()
     configs = check_running_configs()
     data_dir = os.environ.get('DATA_DIR','wish-you-were-fast/reuse23/') # directory for results to go to; 'wish-you-were-fast/reuse23/'
-    btime_options = os.environ.get('BTIME_OPTIONS') # must either be '-l' or '-f'
+    btime_options = os.environ.get('BTIME_OPTIONS') # -l default, -f option
 
     if exp == 'execution':
         if not os.path.exists(data_dir+exp):
