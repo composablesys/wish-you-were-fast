@@ -17,23 +17,25 @@ Last Updated: July 19, 2023
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
 <details>
-<summary><b>V8 Versions<b></summary>
+<summary><b>V8 Versions</b></summary>
 <br>
-11.7.105
+* 11.7.105
 </details>
 
 <details>
 <summary><b>SpiderMonkey Versions</b></summary>
 <br>
-- 114.0
-- 116.0
+* 114.0
+* 116.0
 </details>
 
 <details>
 <summary><b>JavaScriptCore Versions</b></summary>
 <br>
-- 264545
-- 265838
+<ul>
+    <li>264545</li>
+    <li>265838</li>
+</ul>
 </details>
 
 <details>
