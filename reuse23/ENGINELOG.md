@@ -17,28 +17,71 @@ Last Updated: July 19, 2023
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
 <details>
-<summary><b>V8<b></summary>
+<summary><b>V8 Versions</b></summary>
 <br>
-11.7.105
+- 11.7.105
 </details>
 
-**SpiderMonkey:** 114.0, 116.0
+<details>
+<summary><b>SpiderMonkey Versions</b></summary>
+<br>
+- 114.0
+- 116.0
+</details>
 
-**JavaScriptCore:** 264545, 265838
+<details>
+<summary><b>JavaScriptCore Versions</b></summary>
+<br>
+- 264545
+- 265838
+</details>
 
-**Wasmer:** 77898a7767eb7057834fdc1a80b239e6b68cf44e
+<details>
+<summary><b>Wasmer Versions</b></summary>
+<br>
+- 77898a7767eb7057834fdc1a80b239e6b68cf44e
+</details>
 
-**Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee
+<details>
+<summary><b>Wasmtime Versions</b></summary>
+<br>
+- 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5
+- a45abadbc39a57dd3e404231e2751a80cdafa4b0
+- dfd6885365b83a40830cf66bcc11e1059e8072ee
+</details>
 
-**Wasm3:** 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52, 772f8f4648fcba75f77f894a6050db121e7651a2
+<details>
+<summary><b>Wasm3 Versions</b></summary>
+<br>
+- 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52
+- 772f8f4648fcba75f77f894a6050db121e7651a2
+</details>
 
-**Wizard:** 45502370cb260e0d6017c2344466e41584e4c18f, d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5, 991d10b6993147ddc1b18c16b2b92139a079275f
+<details>
+<summary><b>Wizard Versions</b></summary>
+<br>
+- 45502370cb260e0d6017c2344466e41584e4c18f
+- d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5
+- 991d10b6993147ddc1b18c16b2b92139a079275f
+</details>
 
-**Wavm:** 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
+<details>
+<summary><b>Wavm Versions</b></summary>
+<br>
+- 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
+</details>
 
-**iWasm:** 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
+<details>
+<summary><b>iWasm Versions</b></summary>
+<br>
+- 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
+</details>
 
-**Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459
+<details>
+<summary><b>Wazero Versions</b></summary>
+<br>
+- 1cdb72d43163a6c3edd33319b382a0feb0f4d459
+</details>
 
 ## Engine Installation
 
