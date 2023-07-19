@@ -19,14 +19,18 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <details>
 <summary><b>V8 Versions</b></summary>
 <br>
-* 11.7.105
+<ul>
+    <li>11.7.105</li>
+</ul>
 </details>
 
 <details>
 <summary><b>SpiderMonkey Versions</b></summary>
 <br>
-* 114.0
-* 116.0
+<ul>
+    <li>114.0</li>
+    <li>116.0</li>
+</ul>
 </details>
 
 <details>
@@ -41,50 +45,64 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <details>
 <summary><b>Wasmer Versions</b></summary>
 <br>
-- 77898a7767eb7057834fdc1a80b239e6b68cf44e
+<ul>
+    <li>77898a7767eb7057834fdc1a80b239e6b68cf44e</li>
+</ul>
 </details>
 
 <details>
 <summary><b>Wasmtime Versions</b></summary>
 <br>
-- 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5
-- a45abadbc39a57dd3e404231e2751a80cdafa4b0
-- dfd6885365b83a40830cf66bcc11e1059e8072ee
-- fe69c0437602a59e718de04f1d40bebf0bf51662
+<ul>
+    <li>0aa00479c9fbb39ef19a9f35d2ed0137454c93f5</li>
+    <li>a45abadbc39a57dd3e404231e2751a80cdafa4b0</li>
+    <li>dfd6885365b83a40830cf66bcc11e1059e8072ee</li>
+    <li>fe69c0437602a59e718de04f1d40bebf0bf51662</li>
+</ul>
 </details>
 
 <details>
 <summary><b>Wasm3 Versions</b></summary>
 <br>
-- 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52
-- 772f8f4648fcba75f77f894a6050db121e7651a2
+<ul>
+    <li>6b8bcb1e07bf26ebef09a7211b0a37a446eafd52</li>
+    <li>772f8f4648fcba75f77f894a6050db121e7651a2</li>
+</ul>
 </details>
 
 <details>
 <summary><b>Wizard Versions</b></summary>
 <br>
-- 45502370cb260e0d6017c2344466e41584e4c18f
-- d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5
-- 991d10b6993147ddc1b18c16b2b92139a079275f
+<ul>
+    <li>45502370cb260e0d6017c2344466e41584e4c18f</li>
+    <li>d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5</li>
+    <li>991d10b6993147ddc1b18c16b2b92139a079275f</li>>
+</ul>
 </details>
 
 <details>
 <summary><b>Wavm Versions</b></summary>
 <br>
-- 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
+<ul>
+    <li>3f9a150cac7faf28eab357a2c5b83d2ec740c7d9</li>
+</ul>
 </details>
 
 <details>
 <summary><b>iWasm Versions</b></summary>
 <br>
-- 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
+<ul>
+    <li>57abdfdb5c19dab7c2f2a126082910f65ffc7af0</li>
+</ul>
 </details>
 
 <details>
 <summary><b>Wazero Versions</b></summary>
 <br>
-- 1cdb72d43163a6c3edd33319b382a0feb0f4d459
-- b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d
+<ul>
+    <li>1cdb72d43163a6c3edd33319b382a0feb0f4d459</li>
+    <li>b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d</li>
+</ul>
 </details>
 
 ## Engine Installation
