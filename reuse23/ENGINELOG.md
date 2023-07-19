@@ -24,7 +24,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **Wasmer:** 77898a7767eb7057834fdc1a80b239e6b68cf44e
 
-**Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee
+**Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee, fe69c0437602a59e718de04f1d40bebf0bf51662
 
 **Wasm3:** 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52, 772f8f4648fcba75f77f894a6050db121e7651a2
 
@@ -34,7 +34,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **iWasm:** 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
 
-**Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459
+**Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459, b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d
 
 ## Engine Installation
 
@@ -50,7 +50,7 @@ $ curl https://get.wasmer.io -sSfL | sh
 ```
 The engine is built in `./wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
 
-### Wasmtime (TODO how to update)
+### Wasmtime
 
 [Wasmtime](https://github.com/bytecodealliance/wasmtime) installation requires [Rust toolchain](https://www.rust-lang.org/tools/install) to be installed. Clone the repo and initialize the git submodules with the following command in the repo
 ```
@@ -60,7 +60,13 @@ Then run this command in the root of the repository to make an optimized build
 ```
 $ cargo build --release
 ```
-The engine is built in `./wasmtime/target/release`. The engine updates through build.py running `git pull`.
+The engine is built in `./wasmtime/target/release`. The engine updates through build.py running the following commands
+```
+git pull
+cargo clean
+cargo build --release
+```
+*Disclaimer: Engine can still update if you get this message in the termainal while others things are compiling and the engine is building `warning: Failed to run 'rustfmt' on ISLE-generated code: Os { code: 2, kind: NotFound, message: "No such file or directory" }`
 
 ### Wasm3
 
@@ -111,7 +117,7 @@ $ go build
 $ go ./cmd/wazero
 ```
 
-The engine is built in `wazero/`. The engine updates through build.py running `git pull`.
+The engine is built in `wazero/`. The engine updates through build.py running `git pull` and `go build ./cmd/wazero`.
 
 #### how to install go
 
