@@ -14,7 +14,7 @@ def engine_dir(engine):
     elif engine == 'wasm3':
         dir = 'wasm3/build/'
     elif engine == 'iwasm': 
-        dir = 'wasm-micro-runtime/product-mini/platforms/linux'
+        dir = 'wasm-micro-runtime/product-mini/platforms/linux/build/'
     elif engine == 'wizeng':
         dir = 'wizard-engine/bin/'
     elif engine == 'wavm':
@@ -24,7 +24,7 @@ def engine_dir(engine):
     return dir
 
 def build_engine(): 
-    engines = ['wizeng'] # remove after testing; jsvu and wasmtime have NOT been tested
+    engines = [] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -51,16 +51,16 @@ def build_engine():
         elif eng == 'wazero':
             wazero_git = git.cmd.Git('wazero')
             wazero_git.pull()
-        # elif eng == 'iwasm': # TODO fix iwasm build
-        #     iwasm_git = git.cmd.Git(engine_dir('iwasm'))
-        #     iwasm_git.pull() 
+        elif eng == 'iwasm': 
+            iwasm_git = git.cmd.Git(engine_dir('iwasm'))
+            iwasm_git.pull() 
         else: continue
     
-        if version_exists(eng) == False: 
+        if version_exists(eng) == False: # makes copy of engine from original build
             dir = engine_dir(eng) 
             if eng == 'wizeng':
                 shutil.copy(dir+'wizeng.x86-64-linux', build_dir+eng+'/'+eng+'-v'+get_version(eng))
-            else: #TODO make sure works with wazero and iwasm
+            else: 
                 shutil.copy(dir+eng, build_dir+eng+'/'+eng+'-v'+get_version(eng))
 
 # checks if this engine version already exists
@@ -68,7 +68,6 @@ def version_exists(engine):
     exists = os.path.exists(build_dir+engine+'/'+engine+'-v'+get_version(engine))
     return exists
 
-# FIXME change how the engine gets the version number (hash number from git log)
 # helper function for building engine (naming engine with version number)
 def get_version(engine): # TODO wasmnow, wazero, wizeng
     version = 'error_get_version'
