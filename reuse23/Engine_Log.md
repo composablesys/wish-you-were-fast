@@ -12,7 +12,7 @@ $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name> ./<engine name>-link
 ```    
 
 ## Built Engines Log
-Last Updated: July 18, 2023
+Last Updated: July 19, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
@@ -22,13 +22,13 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **JavaScriptCore:** 264545, 265838
 
-**Wasmer:** 
+**Wasmer:** 77898a7767eb7057834fdc1a80b239e6b68cf44e
 
 **Wasmtime:** 0aa00479c9fbb39ef19a9f35d2ed0137454c93f5, a45abadbc39a57dd3e404231e2751a80cdafa4b0, dfd6885365b83a40830cf66bcc11e1059e8072ee
 
-**Wasm3:**
+**Wasm3:** 6b8bcb1e07bf26ebef09a7211b0a37a446eafd52, 772f8f4648fcba75f77f894a6050db121e7651a2
 
-**Wizard:**
+**Wizard:** 45502370cb260e0d6017c2344466e41584e4c18f, d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5, 991d10b6993147ddc1b18c16b2b92139a079275f
 
 **Wavm:** 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
 
@@ -40,9 +40,9 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 ### V8, SpiderMonkey, JavaScriptCore
 
-In order to build and update v8, sm, and jsc, [jsvu](https://github.com/GoogleChromeLabs/jsvu) must be installed. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`.
+In order to build and update v8, sm, and jsc, [jsvu](https://github.com/GoogleChromeLabs/jsvu) must be installed. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`. The engines update through build.py running the `jsvu` command.
 
-### Wasmer
+### Wasmer FIXME (for build from source and update instructions)
 
 Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home directory. Following the instructions of the repo, execute the following code (no dependencies required).
 ```
@@ -50,7 +50,7 @@ $ curl https://get.wasmer.io -sSfL | sh
 ```
 The engine is built in `./wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
 
-### Wasmtime
+### Wasmtime (TODO how to update)
 
 [Wasmtime](https://github.com/bytecodealliance/wasmtime) installation requires [Rust toolchain](https://www.rust-lang.org/tools/install) to be installed. Clone the repo and initialize the git submodules with the following command in the repo
 ```
@@ -72,9 +72,14 @@ $ cmake ..
 $ make
 ```
 
-The engine is built in `./wasm3/build/`. The engine updates through build.py running `git pull`.
+The engine is built in `./wasm3/build/`. The engine updates through build.py running the following commands
+```
+$ git pull
+$ cmake ..
+$ make
+```
 
-### Wizard 
+### Wizard
 
 Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-engine/blob/master/doc/Building.md). The engine is built in `wizard-engine/bin/`. The engine updates through build.py running `git pull`. The `wizeng-x86-64-linux` is used for testing.
 
@@ -93,7 +98,7 @@ The engine is built in `WAVM/build_dir/bin/`. The engine updates through build.p
 
 Clone the [iwasm repo](https://github.com/bytecodealliance/wasm-micro-runtime).
 
-### Wazero TODO
+### Wazero
 
 [Wazero](https://github.com/tetratelabs/wazero) installation requires [go](https://go.dev/doc/install). Clone the wazero repo and use the following commands in the repo
 ```

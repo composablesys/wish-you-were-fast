@@ -24,21 +24,24 @@ def engine_dir(engine):
     return dir
 
 def build_engine(): 
-    engines = ['wasmtime'] # remove after testing; jsvu and wasmtime have NOT been tested
+    engines = ['wizeng'] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
 
         if eng in ['v8', 'jsc', 'sm']: # built by jsvu
             subprocess.run(['jsvu --engines=javascriptcore,v8,spidermonkey'], shell=True) # run the jsvu command to update the engines
-        elif eng == 'wasmtime':
+        elif eng == 'wasmtime': #FIXME with correct way to update
             wasmtime_git = git.cmd.Git('wasmtime')
             wasmtime_git.pull()
-        elif eng == 'wasmer':
+        elif eng == 'wasmer': #FIXME with source build update
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
-            wasm3_git.pull() # git pull to update 
+            wasm3_git.pull()
+            path = str(pathlib.Path.home()) + "/" + engine_dir(eng)
+            subprocess.run('cmake ..', shell=True, cwd = path)
+            subprocess.run('make', shell=True, cwd = path)
         elif eng == 'wizeng':
             wizeng_git = git.cmd.Git('wizard-engine')
             wizeng_git.pull()
