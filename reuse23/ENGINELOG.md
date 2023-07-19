@@ -76,7 +76,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <ul>
     <li>45502370cb260e0d6017c2344466e41584e4c18f</li>
     <li>d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5</li>
-    <li>991d10b6993147ddc1b18c16b2b92139a079275f</li>>
+    <li>991d10b6993147ddc1b18c16b2b92139a079275f</li>
 </ul>
 </details>
 
