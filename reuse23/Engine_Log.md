@@ -32,7 +32,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 **Wavm:** 3f9a150cac7faf28eab357a2c5b83d2ec740c7d9
 
-**iWasm:**
+**iWasm:** 57abdfdb5c19dab7c2f2a126082910f65ffc7af0
 
 **Wazero:** 1cdb72d43163a6c3edd33319b382a0feb0f4d459
 
@@ -92,7 +92,12 @@ $ cmake ..
 $ make
 ```
 
-The engine is built in `WAVM/build_dir/bin/`. The engine updates through build.py running `git pull`.
+The engine is built in `WAVM/build_dir/bin/`. The engine updates through build.py running the following commands
+```
+$ git pull
+$ cmake ..
+$ make
+```
 
 ### iWasm TODO
 

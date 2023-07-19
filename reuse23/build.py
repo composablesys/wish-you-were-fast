@@ -24,7 +24,7 @@ def engine_dir(engine):
     return dir
 
 def build_engine(): 
-    engines = [] # remove after testing; jsvu and wasmtime have NOT been tested
+    engines = ['wazero'] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -48,9 +48,15 @@ def build_engine():
         elif eng == 'wavm':
             wavm_git = git.cmd.Git('WAVM')
             wavm_git.pull()
+            path = str(pathlib.Path.home()) + "/" + engine_dir(eng)
+            subprocess.run('cmake ..', shell=True, cwd = path)
+            subprocess.run('make', shell=True, cwd = path)
         elif eng == 'wazero':
             wazero_git = git.cmd.Git('wazero')
             wazero_git.pull()
+            path = str(pathlib.Path.home()) + "/" + engine_dir(eng)
+            subprocess.run('go build', shell=True, cwd = path)
+            subprocess.run('go ./cmd/wazero', shell=True, cwd = path)
         elif eng == 'iwasm': 
             iwasm_git = git.cmd.Git(engine_dir('iwasm'))
             iwasm_git.pull() 
