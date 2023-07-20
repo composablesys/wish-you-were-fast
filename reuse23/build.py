@@ -7,8 +7,8 @@ def engine_dir(engine):
     dir = "Engine does not exist."
     if engine in ['v8','jsc','sm']:
         dir = '.jsvu/bin/'
-    elif engine == 'wasmer': #FIXME
-        dir = '.'+engine+'/bin/'
+    elif engine == 'wasmer':
+        dir = engine+'/target/release/'
     elif engine == 'wasmtime':
         dir = 'wasmtime/target/release/'
     elif engine == 'wasm3':
@@ -37,7 +37,7 @@ def build_engine():
             path = str(pathlib.Path.home()) + "/wasmtime"
             subprocess.run('cargo clean', shell=True, cwd=path)
             subprocess.run('cargo build --release', shell=True, cwd=path)
-        elif eng == 'wasmer': #FIXME with source build update
+        elif eng == 'wasmer': #FIXME with source build update: $ make build-wasmer
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
@@ -64,7 +64,7 @@ def build_engine():
             iwasm_git.pull() 
         else: continue
     
-        if version_exists(eng) == False: # makes copy of engine from original build
+        if (version_exists(eng) == False) and (new_engine(eng)): # makes copy of engine from original build
             dir = engine_dir(eng) 
             if eng == 'wizeng':
                 shutil.copy(dir+'wizeng.x86-64-linux', build_dir+eng+'/'+eng+'-v'+get_version(eng))
@@ -74,7 +74,23 @@ def build_engine():
 # checks if this engine version already exists
 def version_exists(engine):
     exists = os.path.exists(build_dir+engine+'/'+engine+'-v'+get_version(engine))
+    if exists == True: print("Engine is already up to date.")
     return exists
+
+# checks if the new repo commit actually produced a new engine binary file
+def new_engine(engine):
+    if engine == 'wizeng':
+        new_build = str(pathlib.Path.home()) + engine_dir(engine) + 'wizeng.x86-64-linux'
+    else: new_build = str(pathlib.Path.home()) + engine_dir(engine) + engine
+    print(new_build) # for testing
+    path = str(pathlib.Path.home()) + build_dir + "/" + engine + "/"
+    latest_build = subprocess.run('ls -t ' + engine + ' | head -1', shell=True, capture_output=True, cwd=path)
+    print(latest_build) # for testing
+    output = subprocess.run(['diff', new_build, latest_build], shell=True, capture_output=True, cwd=path)
+    if 'differ' in output: return True
+    else:
+        print("Engine is already up to date. New repo commits did not produce a new binary file.")
+        return False
 
 # helper function for building engine (naming engine with version number)
 def get_version(engine): # TODO wasmnow, wazero, wizeng
@@ -98,8 +114,9 @@ def get_version(engine): # TODO wasmnow, wazero, wizeng
 if __name__ == "__main__":
     build_dir = os.environ.get('BUILD_DIR','wish-you-were-fast/reuse23/build/') # directory to put builds in
     build_engine()
+    ''' testing for get_version '''
     #engine = os.environ.get('ENGINE', 'wizeng')
     #if sys.argv[1] == 'VERSION_TESTING':
     #    print(get_version(engine))
-
+    ''' testing for new_engine '''
    
