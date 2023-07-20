@@ -12,7 +12,7 @@ $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<eng
 ```    
 
 ## Built Engines Log
-Last Updated: July 19, 2023
+Last Updated: July 20, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
@@ -21,6 +21,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <br>
 <ul>
     <li>11.7.105</li>
+    <li>11.7.254</li>
 </ul>
 </details>
 
@@ -30,6 +31,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <ul>
     <li>114.0</li>
     <li>116.0</li>
+    <li>116.0b7</li>
 </ul>
 </details>
 
@@ -39,6 +41,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <ul>
     <li>264545</li>
     <li>265838</li>
+    <li>266180</li>
 </ul>
 </details>
 
@@ -47,6 +50,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <br>
 <ul>
     <li>77898a7767eb7057834fdc1a80b239e6b68cf44e</li>
+    <li>4380bb3fee503f2cf20f3cf9e662bec243111bd9</li>
 </ul>
 </details>
 
@@ -109,7 +113,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 ### V8, SpiderMonkey, JavaScriptCore
 
-In order to build and update v8, sm, and jsc, [jsvu](https://github.com/GoogleChromeLabs/jsvu) must be installed. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`. The engines update through build.py running the `jsvu` command.
+In order to build and update v8, sm, and jsc, clone the [jsvu repo](https://github.com/GoogleChromeLabs/jsvu) and follow the instructions. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`. The engines update through build.py running the `jsvu` command.
 
 ### Wasmer FIXME (for build from source and update instructions)
 
