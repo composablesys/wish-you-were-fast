@@ -7,8 +7,8 @@ def engine_dir(engine):
     dir = "Engine does not exist."
     if engine in ['v8','jsc','sm']:
         dir = '.jsvu/bin/'
-    elif engine == 'wasmer': #FIXME
-        dir = '.'+engine+'/bin/'
+    elif engine == 'wasmer':
+        dir = engine+'/target/release/'
     elif engine == 'wasmtime':
         dir = 'wasmtime/target/release/'
     elif engine == 'wasm3':
@@ -37,7 +37,7 @@ def build_engine():
             path = str(pathlib.Path.home()) + "/wasmtime"
             subprocess.run('cargo clean', shell=True, cwd=path)
             subprocess.run('cargo build --release', shell=True, cwd=path)
-        elif eng == 'wasmer': #FIXME with source build update
+        elif eng == 'wasmer': #FIXME with source build update: $ make build-wasmer
             subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
