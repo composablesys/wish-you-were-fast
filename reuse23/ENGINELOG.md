@@ -115,13 +115,13 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 
 In order to build and update v8, sm, and jsc, clone the [jsvu repo](https://github.com/GoogleChromeLabs/jsvu) and follow the instructions. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`. The engines update through build.py running the `jsvu` command.
 
-### Wasmer FIXME (for build from source and update instructions)
+### Wasmer FIXME (add update instructions)
 
-Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home directory. Following the instructions of the repo, execute the following code (no dependencies required).
+Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home directory. Verify that `rustc` and `cargo` are updated to version 1.67 (as of 7/20/23). In the repo, execute the following command and ensure [singlepass compiler is enabled](https://docs.wasmer.io/developers/build-from-source)
 ```
-$ curl https://get.wasmer.io -sSfL | sh
+$ make build-wasmer
 ```
-The engine is built in `./wasmer/bin/`. The engine updates through build.py running the `self-update` command. TODO wasmer-base installation.
+The engine is built in the directory `targer/release/`. The engine updates through build.py running the same command.
 
 ### Wasmtime
 
@@ -135,9 +135,9 @@ $ cargo build --release
 ```
 The engine is built in `./wasmtime/target/release`. The engine updates through build.py running the following commands
 ```
-git pull
-cargo clean
-cargo build --release
+$ git pull
+$ cargo clean
+$ cargo build --release
 ```
 *Disclaimer: Engine can still update if you get this message in the termainal while others things are compiling and the engine is building `warning: Failed to run 'rustfmt' on ISLE-generated code: Os { code: 2, kind: NotFound, message: "No such file or directory" }`
 
