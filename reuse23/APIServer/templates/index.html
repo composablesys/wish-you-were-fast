@@ -14,45 +14,48 @@
 {% endblock %} 
 
 {% block body %}
-    <table style="width: 100%; padding: 15px 20px">
-      <thread>
-        <tr>
-          <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h></th>
-          <th style="text-align: center;" colspan="2"><h2>{{engine}} Engine</h2></th>
-        </tr>
-      </thread>
-      <tr>
-        <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
-        <td><div style="display: block; text-align: center;" id="zoomView"></div></td>
-      </tr>
-    </table>
+<p>
+  These graphs demonstrate the total time it takes for an engine to compile and execute wasm code.
+</p>
+<table style="width: 100%; padding: 15px 20px">
+  <thread>
+    <tr>
+      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h></th>
+      <th style="text-align: center;" colspan="2"><h2>{{engine}} Engine</h2></th>
+    </tr>
+  </thread>
+    <tr>
+      <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
+      <td><div style="display: block; text-align: center;" id="zoomView"></div></td>
+    </tr>
+  </table>
 
 
-    <script>
-        // Assign the specification to a local variable vlSpec.
-        //print({{engine}}
-        var vlSpec = {
-            "width": "container",
-            "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": "/get_all_execution"},
-            "encoding": {
-              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-              "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
-            },
-            "layer": [
-              {
-                "mark": {
-                    "type": "circle",
-                    "size": 100,
-                    "cursor": "pointer"
+<script>
+  // Assign the specification to a local variable vlSpec.
+  //print({{engine}}
+  var vlSpec = {
+    "width": "container",
+    "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+    "data": {"url": "/get_all_execution"},
+    "encoding": {
+        "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
+          },
+      "layer": [
+          {
+            "mark": {
+            "type": "circle",
+            "size": 100,
+            "cursor": "pointer"
                 },
-                "transform": [{
-                    "calculate": "'/total-time/' + datum.engine", // graphs total time
-                    "as": "url"
+            "transform": [{
+            "calculate": "'/total-time/' + datum.engine", // graphs total time
+            "as": "url"
                 }],
-                "encoding": {
-                    "color": {"field": "engine", "type": "nominal", "title": "Engines"},
-                    "href": {"field": "url", "type": "nominal"}
+            "encoding": {
+                "color": {"field": "engine", "type": "nominal", "title": "Engines"},
+                "href": {"field": "url", "type": "nominal"}
                 }
                 },
               {
@@ -64,39 +67,38 @@
             ],
         };
   
-        var zoom = {
-          "width": "container",
-          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": "/get_suites/{{engine}}"},
-            "encoding": {
-              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-              "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
-              "color": {
-                "condition": {
-                  "param": "hover",
-                  "field": "suite", 
-                  "type": "nominal",
-                  "legend": null
-                },
-                "value": "grey"
+  var zoom = {
+    "width": "container",
+    "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+    "data": {"url": "/get_suites/{{engine}}"},
+    "encoding": {
+        "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
+        "color": {
+            "condition": {
+            "param": "hover",
+            "field": "suite", 
+            "type": "nominal",
+            "legend": null
               },
-              "opacity": {
-                "condition": {
-                  "param": "hover",
-                  "value": 1},
-                "value": 0.2
-              }
+            "value": "grey"
+              },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 1},
+              "value": 0.2
+            }
             },
-            "layer": [{
-              "description": "transparent layer to make it easier to trigger selection",
-              "params": [{
-                "name": "hover",
-                //"value": [{"suite": "jsc"}], //i don't understand what this is
-                "select": {
-                  "type": "point",
-                  "fields": ["suite"],
-                  "on": "mouseover"
-                }
+        "layer": [{
+          "description": "transparent layer to make it easier to trigger selection",
+          "params": [{
+            "name": "hover",
+              "select": {
+                "type": "point",
+                "fields": ["suite"],
+                "on": "mouseover"
+              }
               }],
               "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
             }, {
@@ -116,7 +118,7 @@
             "config": {"view": {"stroke": null}}
         };
         // Embed the visualization in the container with id `vis`
-        vegaEmbed('#mainVis', vlSpec, {renderer: 'svg'}).then(res => {var view = res.view;});
-        vegaEmbed('#zoomView', zoom, {renderer: 'svg'}).then(res => {var view = res.view;});
-    </script>
+  vegaEmbed('#mainVis', vlSpec, {renderer: 'svg'}).then(res => {var view = res.view;});
+  vegaEmbed('#zoomView', zoom, {renderer: 'svg'}).then(res => {var view = res.view;});
+</script>
 {% endblock %} 
