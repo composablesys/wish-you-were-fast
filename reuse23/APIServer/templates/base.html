@@ -2,10 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <title>{% block title %}Wasm Benchmarking{% endblock %}</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         {% block head %}{% endblock %} 
     </head>
     <body>
+        <header>
+            <ul class="navbar">
+                <li class="navbar-title">Wasm Benchmarking</li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/data">Data</a></li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </header>
         {% block body %}{% endblock %} 
+        <footer>
+            &copy; 2023 Wasm Benchmarking. All rights reserved.
+        </footer>
     </body>
 </html>

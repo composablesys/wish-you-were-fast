@@ -15,65 +15,22 @@
 {% endblock %} 
 
 {% block body %}
-    <h1>Geomeans for Execution Experiment</h1>
+    <h1>Geomean for Execution Experiment (Interactive Line Highlight)</h1>
     <!-- Container for the visualization -->
-    <div class="grid-container">
-      <span>
-        <h2>All Engines for Execution Experiment</h2>
-        <div id="mainVis"></div>
-      </span>
-     <span>
-        <h2>{{engine}} Engine</h2>
-        <div id="zoomView"></div>
-      </span>
-      </div>
+    <div id="mainVis"></div>
+
     <script>
         // Assign the specification to a local variable vlSpec.
-        //print({{engine}}
         var vlSpec = {
-            "width": "container",
-            "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": "/get_all_execution"},
-            "encoding": {
-              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal"},
-              "y": {"field": "total_time", "type": "quantitative"},
-            },
-            "layer": [
-              {
-                "mark": {
-                    "type": "circle",
-                    "size": 100,
-                    "cursor": "pointer"
-                },
-                "transform": [{
-                    "calculate": "'/main4/' + datum.engine",
-                    "as": "url"
-                }],
-                "encoding": {
-                    "color": {"field": "engine", "type": "nominal"},
-                    "href": {"field": "url", "type": "nominal"}
-                }
-                },
-              {
-                "mark": "line",
-                "encoding": {
-                  "color": {"field": "engine", "type": "nominal"}
-                }
-              }
-            ],
-        };
-  
-        var zoom = {
-          "width": "container",
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": "/get_suites/{{engine}}"},
+            "data": {"url": "/get_all_execution"},
             "encoding": {
               "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "experiment date"},
               "y": {"field": "total_time", "type": "quantitative", "title": "total time"},
               "color": {
                 "condition": {
                   "param": "hover",
-                  "field": "suite", 
+                  "field": "engine", 
                   "type": "nominal",
                   "legend": null
                 },
@@ -90,10 +47,9 @@
               "description": "transparent layer to make it easier to trigger selection",
               "params": [{
                 "name": "hover",
-                //"value": [{"suite": "jsc"}], //i don't understand what this is
                 "select": {
                   "type": "point",
-                  "fields": ["suite"],
+                  "fields": ["engine"],
                   "on": "mouseover"
                 }
               }],
@@ -109,13 +65,13 @@
                 "mark": {"type": "circle"}
               }, {
                 "mark": {"type": "text", "align": "left", "dx": 4},
-                "encoding": {"text": {"field": "suite", "type": "nominal"}}
+                "encoding": {"text": {"field": "engine", "type": "nominal"}}
               }]
             }],
             "config": {"view": {"stroke": null}}
         };
+  
         // Embed the visualization in the container with id `vis`
         vegaEmbed('#mainVis', vlSpec);
-        vegaEmbed('#zoomView', zoom);
     </script>
 {% endblock %} 

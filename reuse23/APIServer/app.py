@@ -5,41 +5,42 @@ from flask_restx import Api, Resource, reqparse
 from dateutil.parser import parse
 import psycopg2, json, fnmatch, math
 
+configs = ['int', 'jit', 'nok', 'nokfold','noisel','nomr']
+suites = ['ostrich', 'libsodium', 'polybench']
+DATA_TABLE = 'testSummary1'
+nightlyRunID = 'NIGHTLY_RUN'  # Data is tagged with this in the database to show only nightly run results on UI
 
 app = Flask(__name__)
-api = Api(app)
-
-'''
-How to run this script:
-1. Make a configuration file 'config.json' in the same folder as summarize.py
-2. In the file, assign the following variable to your specific access keys
-    {
-    "db": "database_name",
-    "user": "username",
-    "pwd": "password", 
-    }
-3. Run the script with 'python3 app.py'
-'''
-
-DATA_TABLE = 'testSummary1'
 
 with open('config.json', 'r') as config_file:
     config_data = json.load(config_file)
     db = config_data['db']
     user = config_data['user']
     pwd = config_data['pwd']
-    
-nightlyRunID = 'NIGHTLY_RUN'   # Data is tagged with this in the database to show only nightly run results on UI
 
 @app.after_request
 def set_cors(response):
    response.headers.add("Access-Control-Allow-Origin", "*")
    return response
 
-configs = ['int', 'jit', 'nok', 'nokfold','noisel','nomr']
-suites = ['ostrich', 'libsodium', 'polybench']
+@app.route('/about')
+def about():
+   return render_template('about.html')
+
+# landing page and generate main graph with jsc default on subgraph
+@app.route('/', methods=['GET'])
+def index():
+   return render_template('index.html', engine="jsc")
+
+# creates the subgraph on the landing page
+@app.route('/total-time/<string:engine>')
+def home(engine):
+   return render_template('index.html', engine=engine)
+
+api = Api(app) # initialize AFTER @app.route('/') to show landing page
+
 # total_time metric
-# must change table to correct one to collect data
+# TODO change table to correct one to collect data
 @api.route('/get_all_execution')
 class getExecution(Resource):
    def get(self):
@@ -60,33 +61,8 @@ class getExecution(Resource):
       cur.close()
       conn.close()
       return results
-   
-''' faulty version to render home page '''
-@app.route("/", methods=['GET'])
-def index():
-   return render_template('index4.html', engine="jsc")
 
-''' working version of main graph with interactive line highlight '''
-@app.route('/main1')
-def home1():
-   return render_template('index.html')
-
-''' working version with clickable main graph that directs to specific engine's graph '''
-# essentially main graph but clicking on line will direct to main4 with given engine line
-@app.route('/main3')
-def home3():
-   return render_template('index3.html')
-
-# working version to use selections to filter data in another graph through changing url
-@app.route('/main2/<string:engine>')
-def home2(engine):
-   return render_template('index2.html', engine=engine)
-
-''' working version where clicking on different engines on main graph filters data in another graph '''
-@app.route('/main4/<string:engine>')
-def home4(engine):
-   return render_template('index4.html', engine=engine)
-
+# data for the engine graph displaying geomean of each suite
 @api.route('/get_suites/<string:engine>')
 class getSuites(Resource):
    def get(self, engine):
@@ -106,12 +82,7 @@ class getSuites(Resource):
       conn.close()
       return results
 
-@app.route('/zoomInto/<string:engine>')
-def zoom(engine):
-   return render_template('popup.html', engine=engine)
-# calculates geomean given a suite in speedup experiment and returns a json format with geomean like 
-# [{config: int, geomean: 0.968178}, {config: jit, geomean: 0.669872}, {config: nok, geomean: 0.001414}, {config: nokfold, geomean: 0.605595}, 
-# {config: noisel, geomean: 0.614007}, {config: nomr, geomean: 1.116099}]
+# calculates geomean for each suite
 @api.route('/calculate_geomean/<string:suite>')
 class geomeanCalc(Resource):
    def get(self, suite):
@@ -119,7 +90,7 @@ class geomeanCalc(Resource):
       conn = psycopg2.connect(database=db,user=user,password=pwd)
       cur = conn.cursor()
       for config in configs:
-         cur.execute("SELECT avg FROM testSummary1 WHERE benchmark_suite = %s AND config = %s", (suite, config))
+         cur.execute("SELECT avg FROM testSummary6 WHERE benchmark_suite = %s AND config = %s", (suite, config))
          data = cur.fetchall()
          values = [avg[0] for avg in data]
          geomean = round(math.sqrt(sum(values)), 6)
@@ -129,7 +100,7 @@ class geomeanCalc(Resource):
       return results
 
 '''
-# calculates geomeans from a given experiment, grouped by suites and returns a json format
+# maybe needed in the future: calculates geomeans from a given experiment, grouped by suites and returns a json format
 @api.route('/calculate_geomean/<string:experiment>')
 class geomeanCalc(Resource):
    def get(self, experiment):
@@ -151,56 +122,5 @@ class geomeanCalc(Resource):
       else:
          return "Provide a different experiment."
 '''
-
-# testing to see if connection to database works
-@api.route('/get_all_test')
-class getAllTest(Resource):
-   def get(self):
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
-      cur = conn.cursor()
-      cur.execute("SELECT * FROM " + DATA_TABLE)
-      data = cur.fetchall()
-      cur.close()
-      conn.close()
-      response = []
-      for datum in data:
-         tup = {"Date": datum[0].isoformat(), "Suite": datum[1], "BenchmarkItem": datum[2], "Engine": datum[3].rstrip().lstrip()+'-'+datum[5].rstrip().lstrip(), 
-              "Version": datum[4],"Machine": datum[6], "MetricType": datum[7], "Value": datum[8]}
-         response.append(tup)
-      return {"data": response}
-
-# testing to see if you can display vegalite visualization
-@app.route('/display_geomean/<suite>')
-def display(suite):
-   return render_template('geomeanVegalite.html', suite=suite)
-
-# testing for clicking to change another graph
-@app.route('/testInteractiveClick')
-def interactive():
-   return render_template('testInteractiveClick.html')
-
-@api.route('/get_all_mean')
-class getAllMean(Resource):
-   def get(self):
-    conn = psycopg2.connect(database=db,user=user,password=pwd)
-    cur = conn.cursor()
-    cur.execute('''SELECT exp_date, benchmark_suite, benchmark_item, engine, version, config,
-                machine, metric_type, avg FROM summary WHERE exp_label=%s''',(nightlyRunID,))
-    data = cur.fetchall()
-    cur.close()
-    conn.close()
-    response = []
-    for datum in data:
-       tup = {"Date": datum[0].isoformat(), "Suite": datum[1], "BenchmarkItem": datum[2], "Engine": datum[3].rstrip().lstrip()+'-'+datum[5].rstrip().lstrip(), 
-              "Version": datum[4],"Machine": datum[6], "MetricType": datum[7], "Value": datum[8]}
-       response.append(tup)
-    return {"data": response}
-
 if __name__ == "__main__":
    app.run(host='grammont.lan.local.cmu.edu',port=6363, debug=True)
-
-    # HACKS - remove this
-    # print(dataframe)
-    # return send_file('csv_data/wasm-execution-2.csv',mimetype='csv',attachment_filename='testing.csv')
-    # print(dataframe.to_csv)
-    # json.dumps(data, default=str)
