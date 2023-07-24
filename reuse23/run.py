@@ -1,4 +1,4 @@
-import os, subprocess
+import os, subprocess, json, sys
 import common # common.py file
 from datetime import datetime
 
@@ -32,8 +32,18 @@ def check_running_configs(): # TODO wasmer-base, wazero
             working_configs.append(config)
     return working_configs
 
-def make_timestamp():
-    return str(datetime.today())
+# returns the 
+def get_timestamp(config, v_num):
+    if "-" in config:
+        config = config[:config.index("-")]
+    with open(data_dir + "engines.json", "r") as file:
+        data = json.load(file)
+        file.close()
+    version_data = data["engines"][config]
+    for version in version_data:
+        if version["version"] == v_num:
+            date = version["date"]
+    return date
 
 # helper function for get_version()
 def get_engine(config):
@@ -57,8 +67,9 @@ def btime(cmd, wasmfile, datafile, config): # runs 10 times
         result = subprocess.run(command, capture_output=True, text=True) # runs the command line, captures output as text
         if result.returncode == 0: # if the command worked, records the results in a file
             with open(datafile, 'w') as file:
-                file.write(make_timestamp() + '\n')
-                file.write('version: ' + get_version(config) + '\n')
+                version = get_version(config)
+                file.write(get_timestamp(config, version) + '\n')
+                file.write('version: ' + version + '\n')
                 file.write(result.stdout)
             print(datafile)
         else:
@@ -76,8 +87,9 @@ def wasmer_btime(cmd, wasmfile, datafile, config): # specific function because c
         result = subprocess.run(command, stdout=subprocess.DEVNULL)
         if result.returncode == 0:
             with open(datafile, 'w') as file:
-                file.write(make_timestamp() + '\n')
-                file.write('version: ' + get_version(config) + '\n')
+                version = get_version(config)
+                file.write(get_timestamp(config, version) + '\n')
+                file.write('version: ' + version + '\n')
                 for i in range(10):
                     subprocess.run(['./wish-you-were-fast/reuse23/engines/wasmer-link', 'cache', 'clean'], stderr=subprocess.DEVNULL) # Output not printed
                     result = subprocess.run(command, capture_output=True, text=True)
