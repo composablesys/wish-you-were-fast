@@ -120,7 +120,7 @@ Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home direc
 ```
 $ make build-wasmer
 ```
-The engine is built in the directory `targer/release/`. The engine updates through build.py running the same command.
+The engine is built in the directory `target/release/`. The engine updates through build.py running `git pull` and the same command.
 
 ### Wasmtime
 

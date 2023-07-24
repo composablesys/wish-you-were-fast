@@ -36,7 +36,7 @@ def check_running_configs(): # TODO wasmer-base, wazero
 def get_timestamp(config, v_num):
     if "-" in config:
         config = config[:config.index("-")]
-    with open(data_dir + "engines.json", "r") as file:
+    with open(data_dir + "build/engines.json", "r") as file:
         data = json.load(file)
         file.close()
     version_data = data["engines"][config]

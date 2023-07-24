@@ -37,8 +37,11 @@ def build_engine():
             path = str(pathlib.Path.home()) + "/wasmtime"
             subprocess.run('cargo clean', shell=True, cwd=path)
             subprocess.run('cargo build --release', shell=True, cwd=path)
-        elif eng == 'wasmer': #FIXME with source build update: $ make build-wasmer
-            subprocess.run(['./.wasmer/bin/wasmer', 'self-update'], shell=True)
+        elif eng == 'wasmer':
+            wasmer_git = git.cmd.Git('wasmer')
+            wasmer_git.pull()
+            path = str(pathlib.Path.home()) + "/wasmer"
+            subprocess.run('make build-wasmer', shell=True, cwd=path)
         elif eng == 'wasm3':
             wasm3_git = git.cmd.Git('wasm3') 
             wasm3_git.pull()
@@ -110,8 +113,24 @@ def get_version(engine): # TODO wasmnow, wazero, wizeng
         version = result.stdout
     return version
 
+def add_version_data(engine): # TODO 
+    # for jsvu engines, date for version is when the engine is built?
+    with open(build_dir + "engines.json", "r") as file:
+        data = json.load(file)
+    
+    new_version = get_version(engine)
+    if engine == 'v8':
+        new_date = 
+    elif engine == 'jsc':
+        new_date =
+    elif engine == 'sm':
+        new_date =
+    elif engine == 'wasmtime':
+        new_date =
+    elif engine == 'wasmer':
 
 if __name__ == "__main__":
+
     build_dir = os.environ.get('BUILD_DIR','wish-you-were-fast/reuse23/build/') # directory to put builds in
     build_engine()
     ''' testing for get_version '''
