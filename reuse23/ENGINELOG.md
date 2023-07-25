@@ -12,7 +12,7 @@ $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<eng
 ```    
 
 ## Built Engines Log
-Last Updated: July 20, 2023
+Last Updated: July 21, 2023
 
 These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
@@ -39,7 +39,6 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>JavaScriptCore Versions</b></summary>
 <br>
 <ul>
-    <li>264545</li>
     <li>265838</li>
     <li>266180</li>
 </ul>
@@ -121,7 +120,7 @@ Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home direc
 ```
 $ make build-wasmer
 ```
-The engine is built in the directory `targer/release/`. The engine updates through build.py running the same command.
+The engine is built in the directory `target/release/`. The engine updates through build.py running `git pull` and the same command.
 
 ### Wasmtime
 

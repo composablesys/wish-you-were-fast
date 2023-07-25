@@ -1,0 +1,112 @@
+{
+    "engines": {
+        "v8": [
+            {
+                "version": "11.7.105",
+                "date": ""
+            },
+            {
+                "version": "11.7.254",
+                "date": ""
+            }
+        ],
+        "sm": [
+            {
+                "version": "114.0",
+                "date": "2023-05-09"
+            },
+            {
+                "version": "116.0",
+                "date": "2023-07-05"
+            },
+            {
+                "version": "116.0b7",
+                "date": "2023-07-19"
+            }
+        ],
+        "jsc": [
+            {
+                "version": "265838",
+                "date": "2023-07-07"
+            },
+            {
+                "version": "266180",
+                "date": "2023-07-20 16:09"
+            }
+        ],
+        "wasmer": [
+            {
+                "version": "77898a7767eb7057834fdc1a80b239e6b68cf44e",
+                "date": "2023-06-22 16:27:21"
+            },
+            {
+                "version": "4380bb3fee503f2cf20f3cf9e662bec243111bd9",
+                "date": "2023-07-20 15:59:37"
+            }
+        ],
+        "wasmtime": [
+            {
+                "version": "0aa00479c9fbb39ef19a9f35d2ed0137454c93f5",
+                "date": "2023-05-26 15:55:21"
+            },
+            {
+                "version": "a45abadbc39a57dd3e404231e2751a80cdafa4b0",
+                "date": "2023-06-21 17:12:12"
+            },
+            {
+                "version": "dfd6885365b83a40830cf66bcc11e1059e8072ee",
+                "date": "2023-07-18 09:12:00"
+            },
+            {
+                "version": "fe69c0437602a59e718de04f1d40bebf0bf51662",
+                "date": "2023 07-19 15:14:09"
+            }
+        ],
+        "wasm3": [
+            {
+                "version": "6b8bcb1e07bf26ebef09a7211b0a37a446eafd52",
+                "date": "2023-06-02 13:40:14"
+            },
+            {
+                "version": "772f8f4648fcba75f77f894a6050db121e7651a2",
+                "date": "2023-03-26 20:23:54"
+            }
+        ],
+        "wizeng": [
+            {
+                "version": "45502370cb260e0d6017c2344466e41584e4c18f",
+                "date": "2023-07-11 18:12:04"
+            },
+            {
+                "version": "d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5",
+                "date": "2023-07-13 01:15:41"
+            },
+            {
+                "version": "991d10b6993147ddc1b18c16b2b92139a079275f",
+                "date": "2023-07-18 18:01:16"
+            }
+        ],
+        "wavm": [
+            {
+                "version": "3f9a150cac7faf28eab357a2c5b83d2ec740c7d9",
+                "date": "2022-05-14 08:51:49"
+            }
+        ],
+        "iwasm": [
+            {
+                "version": "57abdfdb5c19dab7c2f2a126082910f65ffc7af0",
+                "date": "2023-07-19 12:58:52"
+            }
+        ],
+        "wazero": [
+            {
+                "version": "1cdb72d43163a6c3edd33319b382a0feb0f4d459",
+                "date": "2023-07-17 10:19:27"
+            },
+            {
+                "version": "b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d",
+                "date": "2023-07-19 16:01:44"
+            }
+        ]
+    }
+}
