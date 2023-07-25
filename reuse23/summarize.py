@@ -291,7 +291,7 @@ def get_timestamp(file):
     elif exp == 'execution':
         with open(path, 'r') as f:
             timestamp = f.readline()
-            return timestamp[:timestamp.index('.')]
+            return timestamp
     
 # reads time stamp format from header of txt file and converts to date form for database entry
 def get_date(file):
