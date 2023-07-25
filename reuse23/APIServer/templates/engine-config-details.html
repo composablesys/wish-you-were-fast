@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Engine & Configuration Details{% endblock %}
+
+{% block body %}
+  <h1 style="text-align: center;">Engines & Configurations</h1>
+  <p>Learn about the different engines and their different configurations</p>
+
+  <div class="text-boxes-container">
+    <div class="text-box">
+      <h3>JavaScriptCore</h3>
+      <p>JavaScriptCore (jsc) is Apple's engine for the Safari web browser. We used three tiering configurations for testing: jsc-int which has JITs disabled and only used the rewriting interpreter, jsc-bbq which has the interpreter and the BBQ quick JIT, and jsc-omg which has the interpreter and the OMG optimizing JIT</p>
+    </div>
+    <div class="text-box">
+      <h3>V8</h3>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div class="text-box">
+      <h3>SpiderMonkey</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </div>
+{% endblock %}

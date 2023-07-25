@@ -23,10 +23,6 @@ def set_cors(response):
    response.headers.add("Access-Control-Allow-Origin", "*")
    return response
 
-@app.route('/about')
-def about():
-   return render_template('about.html')
-
 # landing page and generate main graph with jsc default on subgraph
 @app.route('/', methods=['GET'])
 def index():
@@ -36,6 +32,16 @@ def index():
 @app.route('/total-time/<string:engine>')
 def home(engine):
    return render_template('index.html', engine=engine)
+
+# about page
+@app.route('/about')
+def about():
+   return render_template('about.html')
+
+# engine-config details page
+@app.route('/engine-config-details')
+def eng_config_details():
+   return render_template('engine-config-details.html')
 
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 

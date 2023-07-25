@@ -4,20 +4,13 @@
 <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
-
-<style media="screen">
-/* Add space between Vega-Embed links  */
-.vega-actions a {
-  margin-right: 5px;
-  }
-</style>
 {% endblock %} 
 
 {% block body %}
 <p>
   These graphs demonstrate the total time it takes for an engine to compile and execute wasm code. Click on the data points to generate a subgraph for a specific engine.
 </p>
-<table style="width: 100%; padding: 15px 20px">
+<table style="width: 100%; padding: 15px 20px;">
   <thread>
     <tr>
       <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h></th>
@@ -40,7 +33,7 @@
     "data": {"url": "/get_all_execution"},
     "encoding": {
         "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
+        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
           },
       "layer": [
           {
@@ -73,7 +66,7 @@
     "data": {"url": "/get_suites/{{engine}}"},
     "encoding": {
         "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (unit)"},
+        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
         "color": {
             "condition": {
             "param": "hover",

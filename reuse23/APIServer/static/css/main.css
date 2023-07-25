@@ -37,6 +37,7 @@ p {
 
 body {
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .grid-container {
@@ -50,7 +51,7 @@ body {
 }
 
 /* navigation bar */
-ul.navbar {
+.navbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -69,22 +70,67 @@ li {
     font-family: arial black;
     font-size: 18px;
     padding: 14px 30px;
+    margin: 15px 10px;
     text-decoration: none;
     float: left;
 }
 
-ul.navbar li a {
+.navbar li a {
     display: inline-block;
     color: white;
     text-align: center;
     font-family: arial black;
     font-size: 18px;
     padding: 14px 30px;
+    margin: 15px 10px;
     text-decoration: none;
 }
 
-ul.navbar li a:hover {
-    background-color: #191970;
+/* dropdown code */
+.dropdown {
+    color: white;
+    text-align: center;
+    font-family: arial black;
+    font-size: 18px;
+    margin: 15px 10px;
+    text-decoration: none;
+}
+
+.dropdown .dropbtn {
+    font-size: 18px;  
+    color: white;
+    padding: 14px 30px;
+    background-color: #3D59AB;
+    font-family: arial black;
+    margin: 0;
+}
+
+.dropdown .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #3D59AB;
+    width: 18%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* some reason not working/being read in the html */
+.dropdown .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 14px;
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+ul.navbar li a:hover, ul.dropdown:hover .dropbtn, .dropdown-content a:hover {
+    color: #191970;
 }
 
 .active {
@@ -100,3 +146,45 @@ footer {
     line-height: 100px;
     text-align: center;
 }
+
+/* code for the engine-config details page */
+.text-boxes-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.text-box {
+    flex: 1;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.text-box:hover {
+    background-color: #3D59AB;
+    color: #fff;
+    transform: scale(1.1);
+    width: 100%;
+    z-index: 2;
+}
+
+.text-box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.text-box p {
+    font-size: 14px;
+    opacity: 0; /* Initially hide the text */
+    transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
+  }
+
+  .text-box:hover p {
+    opacity: 1; /* Make the text visible on hover */
+  }
