@@ -2,7 +2,7 @@
 
 This engine log keeps track of the engine configurations that have been tested and contains instructions on how to build the engines for x86-64-linux with Ubuntu 20.04.
 
-To update engine symlink, navigate to `wish-you-were-fast/reuse23/engine` and excute the following command:
+To update engine symlink, navigate to `wish-you-were-fast/reuse23/engines` and excute the following command:
 ```
 # If symlink already exists
 $ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
@@ -11,16 +11,16 @@ $ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<en
 $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
 ```    
 
-## Built Engines Log
-Last Updated: July 21, 2023
+## Built Engines & Experiments Log
+Last Updated: July 25, 2023
 
-These are lists of the currently built engines. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
+These are lists of the currently built engines and if/when they have been used in an experiment. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
 <details>
 <summary><b>V8 Versions</b></summary>
 <br>
 <ul>
-    <li>11.7.105</li>
+    <li>11.7.105 (tested 2023-07-25)</li>
     <li>11.7.254</li>
 </ul>
 </details>
@@ -30,7 +30,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <br>
 <ul>
     <li>114.0</li>
-    <li>116.0</li>
+    <li>116.0b1 (tested 2023-07-25)</li>
     <li>116.0b7</li>
 </ul>
 </details>
@@ -39,7 +39,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>JavaScriptCore Versions</b></summary>
 <br>
 <ul>
-    <li>265838</li>
+    <li>265838 (tested 2023-07-25)</li>
     <li>266180</li>
 </ul>
 </details>
@@ -48,7 +48,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wasmer Versions</b></summary>
 <br>
 <ul>
-    <li>77898a7767eb7057834fdc1a80b239e6b68cf44e</li>
+    <li>77898a7767eb7057834fdc1a80b239e6b68cf44e (tested 2023-07-25)</li>
     <li>4380bb3fee503f2cf20f3cf9e662bec243111bd9</li>
 </ul>
 </details>
@@ -57,7 +57,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wasmtime Versions</b></summary>
 <br>
 <ul>
-    <li>0aa00479c9fbb39ef19a9f35d2ed0137454c93f5</li>
+    <li>0aa00479c9fbb39ef19a9f35d2ed0137454c93f5 (tested 2023-07-25)</li>
     <li>a45abadbc39a57dd3e404231e2751a80cdafa4b0</li>
     <li>dfd6885365b83a40830cf66bcc11e1059e8072ee</li>
     <li>fe69c0437602a59e718de04f1d40bebf0bf51662</li>
@@ -68,7 +68,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wasm3 Versions</b></summary>
 <br>
 <ul>
-    <li>6b8bcb1e07bf26ebef09a7211b0a37a446eafd52</li>
+    <li>6b8bcb1e07bf26ebef09a7211b0a37a446eafd52 (tested 2023-07-25)</li>
     <li>772f8f4648fcba75f77f894a6050db121e7651a2</li>
 </ul>
 </details>
@@ -77,7 +77,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wizard Versions</b></summary>
 <br>
 <ul>
-    <li>45502370cb260e0d6017c2344466e41584e4c18f</li>
+    <li>45502370cb260e0d6017c2344466e41584e4c18f (tested 2023-07-25)</li>
     <li>d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5</li>
     <li>991d10b6993147ddc1b18c16b2b92139a079275f</li>
 </ul>
@@ -87,7 +87,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wavm Versions</b></summary>
 <br>
 <ul>
-    <li>3f9a150cac7faf28eab357a2c5b83d2ec740c7d9</li>
+    <li>3f9a150cac7faf28eab357a2c5b83d2ec740c7d9 (tested 2023-07-25)</li>
 </ul>
 </details>
 
@@ -95,7 +95,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>iWasm Versions</b></summary>
 <br>
 <ul>
-    <li>57abdfdb5c19dab7c2f2a126082910f65ffc7af0</li>
+    <li>57abdfdb5c19dab7c2f2a126082910f65ffc7af0 (tested 2023-07-25)</li>
 </ul>
 </details>
 
@@ -103,7 +103,7 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 <summary><b>Wazero Versions</b></summary>
 <br>
 <ul>
-    <li>1cdb72d43163a6c3edd33319b382a0feb0f4d459</li>
+    <li>1cdb72d43163a6c3edd33319b382a0feb0f4d459 (tested 2023-07-25)</li>
     <li>b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d</li>
 </ul>
 </details>
@@ -113,6 +113,8 @@ These are lists of the currently built engines. The version numbers for V8, Spid
 ### V8, SpiderMonkey, JavaScriptCore
 
 In order to build and update v8, sm, and jsc, clone the [jsvu repo](https://github.com/GoogleChromeLabs/jsvu) and follow the instructions. This installation requires `Node.js`. The engines are built in `.jsvu/bin/`. The versions of the dowloaded engines are in `status.json`. The engines update through build.py running the `jsvu` command.
+
+In order to parse the date for when a v8 engine version was created (which is necessary when building it), clone the [v8 repo](https://github.com/v8/v8). The python script will run the `git log` command to find the timestmap.
 
 ### Wasmer FIXME (add update instructions)
 

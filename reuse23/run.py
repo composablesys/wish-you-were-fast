@@ -18,9 +18,15 @@ def check_running_configs(): # TODO wasmer-base, wazero
     working_configs = []
     for config in all_configs:
         exit_code = -1
-        if config in ['wasm3', 'wasmtime', 'wasmer', 'wavm'] or 'iwasm-' in config: 
+        if config in ['wasm3', 'wasmtime', 'wavm']: 
             if config == 'wavm': command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link version'], shell=True, stdout=subprocess.DEVNULL)
             else: command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link --version'], shell=True, stdout=subprocess.DEVNULL)
+            exit_code = command.wait()
+        elif 'wasmer' in config: #FIXME: wasmer-base not working "error: The `singlepass` compiler is not included in this binary.""
+            command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/wasmer-link --version'], shell=True, stdout=subprocess.DEVNULL)
+            exit_code = command.wait()
+        elif 'iwasm-' in config:
+            command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/iwasm-link --version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
         elif 'wizeng-' in config:
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + ' -version'], shell=True, stdout=subprocess.DEVNULL)
