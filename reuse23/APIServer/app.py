@@ -38,10 +38,15 @@ def home(engine):
 def about():
    return render_template('about.html')
 
-# engine-config details page
+# engines and configs page
 @app.route('/engine-config-details')
 def eng_config_details():
    return render_template('engine-config-details.html')
+
+# research overview page
+@app.route('/research-overview')
+def methodology():
+   return render_template('research-overview.html')
 
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 

@@ -27,17 +27,18 @@ h3 {
 
 p { 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-    font-size: 14px; 
+    font-size: 16px; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 400; 
     line-height: 20px; 
     text-align: center;
+    margin: 20px 20px;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .grid-container {
@@ -60,49 +61,60 @@ body {
     background-color: #3D59AB;
 }
 
-li {
+.navbar li {
     float: right;
 }
 
 .navbar-title {
     color: white;
     text-align: center;
-    font-family: arial black;
-    font-size: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
     padding: 14px 30px;
     margin: 15px 10px;
     text-decoration: none;
-    float: left;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 550; 
+    line-height: 24px; 
 }
 
 .navbar li a {
     display: inline-block;
     color: white;
     text-align: center;
-    font-family: arial black;
-    font-size: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
     padding: 14px 30px;
     margin: 15px 10px;
     text-decoration: none;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 550; 
+    line-height: 24px; 
 }
 
 /* dropdown code */
 .dropdown {
     color: white;
     text-align: center;
-    font-family: arial black;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     margin: 15px 10px;
     text-decoration: none;
 }
 
 .dropdown .dropbtn {
-    font-size: 18px;  
+    font-size: 20px;  
     color: white;
     padding: 14px 30px;
     background-color: #3D59AB;
-    font-family: arial black;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 550; 
+    line-height: 24px; 
 }
 
 .dropdown .dropdown-content{
@@ -121,8 +133,11 @@ li {
     display: block;
     text-align: left;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-    font-size: 14px;
-
+    font-size: 18px;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 550; 
+    line-height: 24px; 
 }
 
 .dropdown:hover .dropdown-content {
@@ -131,10 +146,6 @@ li {
 
 ul.navbar li a:hover, ul.dropdown:hover .dropbtn, .dropdown-content a:hover {
     color: #191970;
-}
-
-.active {
-    background-color: #56689c;
 }
 
 footer {
@@ -152,7 +163,7 @@ footer {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 0 auto;
 }
 
 .text-box {
@@ -164,6 +175,7 @@ footer {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    
 }
 
 .text-box:hover {
@@ -177,14 +189,42 @@ footer {
 .text-box h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    text-align: left;
 }
 
 .text-box p {
     font-size: 14px;
     opacity: 0; /* Initially hide the text */
     transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
+    text-align: left;
   }
 
-  .text-box:hover p {
+.text-box:hover p {
     opacity: 1; /* Make the text visible on hover */
   }
+
+.text-box ul {
+    padding: 0;
+    margin: 10px 10px; 
+}
+  
+.text-box li {
+    font-size: 14px;
+    opacity: 0; /* Initially hide the list items */
+    transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
+}
+  
+.text-box:hover li {
+    opacity: 1; /* Make the list items visible on hover */
+}
+
+img {
+    max-width: 600px;
+    /* height: auto; */
+    margin: 0 10px;
+}
+
+.box {
+    overflow: auto; /* Add this to create a scrollable area */
+}
+  
