@@ -24,7 +24,7 @@ def check_running_configs(): # TODO wasmer-base
         elif config in ['wavm', 'wazero']:
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/' + config + '-link version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
-        elif 'wasmer' in config: #FIXME: wasmer-base not working "error: The `singlepass` compiler is not included in this binary.""
+        elif 'wasmer' == config: #FIXME: wasmer-base not working "error: The `singlepass` compiler is not included in this binary.""
             command = subprocess.Popen(['./wish-you-were-fast/reuse23/engines/wasmer-link --version'], shell=True, stdout=subprocess.DEVNULL)
             exit_code = command.wait()
         elif 'iwasm-' in config:

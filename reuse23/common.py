@@ -3,8 +3,8 @@ import os
 exp = os.environ.get('EXP', 'execution') # for the PrettyTable
 # speedup, execution, tagging, baselines, alltiers
 
-def assign_engines(): # TODO jsc
-    engines = ['iwasm','sm', 'jsc', 'v8', 'wasm3', 'wasmer', 'wasmnow', 'wasmtime', 'wavm', 'wazero', 'wizeng']
+def assign_engines(): # TODO add back wavm if testing a previous version
+    engines = ['iwasm','sm', 'jsc', 'v8', 'wasm3', 'wasmer', 'wasmnow', 'wasmtime', 'wazero', 'wizeng']
     return engines
 
 def assign_suites():
@@ -20,7 +20,7 @@ def assign_configs():
     c_names = os.environ.get('CONFIGS')
     # sets defaults based on exp type
     if exp == 'speedup': c_names = 'int jit nok nokfold noisel nomr'
-    elif exp == 'execution': c_names = 'iwasm-fjit iwasm-int jsc-bbq jsc-int jsc-omg sm-base sm-opt v8-liftoff v8-turbofan wasm3 wasmer-base wasmer wasmnow wasmtime wavm wazero wizeng-int wizeng-jit'
+    elif exp == 'execution': c_names = 'iwasm-fjit iwasm-int jsc-bbq jsc-int jsc-omg sm-base sm-opt v8-liftoff v8-turbofan wasm3 wasmer wasmnow wasmtime wavm wazero wizeng-int wizeng-jit' # FIXME: add back wasmer-base if figure it how to do single-pass compiler
     cn = c_names.split(' ')
     for c in cn:
         configs.append(c)
