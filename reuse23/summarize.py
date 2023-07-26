@@ -111,7 +111,7 @@ def get_difference(file):
 functions for printing a table of the data
 '''
 # calculates geomean for 'speedup' and creates a row for the table
-def geomean(suite, configs): 
+def geomean(suite, configs):
     row = []
     exclusions = []
     tup = []
@@ -303,7 +303,10 @@ def get_date(file):
     elif exp == 'execution':
         with open(path, 'r') as f:
             timestamp = f.readline()
-            return timestamp[:timestamp.index(' ')]
+            if ' ' in timestamp: # for timestamps that have both date and time
+                return timestamp[:timestamp.index(' ')]
+            else: # for timestamps that only have date
+                return timestamp[:timestamp.index('\n')]
 
 # reads version from second line of txt file with format "version: __"
 def get_version(file):
