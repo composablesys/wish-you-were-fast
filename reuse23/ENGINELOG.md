@@ -12,7 +12,7 @@ $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<eng
 ```    
 
 ## Built Engines & Experiments Log
-Last Updated: July 26, 2023
+Last Updated: July 27, 2023
 
 These are lists of the currently built engines and if/when they have been used in an experiment. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
@@ -31,7 +31,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>114.0 (tested 2023-07-26)</li>
     <li>116.0b1 (tested 2023-07-25)</li>
-    <li>116.0b7</li>
+    <li>116.0b7 (tested 2023-07-27)</li>
 </ul>
 </details>
 
@@ -50,6 +50,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>77898a7767eb7057834fdc1a80b239e6b68cf44e (tested 2023-07-25)</li>
     <li>4380bb3fee503f2cf20f3cf9e662bec243111bd9 (tested 2023-07-26)</li>
+    <li>edc4a52565b92ef4f1073d05aea070291b97663a (tested 2023-07-27)</li>
 </ul>
 </details>
 
@@ -59,7 +60,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>0aa00479c9fbb39ef19a9f35d2ed0137454c93f5 (tested 2023-07-25)</li>
     <li>a45abadbc39a57dd3e404231e2751a80cdafa4b0 (tested 2023-07-26)</li>
-    <li>dfd6885365b83a40830cf66bcc11e1059e8072ee</li>
+    <li>dfd6885365b83a40830cf66bcc11e1059e8072ee (tested 2023-07-27)</li>
     <li>fe69c0437602a59e718de04f1d40bebf0bf51662</li>
 </ul>
 </details>
@@ -79,7 +80,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>45502370cb260e0d6017c2344466e41584e4c18f (tested 2023-07-25)</li>
     <li>d5f0f5e165b239481a3e9eb7d7ca0bebc2ca95f5 (tested 2023-07-26)</li>
-    <li>991d10b6993147ddc1b18c16b2b92139a079275f</li>
+    <li>991d10b6993147ddc1b18c16b2b92139a079275f (tested 2023-07-27)</li>
 </ul>
 </details>
 
@@ -106,6 +107,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>1cdb72d43163a6c3edd33319b382a0feb0f4d459 (tested 2023-07-25)</li>
     <li>b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d (tested 2023-07-26)</li>
+    <li>6b4328c66e4104f9b0db303d6cf450cde468dc24 (tested 2023-07-27)</li>
 </ul>
 </details>
 

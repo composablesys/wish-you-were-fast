@@ -25,7 +25,6 @@ def engine_dir(engine):
     return dir
 
 def build_engine(): 
-    engines = ['wavm', 'iwasm'] # remove after testing; jsvu and wasmtime have NOT been tested
     for eng in engines:
         if not os.path.exists(build_dir + eng): # make a dir for an engine
             os.mkdir(build_dir + eng)
@@ -115,8 +114,8 @@ def get_version(engine):
     return version
 
 def add_version_data(engine, version): # TODO 
-    # with open(build_dir + "engines.json", "r") as file:
-    #     data = json.load(file)
+    with open(build_dir + "engines.json", "r") as file:
+        data = json.load(file)
     
     if engine == 'v8':
         v8_git = git.cmd.Git('v8')
@@ -151,11 +150,13 @@ def add_version_data(engine, version): # TODO
                 last_modified = file_response.headers.get('Last-Modified')
                 print('File URL:', file_url) # for testing
                 print('Last Modified:', last_modified) # for testing
+                new_date = last_modified # remove once debugged
             else:
                 print('File with the version not found.')
+                new_date = "" # remove once debugged
         except requests.exceptions.RequestException as e:
             print('Failed to retrieve data:', e)
-        new_date = last_modified
+        # new_date = last_modified FIXME: remove comment once debugged
     elif engine == 'sm':
         url = "https://product-details.mozilla.org/1.0/firefox_history_development_releases.json"
         try:
@@ -175,17 +176,18 @@ def add_version_data(engine, version): # TODO
         timestamp = output.stdout
         new_date = timestamp[:timestamp.index('\n')]
     print(new_date) # for testing
-    # engine_versions = data['engines'][engine]
-    # new_version = {"version": version, "date": new_date}
-    # engine_versions.append(new_version)
+    engine_versions = data['engines'][engine]
+    new_version = {"version": version, "date": new_date}
+    engine_versions.append(new_version)
         
-    # with open(build_dir + "engines.json", "w") as file:
-    #     json.dump(data, file, indent=2)
+    with open(build_dir + "engines.json", "w") as file:
+        json.dump(data, file, indent=2)
 
 if __name__ == "__main__":
 
     build_dir = os.environ.get('BUILD_DIR','wish-you-were-fast/reuse23/build/') # directory to put builds in
-    # build_engine()
+    engines = common.assign_engines()
+    build_engine()
 
     ''' testing for get_version '''
     # engine = os.environ.get('ENGINE', 'wizeng')
@@ -198,7 +200,7 @@ if __name__ == "__main__":
         #print(new_engine(engine))
 
     ''' testing for add_version_data '''
-    engine = os.environ.get('ENGINE', 'v8')
-    version = os.environ.get('VERSION', '11.7.254')
-    if sys.argv[1] == 'DOC_EDIT':
-        add_version_data(engine, version)
+    # engine = os.environ.get('ENGINE', 'v8')
+    # version = os.environ.get('VERSION', '11.7.254')
+    # if sys.argv[1] == 'DOC_EDIT':
+    #     add_version_data(engine, version)
