@@ -5,11 +5,12 @@ h1 {
     font-variant: normal; 
     font-weight: 700; 
     line-height: 26.4px; 
+    text-align: center;
 } 
 
 h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-    font-size: 20px; 
+    font-size: 22px; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 550; 
@@ -18,7 +19,7 @@ h2 {
 
 h3 { 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-    font-size: 14px; 
+    font-size: 18px; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
@@ -33,7 +34,6 @@ p {
     font-weight: 400; 
     line-height: 20px; 
     text-align: center;
-    margin: 20px 20px;
 }
 
 body {

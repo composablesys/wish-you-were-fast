@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
+{% endblock %} 
+
+{% block body %}
+<h1 style="text-align: center; padding-top: 20px;">WebAssembly Benchmarking</h1>
+<p>
+  These graphs demonstrate the time it takes for an engine to startup, compile wasm code, and execute it. Click on the data points to generate a subgraph for a specific engine.
+</p>
+<table style="width: 100%; padding: 15px 20px;">
+  <thead>
+    <tr>
+      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h></th>
+      <th style="text-align: center;" colspan="2"><h2>{{engine}} Engine</h2></th>
+    </tr>
+  </thead>
+    <tr>
+      <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
+      <td><div style="display: block; text-align: center;" id="zoomView"></div></td>
+    </tr>
+  </table>
+
+
+<script>
+  // code for the main graph
+  var vlSpec = {
+    "width": "container",
+    "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+    "data": {"url": "/get_all_execution"},
+    "layer": [
+              {
+                "mark": {"type": "errorband", "bandSize": 10},
+                "encoding": {
+                  "y": {
+                    "field": "pct5",
+                    "type": "quantitative",
+                    "scale": {"zero": false},
+                    "title": "Total Time (5%-95% CIs)"
+                  },
+                  "y2": {"field": "pct95"},
+                  "x": {"timeUnit": "monthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+                  "color": {"field": "engine", "type": "nominal"}
+                }
+              },
+              {
+                "mark": {"type": "line", "strokeWidth": 2},
+                "encoding": {
+                  "y": {"field": "total_time", "type": "quantitative"},
+                  "x": {"timeUnit": "monthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+                  "color": {"field": "engine", "type": "nominal"}
+                }
+              }
+            ]
+        };
+        // Embed the visualization in the container with id `vis`
+  vegaEmbed('#mainVis', vlSpec, {renderer: 'svg'}).then(res => {var view = res.view;});
+</script>
+{% endblock %} 

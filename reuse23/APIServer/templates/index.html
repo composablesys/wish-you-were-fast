@@ -14,7 +14,7 @@
 <table style="width: 100%; padding: 15px 20px;">
   <thead>
     <tr>
-      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h></th>
+      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h2></th>
       <th style="text-align: center;" colspan="2"><h2>{{engine}} Engine</h2></th>
     </tr>
   </thead>
@@ -26,29 +26,28 @@
 
 
 <script>
-  // Assign the specification to a local variable vlSpec.
-  //print({{engine}}
+  // code for the main graph
   var vlSpec = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
     "data": {"url": "/get_all_execution"},
     "encoding": {
-        "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+        "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
         "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
           },
       "layer": [
-          {
+          { // code for the data points
             "mark": {
             "type": "circle",
             "size": 100,
             "cursor": "pointer"
                 },
             "transform": [{
-            "calculate": "'/total-time/' + datum.engine", // graphs total time
+            "calculate": "'/total-time/' + datum.engine", // makes the url 
             "as": "url"
                 }],
             "encoding": {
-                "color": {"field": "engine", "type": "nominal", "title": "Engines"},
+                "color": {"field": "engine", "type": "nominal"},
                 "href": {"field": "url", "type": "nominal"}
                 }
                 },
@@ -60,13 +59,13 @@
               }
             ],
         };
-  
+  // sub graph code
   var zoom = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
     "data": {"url": "/get_suites/{{engine}}"},
     "encoding": {
-        "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
+        "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
         "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
         "color": {
             "condition": {
