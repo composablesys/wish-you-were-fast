@@ -12,7 +12,7 @@ $ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<eng
 ```    
 
 ## Built Engines & Experiments Log
-Last Updated: July 27, 2023
+Last Updated: July 28, 2023
 
 These are lists of the currently built engines and if/when they have been used in an experiment. The version numbers for V8, SpiderMonkey, and JavaScriptCore, correspond to the released versions. The version numbers for all other engines correspond to the hash of the commits to their repos.
 
@@ -51,6 +51,7 @@ These are lists of the currently built engines and if/when they have been used i
     <li>77898a7767eb7057834fdc1a80b239e6b68cf44e (tested 2023-07-25)</li>
     <li>4380bb3fee503f2cf20f3cf9e662bec243111bd9 (tested 2023-07-26)</li>
     <li>edc4a52565b92ef4f1073d05aea070291b97663a (tested 2023-07-27)</li>
+    <li>6aea19e30de253aea8b8f4d260a5b182f78275c5</li>
 </ul>
 </details>
 
@@ -98,6 +99,7 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>57abdfdb5c19dab7c2f2a126082910f65ffc7af0 (tested 2023-07-25)</li>
     <li>1cafa375680b6ea8b120e0d4d6006521d858ae2d (tested 2023-07-26)</li>
+    <li>7db4815e837bc34942e95aba292ca0eca318cc54</li>
 </ul>
 </details>
 
@@ -108,6 +110,7 @@ These are lists of the currently built engines and if/when they have been used i
     <li>1cdb72d43163a6c3edd33319b382a0feb0f4d459 (tested 2023-07-25)</li>
     <li>b842d6cbfdf8e6af77a84970ddbdbf0aa2be9f1d (tested 2023-07-26)</li>
     <li>6b4328c66e4104f9b0db303d6cf450cde468dc24 (tested 2023-07-27)</li>
+    <li>023a38349a0402b61f76023d66cbb9f63912bf94</li>
 </ul>
 </details>
 

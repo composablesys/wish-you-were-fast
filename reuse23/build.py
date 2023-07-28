@@ -125,18 +125,17 @@ def add_version_data(engine, version): # TODO
         result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=path)
         timestamp = result.stdout
         new_date = timestamp[:timestamp.rindex(' ')]
-    elif engine == 'jsc': #FIXME: file with the version not found
+    elif engine == 'jsc':
         url = "https://webkitgtk.org/jsc-built-products/x86_64/release/"
         try:
             response = requests.get(url)
-            response.raise_for_status() # raises an exception for 4xx or 5xx status codes
+            response.raise_for_status()
             
             # parse the HTML content of the directory listing
             soup = BeautifulSoup(response.content, 'html.parser')
 
             # finding link that contains the version
             file_link = None
-            print(soup.find_all('a')) # prints empty list
             for link in soup.find_all('a'):
                 if version in link.get('href'):
                     file_link = link.get('href')
@@ -148,15 +147,12 @@ def add_version_data(engine, version): # TODO
                 file_response.raise_for_status()
 
                 last_modified = file_response.headers.get('Last-Modified')
-                print('File URL:', file_url) # for testing
-                print('Last Modified:', last_modified) # for testing
-                new_date = last_modified # remove once debugged
+                new_date = last_modified
             else:
                 print('File with the version not found.')
-                new_date = "" # remove once debugged
+                new_date = ""
         except requests.exceptions.RequestException as e:
             print('Failed to retrieve data:', e)
-        # new_date = last_modified FIXME: remove comment once debugged
     elif engine == 'sm':
         url = "https://product-details.mozilla.org/1.0/firefox_history_development_releases.json"
         try:
@@ -175,7 +171,7 @@ def add_version_data(engine, version): # TODO
         output = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=path)
         timestamp = output.stdout
         new_date = timestamp[:timestamp.index('\n')]
-    print(new_date) # for testing
+
     engine_versions = data['engines'][engine]
     new_version = {"version": version, "date": new_date}
     engine_versions.append(new_version)
