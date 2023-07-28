@@ -355,6 +355,8 @@ def upload_sum(exp_label, machine, table_name):
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
                     f.readline() # timestamp
                     f.readline() # version
+                    f2.readline() # timestamp
+                    f2.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_difference(file)
                     else: continue
@@ -385,6 +387,8 @@ def upload_raw(exp_label, machine, table_name):
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
                     f.readline() # timestamp
                     f.readline() # version
+                    f2.readline() # timestamp
+                    f2.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_raw_samples(file)
                     else: continue
@@ -410,9 +414,8 @@ if __name__ == "__main__":
     if data_dir is None:
         print('Data directory not set')
 
-    exp_label = os.environ.get('EXP_LABEL', 'carlexa20') # change to experiment label
-    version = os.environ.get('VERSION', '-')
-    machine = os.environ.get('MACHINE', 'i7-4790') # change to machine name
+    exp_label = os.environ.get('EXP_LABEL', 'carlexa20')
+    machine = os.environ.get('MACHINE', 'i7-4790')
 
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
