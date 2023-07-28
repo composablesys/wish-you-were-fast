@@ -19,16 +19,20 @@
     <h1 style="text-align: center; padding: 20px 0;">Research Overview</h1>
     <div class="box">
         <div class="clearfix">
-            <img style="float: right; width: 600px; height: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_Breeds.jpg" alt="dog">
+            <img src="{{ url_for('static', filename='imgs/Metrics-Diagram.JPG') }}" style="float: right;">
             <h2 style="text-align: left;">Key Terms & Definitions</h2>
             <ul>
-                <li><b>Engine:</b> a software (code) that interprets and compiles binary code (such as Wasm) using its various tiers; also called a virtual machine (VM)</li>
-                <li><b>Tier:</b> an interpreter or compiler in an engine that affect an engine's performance when enabled/disabled</li>
-                <li><b>Interpreter:</b> a tier of an engine that inspects each byte of code and decides what to do</li>
-                <li><b>Compiler:</b> a tier of an engine that compiles code (often machine code) from the bytecode; multiple compilers are used to produce high quality code quickly</li>
-                <li><b>Benchmarks:</b> a very small portion of the engine program</li>
+                <li><b>WebAssembly (Wasm):</b> a portable, compiler target that can be compiled from various programming languages and executed on various operating systems</li>
+                <li><b>Engine:</b> also known as a virtual machine (VM) that executes program in one language on a host machine (i.e. Wasm on a native machine)</li>
+                <li><b>Tier:</b> an execution strategy</li>
+                <li><b>Interpreter:</b> a tier of an engine that decodes and executes each byte of bytecode individually</li>
+                <li><b>Compiler:</b> a tier of an engine that translates input bytecode to native code and executes the native code</li>
+                <li><b>Benchmarks:</b> a program and input that represents a workload of interest</li>
                 <li><b>Suites:</b> a collection of related programs in a benchmark</li>
-                <li><b>Line Item:</b> a simple portion of code within a suite</li>
+                <li><b>Line Item:</b> an individual program within a benchmark suite</li>
+                <li><b>API Server:</b> a tool that connects the web server to the database</li>
+                <li><b>Database:</b> an organized table of mass amounts of data that can queried</li>
+                <li><b>Query:</b> parsing (a database) for data under the specified parameters</li>
             </ul>
         </div>
     </div>
@@ -45,7 +49,7 @@
               In these experiments, we test three benchmark suites with varying numbers of line items: PolyBench/C with 29 line items, Ostrich with 11 line items, and Libsodium with 39; 79 wasm files in total.
               The tested engines were built from source code retrieved from their respective GitHubs. 
             </p>
-            <img style="float: left; width: 600px; height: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_Breeds.jpg" alt="dog">
+            <img src="{{ url_for('static', filename='imgs/Computer-System-Diagram.JPG') }}" style="float: left; width: 650px">
             <h2>Methods</h2>
             <p style="text-align: left;">Data was collected on a small number of lab machines, and the database schema is designed to incorporate data from multiple diverse machines in the future.
 	      Every experiment includes multiple runs, stored as raw data, and various statistical measures and summaries.
@@ -55,18 +59,16 @@
 	      In order to visualize our data, we used a PostgreSQL database connected to an API server to generate the graphs on this website. 
             </p>
         </div> 
-    </div> 
-
-    <div class="box">
         <div class="clearfix">
             <h2>Results & Further Extensions</h2>
             <p style="text-align: left;">Our results shed light on the tradeoff between the setup time (which may include compilation time) and execution time over various execution tiers for Wasm.
-	      We are always tweaking methodology.
-Due to measurement error, 
-                there are some instances in which the zero file's average is greater than the nonzero file's average.
- As a result, for very short-running benchmarks, the main time can be overwhelmed by the statistical variance of engine startup.
- The results from these experiment may vary when executed on a different machine.
+	        We are always tweaking methodology. Due to measurement error, there are some instances in which the zero file's average is greater than the nonzero file's average.
+            As a result, for very short-running benchmarks, the main time can be overwhelmed by the statistical variance of engine startup.
+            The results from these experiment may vary when executed on a different machine.
             </p>
         </div>
+    </div> 
+
+    <div class="box">
     </div>
 {% endblock %}

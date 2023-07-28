@@ -5,7 +5,8 @@ from flask_restx import Api, Resource, reqparse
 from dateutil.parser import parse
 import psycopg2, json, fnmatch, math
 
-configs = ['int', 'jit', 'nok', 'nokfold','noisel','nomr']
+#FIXME connect to common.py
+configs =  ['iwasm-fjit', 'iwasm-int', 'jsc-bbq', 'jsc-int', 'jsc-omg' ,' sm-base', 'sm-opt', 'v8-liftoff', 'v8-turbofan', 'wasm3', 'wasmer-base', 'wasmer', 'wasmnow', 'wasmtime', 'wavm', 'wazero', 'wizeng-int', 'wizeng-jit']
 suites = ['ostrich', 'libsodium', 'polybench']
 nightlyRunID = 'NIGHTLY_RUN'  # Data is tagged with this in the database to show only nightly run results on UI
 
@@ -58,7 +59,6 @@ def tester():
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 
 # total_time metric
-# TODO change table to correct one to collect data
 @api.route('/get_all_execution')
 class getExecution(Resource):
    def get(self):
@@ -72,7 +72,7 @@ class getExecution(Resource):
          cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s", (engine[0],))
          exp_dates = cur.fetchall()
          for date in exp_dates:
-            cur.execute("SELECT avg FROM summary WHERE engine = %s AND exp_date = %s AND metric_type = %s", (engine[0], date[0],"total_time"))
+            cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and metric_type = %s", (engine[0], date[0],"total_time"))
             data = cur.fetchall()
             avgs = [row[0] for row in data]
             geomean = round(math.sqrt(sum(avgs)), 6)
@@ -81,43 +81,49 @@ class getExecution(Resource):
       conn.close()
       return results
 
-# data for the engine graph displaying geomean of each suite
+# 'Home' page data for the engine graph displaying geomean of each suite
 @api.route('/get_suites/<string:engine>')
 class getSuites(Resource):
    def get(self, engine):
       results = []
       conn = psycopg2.connect(database=db,user=user,password=pwd)
       cur = conn.cursor()
-      cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s", (engine,))
+      cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"total_time"))
       exp_dates = cur.fetchall()
       for suite in suites:
          for date in exp_dates:
-            cur.execute("SELECT avg , percentile_5, percentile_95 FROM summary WHERE engine = %s and exp_date = %s and benchmark_suite = %s", (engine, date[0], suite))
+            cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and benchmark_suite = %s and metric_type = %s", (engine, date[0], suite, "total_time"))
             data = cur.fetchall()
             values = [row[0] for row in data]
-            pct5 = [row[1] for row in data]
-            pct95 = [row[2] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
-            geomean_pct5 = round(math.sqrt(sum(pct5)), 6)
-            geomean_pct95 = round(math.sqrt(sum(pct95)), 6)
-            results.append({'experiment_date': str(date[0]), 'suite': suite, 'total_time': geomean,'pct5': geomean_pct5, 'pct95': geomean_pct95})
+            results.append({'experiment_date': str(date[0]), 'suite': suite, 'total_time': geomean})
       cur.close()
       conn.close()
       return results
 
-# calculates geomean for each suite
-@api.route('/calculate_geomean/<string:suite>')
-class geomeanCalc(Resource):
-   def get(self, suite):
+# 'Full Data' page graphs
+@api.route('/calculate-error/<string:engine>')
+class getSuites(Resource):
+   def get(self, engine):
       results = []
       conn = psycopg2.connect(database=db,user=user,password=pwd)
       cur = conn.cursor()
-      for config in configs:
-         cur.execute("SELECT avg FROM summary WHERE benchmark_suite = %s AND config = %s", (suite, config))
-         data = cur.fetchall()
-         values = [avg[0] for avg in data]
-         geomean = round(math.sqrt(sum(values)), 6)
-         results.append({'config': config, 'geomean': geomean})
+      cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"total_time"))
+      exp_dates = cur.fetchall()
+      cur.execute("SELECT DISTINCT config FROM summary WHERE engine = %s and metric_type = %s", (engine, "total_time"))
+      engconfigs = cur.fetchall()
+      for con in engconfigs:
+         for date in exp_dates:
+            cur.execute("SELECT config, avg, percentile_5, percentile_95 FROM summary WHERE engine = %s and exp_date = %s and config = %s and metric_type = %s", (engine, date[0], con[0], "total_time"))
+            data = cur.fetchall()
+            engconfigs =  [row[0] for row in data]
+            values = [row[1] for row in data]
+            pct5 = [row[2] for row in data]
+            pct95 = [row[3] for row in data]
+            geomean = round(math.sqrt(sum(values)), 6)
+            geomean_pct5 = round(math.sqrt(sum(pct5)), 6)
+            geomean_pct95 = round(math.sqrt(sum(pct95)), 6)
+            results.append({'experiment_date': str(date[0]),'config': con[0], 'total_time': geomean,'pct5': geomean_pct5, 'pct95': geomean_pct95})
       cur.close()
       conn.close()
       return results

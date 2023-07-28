@@ -2,6 +2,12 @@
 
 {% block title %}Full Data{% endblock %}
 
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
+{% endblock %} 
+
 {% block body %}
 <style>
     h2 {
@@ -16,13 +22,53 @@
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
 <p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
 
-<h3 style="text-align: center">Engine Configurations for Total Time</h3>
+<table style="width: 40%; padding: 15px 20px;">
+  <thead>
+    <tr>
+      <th style="text-align: center;" colspan="1"><h2>Engine Total Time</h2></th>
+    </tr>
+  </thead>
+    <tr>
+      <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
+    </tr> 
+  </table>
 
 <script>
-  var vlSpec = {
+var vlSpec = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-    "data": {"url": "/"}
-  }
+    "data": {"url": "/calculate-error/sm"},
+    "layer": [
+      {
+        "mark": "errorband",
+        "encoding": {
+          "y": {
+            "field": "pct95",
+            "type": "quantitative",
+            "scale": {"zero": false},
+            "title": "Total Time (5%-95% CIs)"
+          },
+          "y2": {"field": "pct5"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "y": {"field": "total_time", "type": "quantitative"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      }
+    ]
+  };
+  vegaEmbed('#mainVis', vlSpec);
 </script>
 {% endblock %}

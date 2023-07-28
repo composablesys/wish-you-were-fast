@@ -8,8 +8,8 @@
 
 {% block body %}
 <h1 style="text-align: center; padding-top: 20px;">WebAssembly Benchmarking</h1>
-<p>
-  These graphs demonstrate the time it takes for an engine to startup, compile wasm code, and execute it. Click on the data points to generate a subgraph for a specific engine.
+<p style="margin: 0 20px;">
+  These graphs demonstrate the time it takes for an engine to startup, compile wasm code, and execute it. Click on the data points to generate a subgraph of the benchmark suites for a specific engine.
 </p>
 <table style="width: 100%; padding: 15px 20px;">
   <thead>
@@ -68,20 +68,10 @@
         "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
         "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
         "color": {
-            "condition": {
-            "param": "hover",
             "field": "suite", 
             "type": "nominal",
             "legend": null
-              },
-            "value": "grey"
-              },
-        "opacity": {
-            "condition": {
-                "param": "hover",
-                "value": 1},
-              "value": 0.2
-            }
+              }
             },
         "layer": [{
           "description": "transparent layer to make it easier to trigger selection",
@@ -107,8 +97,7 @@
                 "mark": {"type": "text", "align": "left", "dx": 4},
                 "encoding": {"text": {"field": "suite", "type": "nominal"}}
               }]
-            }],
-            "config": {"view": {"stroke": null}}
+            }]
         };
         // Embed the visualization in the container with id `vis`
   vegaEmbed('#mainVis', vlSpec, {renderer: 'svg'}).then(res => {var view = res.view;});
