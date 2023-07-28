@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Engine & Configuration Details{% endblock %}
+
+{% block body %}
+  <h1 style="padding-top: 20px;">Engines & Configurations</h1>
+  <p style="padding-bottom: 20px;">Hover to learn about the different engines and their different configurations.</p>
+
+  <div class="text-boxes-container">
+    <div class="text-box">
+      <h3>JavaScriptCore</h3>
+      <p>JavaScriptCore (jsc) is Apple's web engine for the Safari web browser. We used three tiering configurations for testing:</p>
+      <ul>
+        <li><b>jsc-int:</b> JITs disabled and rewriting interpreter enabled</li>
+        <li><b>jsc-bbq:</b> interpreter enabled and only BBQ quick JIT enabled</li>
+        <li><b>jsc-omg:</b> interpreter enabled and only OMG optimizing JIT enabled</li>
+      </ul>
+    </div>
+    <div class="text-box">
+      <h3>V8</h3>
+      <p>V8 is Google's web engine for the Chrome web browser. We used two tiering configurations for testing:</p>
+      <ul>
+        <li><b>v8-liftoff:</b> only Liftoff baseline JIT enabled</li>
+        <li><b>v8-turbonfan:</b> only TurboFan optimizing JIT enabled</li>
+      </ul>
+    </div>
+    <div class="text-box">
+      <h3>SpiderMonkey</h3>
+      <p>SpiderMonkey (sm) is Mozilla's web engine for the Firefox web browser. We used two tiering configurations for testing:</p>
+      <ul>
+        <li><b>sm-base:</b> only baseline compiler enabled</li>
+        <li><b>sm-opt:</b> only optimizing compiler enabled</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-boxes-container">
+    <div class="text-box">
+      <h3>wasmtime</h3>
+      <p><b>wasmtime</b> is a non-web WebAssembly engine written in Rust and uses the cranelift optimizing compiler. We tested on wasmtime's default configuration.</p>
+    </div>
+    <div class="text-box">
+      <h3>Wasm3</h3>
+      <p><b>Wasm3</b> is a WebAssembly interpreter and a non-web engine used for embedded systems. We tested with Wasm3's default configuration.</p>
+    </div>
+    <div class="text-box">
+      <h3>WAVM</h3>
+      <p><b>WAVM</b> is a non-web engine that uses LLVM to compile WebAssembly code ahead-of-time. We tested with WAVM's default configuration.</p>
+    </div>
+    <div class="text-box">
+      <h3>wazero</h3>
+      <p><b>wazero</b> is a non-web WebAssembly engine written in Go. We tested on wazero's default configuration.</p>
+    </div>
+  </div>
+
+  <div class="text-boxes-container">
+    <div class="text-box">
+      <h3>Wizard</h3>
+      <p>Wizard (wizeng) is a WebAssembly research engine developed by Ben Titzer. We used two tiering configurations for testing:</p>
+      <ul>
+        <li><b>wizeng-int:</b> only interpreter enabled</li>
+        <li><b>wizeng-jit:</b> only JIT compiler enabled</li>
+      </ul>
+    </div>
+    <div class="text-box">
+      <h3>iwasm</h3>
+      <p>iwasm is WebAssembly Micro Runtime's non-web engine mini product. We used two tiering configurations for testing:</p>
+      <ul>
+        <li><b>iwasm-int:</b> only interpreter enabled</li>
+        <li><b>iwasm-fjit:</b> only fast JIT enabled</li>
+      </ul>
+    </div>
+    <div class="text-box">
+      <h3>Wasmer</h3>
+      <p>Wasmer is a WebAssembly non-web engine written in Rust and uses the Cranelift optimizing compiler. We used two tiering configurations for testing:</p>
+      <ul>
+        <li><b>wasmer:</b> default configuration with Cranelift</li>
+        <li><b>wasmer-base:</b> single-pass compiler enabled</li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}

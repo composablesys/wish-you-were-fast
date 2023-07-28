@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Geomean for Execution Experiment</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
+
+<style media="screen">
+/* Add space between Vega-Embed links  */
+.vega-actions a {
+  margin-right: 5px;
+  }
+</style>
+{% endblock %} 
+
+{% block body %}
+    <h1>Geomean for Execution Experiment (Interactive Line Highlight)</h1>
+    <!-- Container for the visualization -->
+    <div id="mainVis"></div>
+
+    <script>
+        // Assign the specification to a local variable vlSpec.
+        var vlSpec = {
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+            "data": {"url": "/get_all_execution"},
+            "encoding": {
+              "x": {/*"timeUnit": "monthdate",*/ "field": "experiment_date", "type": "temporal", "title": "experiment date"},
+              "y": {"field": "total_time", "type": "quantitative", "title": "total time"},
+              "color": {
+                "condition": {
+                  "param": "hover",
+                  "field": "engine", 
+                  "type": "nominal",
+                  "legend": null
+                },
+                "value": "grey"
+              },
+              "opacity": {
+                "condition": {
+                  "param": "hover",
+                  "value": 1},
+                "value": 0.2
+              }
+            },
+            "layer": [{
+              "description": "transparent layer to make it easier to trigger selection",
+              "params": [{
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "fields": ["engine"],
+                  "on": "mouseover"
+                }
+              }],
+              "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+            }, {
+              "mark": "line"
+            }, {
+              "encoding": {
+                "x": {"aggregate": "max", "field": "experiment_date"},
+                "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
+              },
+              "layer": [{
+                "mark": {"type": "circle"}
+              }, {
+                "mark": {"type": "text", "align": "left", "dx": 4},
+                "encoding": {"text": {"field": "engine", "type": "nominal"}}
+              }]
+            }],
+            "config": {"view": {"stroke": null}}
+        };
+  
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#mainVis', vlSpec);
+    </script>
+{% endblock %} 
