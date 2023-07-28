@@ -353,6 +353,8 @@ def upload_sum(exp_label, machine, table_name):
             file2 = get_zero_file(file)
             if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
+                    f.readline() # timestamp
+                    f.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_difference(file)
                     else: continue
@@ -381,6 +383,8 @@ def upload_raw(exp_label, machine, table_name):
             file2 = get_zero_file(file)
             if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
+                    f.readline() # timestamp
+                    f.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_raw_samples(file)
                     else: continue
