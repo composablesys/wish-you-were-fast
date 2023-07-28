@@ -36,18 +36,23 @@
     <div class="box">
         <div class="clearfix">
             <h2>Introduction</h2> 
-            <p style="text-align: left;">The purpose of this project is to compare engine performance when executing Wasm. Building off of previous research by Ben Titzer with the Wizard engine,
-                this project compares engine speeds across different metrics: total time, main time, and set up time. Total time is the time it takes from starting up the engine to the end of the executable code program. 
-                Main time is the time it takes for the executable code (or compiled code) to run. Set up time is the time it an engine to compile the Wasm bytecode to when it's ready to execute the compiled code. 
-                In our experiments, we tested on three suites with varying numbers of line items: PolyBench/C with 29 line items, Ostrich with 11 line items, and Libsodium with 39; 79 wasm files in total.
-                The tested engines were built from source code retrieved from their respective GitHubs. 
+            <p style="text-align: left;">The purpose of this project is to study Wasm engine performance.
+	      Building off of previous research on the Wizard engine,
+              this project compares engine performance across several different metrics: <i>total time</i>, <i>main time</i>, and <i>set up time</i>.
+	      Total time represents an entire process execution, from engine startup to program completion.
+	      Main time represents the time it takes for the program to execute its "main" function.
+	      Set up time repreets program-related startup costs such as loading, parsing, validating, and potentially compiling Wasm modules, up to the first bytecode executed.
+              In these experiments, we test three benchmark suites with varying numbers of line items: PolyBench/C with 29 line items, Ostrich with 11 line items, and Libsodium with 39; 79 wasm files in total.
+              The tested engines were built from source code retrieved from their respective GitHubs. 
             </p>
             <img style="float: left; width: 600px; height: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_Breeds.jpg" alt="dog">
             <h2>Methods</h2>
-            <p style="text-align: left;">Our experiments were ran on a Linux x86_64 machine using a function called btime which was essentially a timer (in seconds) for our three metrics. An experiment consisted of running btime ten times with each engine configuration and wasm file.
-                The time from each run were output into a datafile, one for each engine configuration/suite/line item combination. Using btime we created two types of files: zero files and nonzero files. The nonzero files measured total time and the zero files 
-                measured the time from engine startup to the end of Wasm code compilation. The zero files were created using a specific flag in btime. Main time was calculated by subtracting the zero files from the nonzero files. We did not run experiments for 
-                startup time and used values from Ben Titzer's previous research. In order to visualize our data, we used a PostgreSQL database connected to an API server to generate the graphs on this website. 
+            <p style="text-align: left;">Data was collected on a small number of lab machines, and the database schema is designed to incorporate data from multiple diverse machines in the future.
+	      Every experiment includes multiple runs, stored as raw data, and various statistical measures and summaries.
+	      Engine startup time and setup time are measured using the "empty" program and benchmark line items altered to exit early.
+	      Main time is calculated by subtracting the time taken to execute a full benchmark versus the its exit-early alteration.
+	      We did not run experiments for startup time and used values from previous research.
+	      In order to visualize our data, we used a PostgreSQL database connected to an API server to generate the graphs on this website. 
             </p>
         </div> 
     </div> 
@@ -55,9 +60,12 @@
     <div class="box">
         <div class="clearfix">
             <h2>Results & Further Extensions</h2>
-            <p style="text-align: left;">Our results reflect the tradeoff between the speed an engine compiles wasm code and the quality of an engine's executable code. Higher quality code is defined as taking less time to run. Due to machine error, 
-                there are some instances in which the zero file's average is greater than the nonzero file's average. As a result, the main time is a negative value. Each experiment runs btime ten times but more runs could have been done to improve accuracy of 
-                the data. The data from these experiment may look different when executed on a different machine.
+            <p style="text-align: left;">Our results shed light on the tradeoff between the setup time (which may include compilation time) and execution time over various execution tiers for Wasm.
+	      We are always tweaking methodology.
+Due to measurement error, 
+                there are some instances in which the zero file's average is greater than the nonzero file's average.
+ As a result, for very short-running benchmarks, the main time can be overwhelmed by the statistical variance of engine startup.
+ The results from these experiment may vary when executed on a different machine.
             </p>
         </div>
     </div>
