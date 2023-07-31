@@ -15,11 +15,19 @@
     li {
         margin: 5px 0;
     }
+    .box {
+        padding: 0 15px;
+    }
+
+    img {
+        margin: 0 15px;
+        border-style: solid;
+    }
 </style>
     <h1 style="text-align: center; padding: 20px 0;">Research Overview</h1>
     <div class="box">
         <div class="clearfix">
-            <img src="{{ url_for('static', filename='imgs/Metrics-Diagram.JPG') }}" style="float: right;">
+            <img src="{{ url_for('static', filename='imgs/Metrics-Diagram.JPG') }}" style="float: right; border-radius: 5px;">
             <h2 style="text-align: left;">Key Terms & Definitions</h2>
             <ul>
                 <li><b>WebAssembly (Wasm):</b> a portable, compiler target that can be compiled from various programming languages and executed on various operating systems</li>
@@ -45,16 +53,16 @@
               this project compares engine performance across several different metrics: <i>total time</i>, <i>main time</i>, and <i>set up time</i>.
 	      Total time represents an entire process execution, from engine startup to program completion.
 	      Main time represents the time it takes for the program to execute its "main" function.
-	      Set up time repreets program-related startup costs such as loading, parsing, validating, and potentially compiling Wasm modules, up to the first bytecode executed.
-              In these experiments, we test three benchmark suites with varying numbers of line items: PolyBench/C with 29 line items, Ostrich with 11 line items, and Libsodium with 39; 79 wasm files in total.
+	      Set up time represents program-related startup costs such as loading, parsing, validating, and potentially compiling Wasm modules, up to the first bytecode executed.
+              In these experiments, we test three benchmark suites with varying numbers of line items: PolyBench/C with 29 line items, Ostrich with 11 line items, and Libsodium with 39; 79 Wasm files in total.
               The tested engines were built from source code retrieved from their respective GitHubs. 
             </p>
-            <img src="{{ url_for('static', filename='imgs/Computer-System-Diagram.JPG') }}" style="float: left; width: 650px">
+            <img src="{{ url_for('static', filename='imgs/Computer-System-Diagram.JPG') }}" style="float: left; width: 650px; border-radius: 5px;">
             <h2>Methods</h2>
             <p style="text-align: left;">Data was collected on a small number of lab machines, and the database schema is designed to incorporate data from multiple diverse machines in the future.
 	      Every experiment includes multiple runs, stored as raw data, and various statistical measures and summaries.
 	      Engine startup time and setup time are measured using the "empty" program and benchmark line items altered to exit early.
-	      Main time is calculated by subtracting the time taken to execute a full benchmark versus the its exit-early alteration.
+	      Main time is calculated by subtracting the time taken to execute a full benchmark versus its exit-early alteration.
 	      We did not run experiments for startup time and used values from previous research.
 	      In order to visualize our data, we used a PostgreSQL database connected to an API server to generate the graphs on this website. 
             </p>
@@ -64,7 +72,7 @@
             <p style="text-align: left;">Our results shed light on the tradeoff between the setup time (which may include compilation time) and execution time over various execution tiers for Wasm.
 	        We are always tweaking methodology. Due to measurement error, there are some instances in which the zero file's average is greater than the nonzero file's average.
             As a result, for very short-running benchmarks, the main time can be overwhelmed by the statistical variance of engine startup.
-            The results from these experiment may vary when executed on a different machine.
+            The results from these experiments may vary when executed on a different machine.
             </p>
         </div>
     </div> 

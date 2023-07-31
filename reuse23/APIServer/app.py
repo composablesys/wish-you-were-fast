@@ -38,6 +38,10 @@ def home(engine):
 def about():
    return render_template('about.html')
 
+@app.route('/about/<string:name>')
+def bio(name):
+   return render_template('bios/'+name+'.html')
+
 # engines and configs page
 @app.route('/engine-config-details')
 def eng_config_details():
@@ -52,10 +56,6 @@ def methodology():
 def fullData():
    return render_template('full-data.html')
 
-@app.route('/tester')
-def tester():
-   return render_template('testgraph5.html')
-
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 
 # total_time metric
@@ -65,11 +65,11 @@ class getExecution(Resource):
       results = []
       conn = psycopg2.connect(database=db,user=user,password=pwd)
       cur = conn.cursor()
-      cur.execute("SELECT DISTINCT engine FROM summary") 
+      cur.execute("SELECT DISTINCT engine FROM summary WHERE metric_type = %s", ("total_time",)) 
       engines = cur.fetchall()
       for engine in engines:
          if engine[0] == 'wavm': continue # wavm excluded
-         cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s", (engine[0],))
+         cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine[0],"total_time"))
          exp_dates = cur.fetchall()
          for date in exp_dates:
             cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and metric_type = %s", (engine[0], date[0],"total_time"))

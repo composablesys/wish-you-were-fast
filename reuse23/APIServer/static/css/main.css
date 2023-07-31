@@ -41,16 +41,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.grid-container {
-    display: grid;
-    grid: auto auto;
-    grid-gap: 10px;
-    padding: 10px;
-}
-.grid-container > div {
-    padding: 20px 0;
-}
-
 /* navigation bar */
 .navbar {
     list-style-type: none;
@@ -106,8 +96,8 @@ body {
 .dropdown .dropbtn {
     font-size: 20px;  
     color: white;
-    padding: 14px 30px;
-    margin: 15px 10px;
+    /* padding: 14px 30px; */
+    /* margin: 15px 10px; */
     background-color: #3D59AB;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal; 
@@ -215,12 +205,10 @@ footer {
     opacity: 1; /* Make the list items visible on hover */
 }
 
-/* code for the research overview page */
+/* code for the research overview page and about page */
 img {
     max-width: 700px;
     height: auto;
-    margin: 0 15px;
-    border-style: solid;
 }
 
 .box {
