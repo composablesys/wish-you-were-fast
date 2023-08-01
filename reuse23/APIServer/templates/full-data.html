@@ -10,23 +10,8 @@
 
 {% block body %}
 <style>
-  #outer {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 20px;
-        border: solid;
-        width: auto;
-    }
-
-    .div {
-        width: auto;
-        flex: 0 0 50px;
-        margin: 5px;
-        padding: 0 20px;
-        border: solid;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+    .box {
+        padding: 0 15px;
     }
 
     h2 {
@@ -41,16 +26,33 @@
     p {
         margin: 20px 20px;
     }
+
+    ul {
+      list-style: none;
+    }
 </style>
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
 <p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
 
-<div id="outer">
-  <div class="div">
-    <h3>Engine Configuration Total Time</h3>
-    <div style="width: 600px;" id="mainVis"></div>
+<div class="box" style="margin: 20px 20px;">
+  <div class="clearfix">
+    <div class="box" style="width: 50%">
+      <h3>Engine Configuration Total Time</h3>
+      <div style="width: 100%;" id="mainVis"></div>
+    </div>
   </div>
 </div>
+
+<div class="box" style="margin: 10px 20px;">
+  <div class="clearfix">
+    <form action="/full-data" method="GET">
+      <ul>
+        <li><input type="checkbox" name="jsc" value="engine"></input><label for="jsc">JavaScriptCore (jsc)</label></li>
+        <li> <input type="checkbox" name="v8" value="engine"></input><label for="v8">V8</label></li>
+      </ul>
+    </form>
+</div>
+
 
 <!-- <table style="width: 40%; padding: 15px 20px;">
   <thead>
