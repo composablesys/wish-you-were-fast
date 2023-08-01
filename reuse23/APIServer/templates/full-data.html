@@ -10,9 +10,32 @@
 
 {% block body %}
 <style>
+  #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+        border: solid;
+        width: auto;
+    }
+
+    .div {
+        width: auto;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+        border: solid;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     h2 {
         padding: 0 20px;
         text-align: center;
+    }
+
+    h3 {
+      text-align: center;
     }
 
     p {
@@ -22,7 +45,14 @@
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
 <p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
 
-<table style="width: 40%; padding: 15px 20px;">
+<div id="outer">
+  <div class="div">
+    <h3>Engine Configuration Total Time</h3>
+    <div style="width: 600px;" id="mainVis"></div>
+  </div>
+</div>
+
+<!-- <table style="width: 40%; padding: 15px 20px;">
   <thead>
     <tr>
       <th style="text-align: center;" colspan="1"><h2>Engine Total Time</h2></th>
@@ -31,7 +61,7 @@
     <tr>
       <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
     </tr> 
-  </table>
+  </table> -->
 
 <script>
 var vlSpec = {

@@ -54,7 +54,11 @@ def methodology():
 
 @app.route('/full-data')
 def fullData():
-   return render_template('full-data.html')
+   return render_template('full-data.html', engine="jsc")
+
+@app.route('/total-time/<string:engine>', methods=['GET'])
+def fullDataSub(engine):
+   return render_template('full-data.html', engine=engine)
 
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 
