@@ -56,7 +56,7 @@ def methodology():
 def fullData():
    return render_template('full-data.html', engine="jsc")
 
-@app.route('/total-time/<string:engine>', methods=['GET'])
+@app.route('/full-data/<string:engine>', methods=['GET'])
 def fullDataSub(engine):
    return render_template('full-data.html', engine=engine)
 
