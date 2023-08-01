@@ -184,19 +184,3 @@ if __name__ == "__main__":
     build_dir = os.environ.get('BUILD_DIR','wish-you-were-fast/reuse23/build/') # directory to put builds in
     engines = common.assign_engines()
     build_engine()
-
-    ''' testing for get_version '''
-    # engine = os.environ.get('ENGINE', 'wizeng')
-    #if sys.argv[1] == 'VERSION_TESTING':
-        #print(get_version(engine))
-
-    ''' testing for new_engine '''
-    # engine = os.environ.get('ENGINE', 'wasm3')
-    #if sys.argv[1] == 'COMMIT_TESTING':
-        #print(new_engine(engine))
-
-    ''' testing for add_version_data '''
-    # engine = os.environ.get('ENGINE', 'v8')
-    # version = os.environ.get('VERSION', '11.7.254')
-    # if sys.argv[1] == 'DOC_EDIT':
-    #     add_version_data(engine, version)

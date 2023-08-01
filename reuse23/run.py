@@ -2,17 +2,6 @@ import os, subprocess, json, sys
 import common # common.py file
 from datetime import datetime
 
-'''
-How to Run Script
-- Set DATA_DIR (directory to put the data), EXP (defaults to 'execution'), and BTIME_OPTIONS(if applicable)
-- Execute command: $ python3 wish-you-were-fast/reuse23/run.py
-
-Notes:
-- Script assumes its being ran in home directory so hardcoded paths reflect that
-    - data_dir,cmd, and wasmfile
-    - $ python3 wish-you-were-fast/reuse23/run.py 
-- Script assumes btime and jsvu are functions on the server
-'''
 # checks if an engine has a working config setting; command line call varies by engine/configuration
 def check_running_configs(): # TODO wasmer-base
     working_configs = []

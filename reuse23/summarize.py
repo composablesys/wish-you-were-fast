@@ -6,33 +6,6 @@ import common # common.py file
 import numpy as np
 from datetime import datetime, date
 
-'''
-How to run this script:
-1. Make a configuration file 'config.json' in the same folder as summarize.py
-2. In the file, assign the following variable to your specific access keys
-    {
-    "db": "database_name",
-    "user": "username",
-    "pwd": "password", 
-    }
-3. Set the data directory path using 'export DATA_DIR=/path/to/parent-directory/of/data/' 
-    ex. export DATA_DIR=/home/alexahalim/test-data-ryzen-9/
-    *** DATA_DIR can be initialized at the same time as the other variables
-    *** EXP is the sub-directory in which all data from an experiment is stored (ex: speedup)
-
-TABLE Command
-4. Run the script with option to set EXP= SUITES= and CONFIGS= :
-    'python3 summarize.py TABLE --data_dir $DATA_DIR'
-
-UPLOAD Commands
-5. Run the script with option to set METRIC_TYPE=, EXP=, EXP_LABEL=, MACHINE=, and TABLE_NAME=
-    '*variable instatiations* python3 summarize.py UPLOAD_SUM --data_dir $DATA_DIR'
-    '*variable instatiations* python3 summarize.py UPLOAD_RAW --data_dir $DATA_DIR'
-
-Notes:
-- This script assumes data files are all in the format: 'suite.line_item.config.txt'
-'''
-
 with open('config.json', 'r') as config_file:
     config_data = json.load(config_file)
     db = config_data['db']
