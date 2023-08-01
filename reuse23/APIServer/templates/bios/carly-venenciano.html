@@ -1,3 +1,81 @@
 {% extends 'base.html' %}
 
 {% block title %}Carly Venenciano - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Carly-Venenciano-Headshot.jpg') }}" alt="Carly Venenciano Headshot" style="height: 450px; width: auto;">
+        </div>
+        <h2 style="text-align: center;">Carly Venenciano</h2>
+        <p style="text-align: center; line-height: 10px;">venenciano@oxy.edu</p>
+        <p style="text-align: center; line-height: 10px;"><a href="https://www.linkedin.com/in/carly-venenciano-43520a22b?original_referer=https%3A%2F%2Fwww.google.com%2F">LinkedIn</a></p>
+    </div>
+    <div class="div big">
+        <p>Carly is an undergraduate student at Occidental College (Class of 2025) from Honolulu, Hawai'i, majoring in Mathematics 
+            and double-minoring in Computer Science and Sociology. In 2022, Carly was named as a <a href="https://www.oxy.edu/academics/student-success/cosmos/about">COSMOS 
+            scholar</a>, an honor granted to ten students who show promise and enthusiasm in science. For her past four semesters, she has also earned a place on the Dean's List. 
+            While her academic interests are broad, she is particulary interested in the ethics of AI especially in systems of surveillance and policing. 
+            Furthermore, Carly enjoys working with large datasets and creating data visualizations.
+        </p> 
+        <p>In addition to her studies, Carly is a Math Department Peer Tutor and student worker. She is also Co-Vice President of the Asian Pacific Islander 
+            Desi American Club and Vice President of the Hawai'i Club.
+        </p>
+    </div>
+</div>
+{% endblock %}

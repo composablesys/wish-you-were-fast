@@ -1,3 +1,80 @@
 {% extends 'base.html' %}
 
 {% block title %}Ben L. Titzer - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Ben-Titzer-Headshot.png') }}" alt="Ben L. Titzer Headshot">
+        </div>
+        <h2 style="text-align: center;">Ben L. Titzer</h2>
+        <p style="text-align: center; line-height: 10px;">btitzer@andrew.cmu.edu</p>
+    </div>
+    <div class="div big">
+        <p>Ben is a Principal Researcher in the Software and Societal Systems Department at Carnegie Mellon University. His research 
+            focuses on systems; systems programming languages, compilers, virtual machines, and managed runtime systems, as well as the higher-level systems that they support. 
+            In 2014, Ben co-founded <a href="https://webassembly.org/">WebAssembly</a>, and now focuses on increasing WebAssembly's usefulness 
+            and reach for academic research as well as applicability to new domains such as Edge computing.
+        </p> 
+        <p>Ben is building a new WebAssembly en engine for research and experimentation! Called The <a href="https://github.com/titzer/wizard-engine/">Wizard Engine</a>, 
+            it focuses on simplicity and flexibility, while still having competitive performance. It’s small and well-suited for students to learn how Wasm engines work. 
+            It already has a few innovative features and line-for-line is featureful yet easy to read.
+        </p>
+    </div>
+</div>
+{% endblock %}

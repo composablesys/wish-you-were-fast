@@ -1,3 +1,80 @@
 {% extends 'base.html' %}
 
 {% block title %}Alexa Halim - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Alexa-Halim-Headshot.jpg') }}" alt="Alexa Halim Headshot" style="height: 400px; width: auto;">
+        </div>
+        <h2 style="text-align: center;">Alexa Halim</h2>
+        <p style="text-align: center; line-height: 10px;">ah103@wellesley.edu</p>
+        <p style="text-align: center; line-height: 10px;"><a href="https://www.linkedin.com/in/alexa-halim">LinkedIn</a></p>
+    </div>
+    <div class="div big">
+        <p>Alexa is a <a href="https://www.possefoundation.org/">Posse Scholar</a> at Wellesley College (Class of 2025) from Houston, Texas, studying data science 
+            with a concentration in design & data visualization. Her academic and professional interests sit at the intersection of data and design for social science research. 
+            She is committed to accessible and engaging dissemination of news and research findings to enact social change.
+        </p> 
+        <p>In addition to her studies, she is President of Wellesley College Dancers and is a member of the Tau Zeta Epsilon society. She is passionate about making 
+            computer science accessible to students, having worked on the Mind the Gap podcast interviewing Wellesley alum from underrepresented backgrounds working in tech and 
+            as the Head Peer Tutor for the introductory computer science course.
+        </p>
+    </div>
+</div>
+{% endblock %}
