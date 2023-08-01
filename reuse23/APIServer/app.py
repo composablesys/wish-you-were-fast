@@ -85,7 +85,7 @@ class getExecution(Resource):
       conn.close()
       return results
 
-# 'Home' page data for the engine graph displaying geomean of each suite
+# 'Home' page data for the engine graph displaying geomean of each suite for total time
 @api.route('/get_suites/<string:engine>')
 class getSuites(Resource):
    def get(self, engine):
@@ -97,6 +97,49 @@ class getSuites(Resource):
       for suite in suites:
          for date in exp_dates:
             cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and benchmark_suite = %s and metric_type = %s", (engine, date[0], suite, "total_time"))
+            data = cur.fetchall()
+            values = [row[0] for row in data]
+            geomean = round(math.sqrt(sum(values)), 6)
+            results.append({'experiment_date': str(date[0]), 'suite': suite, 'total_time': geomean})
+      cur.close()
+      conn.close()
+      return results
+   
+# main time metric
+@api.route('/get_all_main')
+class getExecution(Resource):
+   def get(self):
+      results = []
+      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      cur = conn.cursor()
+      cur.execute("SELECT DISTINCT engine FROM summary WHERE metric_type = %s", ("main_time",)) 
+      engines = cur.fetchall()
+      for engine in engines:
+         if engine[0] == 'wavm': continue # wavm excluded
+         cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine[0],"main_time"))
+         exp_dates = cur.fetchall()
+         for date in exp_dates:
+            cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and metric_type = %s", (engine[0], date[0],"main_time"))
+            data = cur.fetchall()
+            avgs = [row[0] for row in data]
+            geomean = round(math.sqrt(sum(avgs)), 6)
+            results.append({'experiment_date': str(date[0]),'engine': engine[0], 'total_time': geomean})
+      cur.close()
+      conn.close()
+      return results
+
+# 'Home' page data for the engine graph displaying geomean of each suite for main time
+@api.route('/get_suites_main/<string:engine>')
+class getSuites(Resource):
+   def get(self, engine):
+      results = []
+      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      cur = conn.cursor()
+      cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"main_time"))
+      exp_dates = cur.fetchall()
+      for suite in suites:
+         for date in exp_dates:
+            cur.execute("SELECT avg FROM summary WHERE engine = %s and exp_date = %s and benchmark_suite = %s and metric_type = %s", (engine, date[0], suite, "main_time"))
             data = cur.fetchall()
             values = [row[0] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
