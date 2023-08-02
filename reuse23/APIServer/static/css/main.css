@@ -181,7 +181,6 @@ footer {
 
 .text-box p {
     font-size: 14px;
-    opacity: 0; /* Initially hide the text */
     transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
     text-align: left;
   }
@@ -197,7 +196,6 @@ footer {
   
 .text-box li {
     font-size: 14px;
-    opacity: 0; /* Initially hide the list items */
     transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
 }
   

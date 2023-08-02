@@ -30,46 +30,55 @@
     ul {
       list-style: none;
     }
+
 </style>
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
 <p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
+
+<label for="graph-select">Select Engine</label>
+<select id="graph-select">
+  <option value="iwasm">iwasm</option>
+  <option value="jsc">JavaScriptCore (jsc)</option>
+  <option value="sm">SpiderMonkey (sm)</option>
+  <option value="v8">V8</option>
+  <option value="wasm3">Wasm3</option>
+  <option value="wasmer">Wasmer</option>
+  <option value="wasmtime">wasmtime</option>
+  <option value="wazero">wazero</option>
+  <option value="wizard">Wizard</option>
+</select>
 
 <div class="box" style="margin: 20px 20px;">
   <div class="clearfix">
     <div class="box" style="width: 50%">
       <h3>Engine Configuration Total Time</h3>
-      <div style="width: 100%;" id="mainVis"></div>
+      <div style="width: 100%;" id="vis"></div>
     </div>
   </div>
 </div>
 
-<div class="box" style="margin: 10px 20px;">
-  <div class="clearfix">
-    <form action="/full-data" method="GET">
-      <ul>
-        <li><input type="checkbox" name="jsc" value="engine"></input><label for="jsc">JavaScriptCore (jsc)</label></li>
-        <li> <input type="checkbox" name="v8" value="engine"></input><label for="v8">V8</label></li>
-      </ul>
-    </form>
-</div>
-
-
-<!-- <table style="width: 40%; padding: 15px 20px;">
-  <thead>
+<!-- <div class="box">
+  <table>
     <tr>
-      <th style="text-align: center;" colspan="1"><h2>Engine Total Time</h2></th>
+      {% for header in headers %}
+      <th>{{header}}</th>
+      {% endfor %}
     </tr>
-  </thead>
+    {% for row in data %}
     <tr>
-      <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
-    </tr> 
-  </table> -->
+      {% for cell in row %}
+      <td>{{cell}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+</div> -->
 
 <script>
-var vlSpec = {
+  var errorBand = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-    "data": {"url": "/calculate-error/sm"},
+    "data": {"url": "/calculate-error/iwasm"},
     "layer": [
       {
         "mark": "errorband",
@@ -101,6 +110,360 @@ var vlSpec = {
       }
     ]
   };
-  vegaEmbed('#mainVis', vlSpec);
+  vegaEmbed('#errorVis', errorBand);
+
+  const vis = document.getElementById('vis');
+  const select = document.getElementById('graph-select');
+
+  function renderGraph(spec1, spec2) {
+    vegaEmbed(vis, spec1);
+  }
+
+  select.addEventListener('change', function () {
+    const selectedGraphType = select.value;
+
+    let newSpec1;
+    switch (selectedGraphType) {
+      case 'iwasm':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/iwasm"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+      case 'jsc':
+        newSpec1 = {
+          "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/jsc"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]
+          };
+        break;
+        case 'sm':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/sm"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+        case 'v8':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/v8"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+          case 'wasm3':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/wasm3"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal",
+                  "legend": null
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+          case 'wasmer':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/wasmer"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal",
+                  "legend": null
+                }
+              }
+            }
+          ]            
+          };
+          break;
+          case 'wasmtime':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/wasmtime"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal",
+                  "legend": null
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+          case 'wazero':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/wazero"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal",
+                  "legend": null
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+          case 'wizard':
+        newSpec1 = {
+            "width": "container",
+          "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+          "data": {"url": "/calculate-error/wizeng"},
+          "layer": [
+            {
+              "mark": "errorband",
+              "encoding": {
+                "y": {
+                  "field": "pct95",
+                  "type": "quantitative",
+                  "scale": {"zero": false},
+                  "title": "Total Time (5%-95% CIs)"
+                },
+                "y2": {"field": "pct5"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": "line",
+              "encoding": {
+                "y": {"field": "total_time", "type": "quantitative"},
+                "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+                "color": {
+                  "field": "config", 
+                  "type": "nominal"
+                }
+              }
+            }
+          ]            
+          };
+          break;
+    }
+    renderGraph(newSpec1);
+  });
+  renderGraph(errorBand);
 </script>
 {% endblock %}
