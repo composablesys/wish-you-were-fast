@@ -28,9 +28,14 @@ def set_cors(response):
 def index():
    return render_template('index.html', engine="jsc")
 
-# creates the subgraph on the landing page
+# creates the subgraph on the landing page for total time selection
 @app.route('/total-time/<string:engine>')
 def home(engine):
+   return render_template('index.html', engine=engine)
+
+# creates the subgraph on the landing page for main time selection
+@app.route('/main-time/<string:engine>')
+def home2(engine):
    return render_template('index.html', engine=engine)
 
 # about page
@@ -127,7 +132,7 @@ class getExecution(Resource):
             data = cur.fetchall()
             avgs = [row[0] for row in data]
             geomean = round(math.sqrt(sum(avgs)), 6)
-            results.append({'experiment_date': str(date[0]),'engine': engine[0], 'total_time': geomean})
+            results.append({'experiment_date': str(date[0]),'engine': engine[0], 'main_time': geomean})
       cur.close()
       conn.close()
       return results
@@ -147,7 +152,7 @@ class getSuites(Resource):
             data = cur.fetchall()
             values = [row[0] for row in data]
             geomean = round(math.sqrt(sum(values)), 6)
-            results.append({'experiment_date': str(date[0]), 'suite': suite, 'total_time': geomean})
+            results.append({'experiment_date': str(date[0]), 'suite': suite, 'main_time': geomean})
       cur.close()
       conn.close()
       return results
@@ -203,4 +208,4 @@ class geomeanCalc(Resource):
          return "Provide a different experiment."
 '''
 if __name__ == "__main__":
-   app.run(host='grammont.lan.local.cmu.edu',port=8080, debug=True)
+   app.run(host='grammont.lan.local.cmu.edu',port=6363, debug=True)
