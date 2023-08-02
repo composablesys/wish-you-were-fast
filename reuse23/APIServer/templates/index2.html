@@ -26,8 +26,8 @@
 
 <label for="graph-select">Select Metric Type</label>
 <select id="graph-select">
-  <option value="total_time">Total Time</option>
   <option value="main_time">Main Time</option>
+  <option value="total_time">Total Time</option>
 </select>
 
 <table style="width: 100%; padding: 15px 20px;">
@@ -48,10 +48,10 @@
   var vlSpec = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-    "data": {"url": "/get_all_execution"},
+    "data": {"url": "/get_all_main"},
     "encoding": {
         "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
+        "y": {"field": "main_time", "type": "quantitative", "title": "Main Time (s)"},
           },
       "layer": [
           { // code for the data points
@@ -61,7 +61,7 @@
             "cursor": "pointer"
                 },
             "transform": [{
-            "calculate": "'/total-time/' + datum.engine", // makes the url 
+            "calculate": "'/main-time/' + datum.engine", // makes the url 
             "as": "url"
                 }],
             "encoding": {
@@ -81,10 +81,10 @@
   var zoom = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-    "data": {"url": "/get_suites/{{engine}}"},
+    "data": {"url": "/get_suites_main/{{engine}}"},
     "encoding": {
         "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-        "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
+        "y": {"field": "main_time", "type": "quantitative", "title": "Main Time (s)"},
         "color": {
             "field": "suite", 
             "type": "nominal",
@@ -107,7 +107,7 @@
             }, {
               "encoding": {
                 "x": {"aggregate": "max", "field": "experiment_date"},
-                "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
+                "y": {"aggregate": {"argmax": "experiment_date"}, "field": "main_time"}
               },
               "layer": [{
                 "mark": {"type": "circle"}
@@ -287,10 +287,10 @@
               newSpec1 = {
           "width": "container",
           "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-          "data": {"url": "/get_all_execution"},
+          "data": {"url": "/get_all_main"},
           "encoding": {
               "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-              "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
+              "y": {"field": "main_time", "type": "quantitative", "title": "Main Time (s)"},
                 },
             "layer": [
                 { // code for the data points
@@ -300,7 +300,7 @@
                   "cursor": "pointer"
                       },
                   "transform": [{
-                  "calculate": "'/total-time/' + datum.engine", // makes the url 
+                  "calculate": "'/main-time/' + datum.engine", // makes the url 
                   "as": "url"
                       }],
                   "encoding": {
@@ -319,10 +319,10 @@
           newSpec2 = {
             "width": "container",
             "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "data": {"url": "/get_suites/{{engine}}"},
+            "data": {"url": "/get_suites_main/{{engine}}"},
             "encoding": {
                 "x": {"timeUnit": "yearmonthdate", "field": "experiment_date", "type": "temporal", "title": "Experiment Date"},
-                "y": {"field": "total_time", "type": "quantitative", "title": "Total Time (s)"},
+                "y": {"field": "main_time", "type": "quantitative", "title": "Main Time (s)"},
                 "color": {
                     "field": "suite", 
                     "type": "nominal",
@@ -345,7 +345,7 @@
                     }, {
                       "encoding": {
                         "x": {"aggregate": "max", "field": "experiment_date"},
-                        "y": {"aggregate": {"argmax": "experiment_date"}, "field": "total_time"}
+                        "y": {"aggregate": {"argmax": "experiment_date"}, "field": "main_time"}
                       },
                       "layer": [{
                         "mark": {"type": "circle"}
