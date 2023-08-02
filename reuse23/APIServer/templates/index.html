@@ -11,29 +11,18 @@
 <p style="margin: 0 20px;">
   These graphs demonstrate the time it takes for an engine to startup, compile wasm code, and execute it. Click on the data points to generate a subgraph of the benchmark suites for a specific engine.
 </p>
-<!-- <table style="width: 100%; padding: 15px 20px;">
+
+<table style="width: 100%; padding: 25px 20px;">
   <thead>
     <tr>
-      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines for Total Time</h2></th>
-      <th style="text-align: center;" colspan="1"><h2>{{engine}} Engine</h2></th>
-    </tr>
-  </thead>
-    <tr>
-      <td><div style="display: block; text-align: center;" id="mainVis"></div></td>
-      <td><div style="display: block; text-align: center;" id="zoomView"></div></td>
-    </tr>
-  </table> -->
-
-<label for="graph-select">Select Metric Type</label>
-<select id="graph-select">
-  <option value="total_time">Total Time</option>
-  <option value="main_time">Main Time</option>
-</select>
-
-<table style="width: 100%; padding: 15px 20px;">
-  <thead>
-    <tr>
-      <th style="text-align: center; width: 65%" colspan="1"><h2>Comparison of Engines</h2></th>
+      <th style="text-align: center; width: 65%" colspan="1">
+        <h2>Comparison of Engines</h2>
+        <label for="graph-select">Select Metric Type</label>
+        <select id="graph-select">
+          <option value="total_time">Total Time</option>
+          <option value="main_time">Main Time</option>
+        </select>
+      </th>
       <th style="text-align: center;" colspan="1"><h2>{{engine}} Engine</h2></th>
     </tr>
   </thead>
@@ -41,8 +30,8 @@
       <td><div style="display: block; text-align: center;" id="vis"></div></td>
       <td><div style="display: block; text-align: center;" id="specific"></div></td>
     </tr>
-<p>If no sub-graph is generated, geomean could not be calculated due to negative values.</p>
 </table>
+<p><i>If no sub-graph is generated, geomean could not be calculated due to negative values.</i></p>
 <script>
   // code for the main graph
   var vlSpec = {
