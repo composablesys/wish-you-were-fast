@@ -54,7 +54,15 @@ def methodology():
 
 @app.route('/full-data')
 def fullData():
-   return render_template('full-data.html')
+      headers = ['Benchmark Suite', 'Benchmark Item', 'Engine', 'Version', 'Config', 'Metric Type', 'Avg', '5th Percentile', 
+               '95th Percentile', 'Min', 'Max', 'Timestamp']
+      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      cur = conn.cursor()
+      cur.execute("SELECT benchmark_suite, benchmark_item, engine, version, config, metric_type, avg, percentile_5, percentile_95, min, max, time FROM summary")
+      data = cur.fetchall()
+      cur.close()
+      conn.close()
+      return render_template('full-data.html', headers=headers, data=data)
 
 api = Api(app) # initialize AFTER @app.route('/') to show landing page
 
@@ -195,4 +203,4 @@ class geomeanCalc(Resource):
          return "Provide a different experiment."
 '''
 if __name__ == "__main__":
-   app.run(host='grammont.lan.local.cmu.edu',port=6363, debug=True)
+   app.run(host='grammont.lan.local.cmu.edu',port=8080, debug=True)
