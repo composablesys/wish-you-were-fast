@@ -31,6 +31,12 @@
       list-style: none;
     }
 
+    .search-input {
+      font-size: 16px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      border: groove;
+    }
+
 </style>
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
 <p style="padding-bottom: 10px;">Explore the detailed data below.</p>
@@ -63,11 +69,13 @@
     </tr> 
   </table>
 
-<!-- <div class="box">
+<div class="box" style="padding-top: 40px;">
   <table>
     <tr>
       {% for header in headers %}
-      <th>{{header}}</th>
+      <th>
+        <input type="text" class="search-input" placeholder="{{header}}">
+      </th>
       {% endfor %}
     </tr>
     {% for row in data %}
@@ -78,9 +86,23 @@
     </tr>
     {% endfor %}
   </table>
-</div> -->
+</div>
 
 <script>
+// code for the searchable table; code from: https://www.youtube.com/watch?v=qp7PdguA0Vg
+// document.addEventListener("DOMContentLoaded", () => {
+//   document.querySelectorAll(".search-input").forEach(inputField => {
+//     const tableRows = inputField.closest("table").querySelectorAll("tbody tr");
+//     const headerCell = inputField.closest("th");
+//     const otherHeaderCells = inputField.closest("tr").querySelectorAll("th");
+
+//     console.log(tableRows);
+//     console.log(headerCell);
+//     console.log(otherHeaderCells);
+//   });
+// });
+
+// code for the graphs
     var graphConfigurations = {
     'iwasm': {
       'title': 'iwasm Engine Total Time by Configuration',
