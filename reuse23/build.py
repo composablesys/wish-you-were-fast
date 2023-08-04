@@ -50,8 +50,10 @@ def build_engine():
             subprocess.run('cmake ..', shell=True, cwd=path)
             subprocess.run('make', shell=True, cwd=path)
         elif eng == 'wizeng':
+            # FIXME: add update Virgil by git pull
             wizeng_git = git.cmd.Git('wizard-engine')
             wizeng_git.pull()
+            # FIXME: add make command
         elif eng == 'iwasm':
             iwasm_git = git.cmd.Git(engine_dir('iwasm'))
             iwasm_git.pull()
@@ -72,6 +74,7 @@ def build_engine():
                 shutil.copy(dir+'wizeng.x86-64-linux', build_dir+eng+'/'+eng+'-v'+version)
             else: 
                 shutil.copy(dir+eng, build_dir+eng+'/'+eng+'-v'+version)
+            # FIXME: delete local build in engine repo once copied to reduce space
             print('New version of ' + eng + ' has been built.')
             add_version_data(eng, version)
 

@@ -22,7 +22,6 @@ These are lists of the currently built engines and if/when they have been used i
 <ul>
     <li>11.7.105 (tested 2023-07-25)</li>
     <li>11.7.254 (tested 2023-07-26)</li>
-    <li>11.7.400</li>
 </ul>
 </details>
 
@@ -102,7 +101,6 @@ These are lists of the currently built engines and if/when they have been used i
     <li>1cafa375680b6ea8b120e0d4d6006521d858ae2d (tested 2023-07-26)</li>
     <li>7db4815e837bc34942e95aba292ca0eca318cc54 (tested 2023-07-31)</li>
     <li>851819705324419376a63c23fe2e5acb17ce9d8c</li>
-    <li>28125ec538c86de90d2b9be332d50760e7dd42bc</li>
 </ul>
 </details>
 
@@ -126,7 +124,7 @@ In order to build and update v8, sm, and jsc, clone the [jsvu repo](https://gith
 
 In order to parse the date for when a v8 engine version was created (which is necessary when building it), clone the [v8 repo](https://github.com/v8/v8). The python script will run the `git log` command to find the timestmap.
 
-### Wasmer FIXME (add update instructions)
+### Wasmer
 
 Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer) into your home directory. Verify that `rustc` and `cargo` are updated to version 1.67 (as of 7/20/23). In the repo, execute the following command and ensure [singlepass compiler is enabled](https://docs.wasmer.io/developers/build-from-source)
 ```
@@ -168,7 +166,7 @@ $ cmake ..
 $ make
 ```
 
-### Wizard
+### Wizard FIXME: correct update commands
 
 Follow the instructions on the [Wizard Repo](https://github.com/titzer/wizard-engine/blob/master/doc/Building.md). The engine is built in `wizard-engine/bin/`. The engine updates through build.py running `git pull`. The `wizeng-x86-64-linux` is used for testing.
 

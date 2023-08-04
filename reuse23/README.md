@@ -51,3 +51,6 @@ UPLOAD Commands
 Notes:
 - This script assumes data files are all in the format: 'suite.line_item.config.txt
 - This scripts assumes it is being ran in the directory in which the file is located.
+
+### The PostGreSQL Database Tables
+(Add documentation about what is displayed and noted in the tables.)
