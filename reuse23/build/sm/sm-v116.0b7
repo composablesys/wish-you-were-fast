@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-LD_LIBRARY_PATH="/home/alexahalim/.jsvu/engines/spidermonkey" "/home/alexahalim/.jsvu/engines/spidermonkey/spidermonkey" "$@"

@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-"/home/cvenen/.jsvu/engines/v8/v8" --snapshot_blob="/home/cvenen/.jsvu/engines/v8/snapshot_blob.bin" "$@"
