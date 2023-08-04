@@ -1,36 +1,10 @@
 #!/usr/bin/env python3
 
-import os, fnmatch, psycopg2, json, sys, math
+import os, fnmatch, psycopg2, json, sys, math, linecache
 from prettytable import PrettyTable 
+import common # common.py file
 import numpy as np
 from datetime import datetime, date
-
-'''
-How to run this script:
-1. Make a configuration file 'config.json' in the same folder as summarize.py
-2. In the file, assign the following variable to your specific access keys
-    {
-    "db": "database_name",
-    "user": "username",
-    "pwd": "password", 
-    }
-3. Set the data directory path using 'export DATA_DIR=/path/to/parent-directory/of/data/' 
-    ex. export DATA_DIR=/home/alexahalim/test-data-ryzen-9/
-    *** DATA_DIR can be initialized at the same time as the other variables
-    *** EXP is the sub-directory in which all data from an experiment is stored (ex: speedup)
-
-TABLE Command
-4. Run the script with option to set EXP= SUITES= and CONFIGS= :
-    'python3 summarize.py TABLE --data_dir $DATA_DIR'
-
-UPLOAD Commands
-5. Run the script with option to set METRIC_TYPE= EXP= SUITES=, CONFIGS=, EXP_LABEL=, ENGINE=, VERSION=, MACHINE=, and TABLE_NAME=
-    '*variable instatiations* python3 summarize.py UPLOAD_SUM --data_dir $DATA_DIR'
-    '*variable instatiations* python3 summarize.py UPLOAD_RAW --data_dir $DATA_DIR'
-
-Notes:
-- This script assumes data files are all in the format: 'suite.line_item.config.txt'
-'''
 
 with open('config.json', 'r') as config_file:
     config_data = json.load(config_file)
@@ -110,7 +84,7 @@ def get_difference(file):
 functions for printing a table of the data
 '''
 # calculates geomean for 'speedup' and creates a row for the table
-def geomean(suite, configs): 
+def geomean(suite, configs):
     row = []
     exclusions = []
     tup = []
@@ -121,7 +95,7 @@ def geomean(suite, configs):
             file = suite + '.' + line_item + '.' + config + '.txt'
             if exp == 'speedup' and os.path.exists(PATH + file):
                 values.append(float(get_avg(file)))
-            elif exp == 'execution' and get_difference(file) != None:
+            elif exp == 'execution' and os.path.exists(file) == True and get_difference(file) != None:
                 if float(get_difference(file)) < 0:
                     exclusions.append(file)
                 else:
@@ -148,13 +122,15 @@ def make_row(suite, line_item, configs):
                 row.append(avg)
         if exp == 'execution': # table is for 'main_time'
             file1 = file + config +'.txt'
-            file2 = get_zero_file(file1)
-            if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
-                with open(PATH + file1, 'r') as f1, open(PATH + file2, 'r') as f2: 
-                    if is_number(f1.readline()) and is_number(f2.readline()):
-                        row.append(get_difference(file1))
-                    else:
-                        row.append('-')
+            if os.path.exists(PATH + file1):
+                file2 = get_zero_file(file1)
+                if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
+                        if is_number(linecache.getline(PATH + file1, 3)) and is_number(linecache.getline(PATH + file2, 3)): # only reads third line where data list starts
+                            row.append(get_difference(file1))
+                        else:
+                            row.append('-')
+            else:
+                row.append('-')
     return row
 
 def table(suites, configs):
@@ -286,8 +262,9 @@ def get_timestamp(file):
             timestamp = f.readline() # reads the first line; timestamp should be on first line
             return datetime.fromtimestamp(int(timestamp[:timestamp.index('\n')]))
     elif exp == 'execution':
-        ti_m = int(os.path.getmtime(path))
-        return datetime.fromtimestamp(ti_m)
+        with open(path, 'r') as f:
+            timestamp = f.readline()
+            return timestamp
     
 # reads time stamp format from header of txt file and converts to date form for database entry
 def get_date(file):
@@ -297,10 +274,24 @@ def get_date(file):
             timestamp = f.readline()
             return date.fromtimestamp(int(timestamp[:timestamp.index('\n')]))
     elif exp == 'execution':
-        # if someone copies and deletes original directory, creation date will be wrong
-        ti_m = os.path.getmtime(path)
-        return date.fromtimestamp(ti_m)
-    
+        with open(path, 'r') as f:
+            timestamp = f.readline()
+            if ' ' in timestamp: # for timestamps that have both date and time
+                return timestamp[:timestamp.index(' ')]
+            else: # for timestamps that only have date
+                return timestamp[:timestamp.index('\n')]
+
+# reads version from second line of txt file with format "version: __"
+def get_version(file):
+    path = PATH + file
+    if exp == 'speedup':
+        return '-'
+    elif exp == 'execution':
+        with open(path, 'r') as f:
+            f.readline() # first line
+            version = f.readline() # second line where version is
+            return version[9:version.index('\n')]
+
 def get_raw_samples(file):
     path = PATH + file
     times = []
@@ -327,7 +318,7 @@ def get_raw_samples(file):
 '''
 functions to insert data into DB
 '''
-def upload_sum(exp_label, version, machine, table_name):
+def upload_sum(exp_label, machine, table_name):
     for file in sorted(os.listdir(PATH)):
         if not fnmatch.fnmatch(file,'*0.*.*.txt') and (exp == 'speedup' or metric_type == 'total_time') and get_avg(file) !=0:
             insert = get_avg(file)
@@ -335,6 +326,10 @@ def upload_sum(exp_label, version, machine, table_name):
             file2 = get_zero_file(file)
             if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
+                    f.readline() # timestamp
+                    f.readline() # version
+                    f2.readline() # timestamp
+                    f2.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_difference(file)
                     else: continue
@@ -346,14 +341,14 @@ def upload_sum(exp_label, version, machine, table_name):
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, avg, percentile_5, percentile_95,
             min, max, time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), version, get_config(file), machine, metric_type,
+            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(file), get_config(file), machine, metric_type,
             insert, get_pct_5(file), get_pct_95(file), get_min(file), get_max(file), get_timestamp(file)))
         conn.commit()
         cur.close()
         conn.close()
     print('UPLOAD_SUM COMPLETE')
 
-def upload_raw(exp_label, version, machine, table_name):
+def upload_raw(exp_label, machine, table_name):
     for file in sorted(os.listdir(PATH)):
         if exp == 'speedup' and get_avg(file) != 0:
             insert = get_samples(file)
@@ -363,6 +358,10 @@ def upload_raw(exp_label, version, machine, table_name):
             file2 = get_zero_file(file)
             if os.path.exists(PATH + file2): # check if the pair of file exists and both are not empty
                 with open(PATH + file, 'r') as f, open(PATH + file2, 'r') as f2: 
+                    f.readline() # timestamp
+                    f.readline() # version
+                    f2.readline() # timestamp
+                    f2.readline() # version
                     if is_number(f.readline()) and is_number(f2.readline()):
                         insert = get_raw_samples(file)
                     else: continue
@@ -374,7 +373,7 @@ def upload_raw(exp_label, version, machine, table_name):
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, samples, time) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), version, get_config(file), machine, metric_type, insert, 
+            (get_date(file), exp_label, get_suite(file), get_line_item(file), get_engine(file), get_version(file), get_config(file), machine, metric_type, insert, 
             get_timestamp(file)))
         conn.commit()
         cur.close()
@@ -388,26 +387,15 @@ if __name__ == "__main__":
     if data_dir is None:
         print('Data directory not set')
 
-    exp_label = os.environ.get('EXP_LABEL', 'carlexa20') # change to experiment label
-    version = os.environ.get('VERSION', '-')
-    machine = os.environ.get('MACHINE', 'i7-4790') # change to machine name
+    exp_label = os.environ.get('EXP_LABEL', 'carlexa20')
+    machine = os.environ.get('MACHINE', 'i7-4790')
+
     table_name = os.environ.get('TABLE_NAME', 'testsummary2')
-    exp = os.environ.get('EXP', 'speedup') # for the PrettyTable
     metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
+    exp = common.exp # for the PrettyTable
 
-    suites = []
-    s_names = os.environ.get('SUITES', 'polybench,ostrich,libsodium')
-    sn = s_names.split(',')
-    for s in sn:
-        suites.append(s)
-
-    configs = []
-    c_names = os.environ.get('CONFIGS', 'int,jit,nok,nokfold,noisel,nomr')
-    if exp == 'speedup': c_names = 'int,jit,nok,nokfold,noisel,nomr'
-    elif exp == 'execution': c_names = 'iwasm-fjit,iwasm-int,jsc-bbq,jsc-int,jsc-omg,sm-base,sm-opt,v8-liftoff,v8-turbofan,wasm3,wasmer-base,wasmer,wasmnow,wasmtime,wavm,wazero,wizeng-int,wizeng-jit'
-    cn = c_names.split(',')
-    for c in cn:
-        configs.append(c)
+    suites = common.assign_suites()
+    configs = common.assign_configs()
 
     ''' HARD CODE TO CHANGE '''
     LABEL = 'main:time_us'
@@ -416,8 +404,8 @@ if __name__ == "__main__":
     if sys.argv[1] == 'TABLE':
         table(suites, configs)
     elif sys.argv[1] == 'UPLOAD_SUM':
-        upload_sum(exp_label, version, machine, table_name)
+        upload_sum(exp_label, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
-        upload_raw(exp_label, version, machine, table_name)
+        upload_raw(exp_label, machine, table_name)
     else:
         print('No function specified')
