@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Full Data{% endblock %}
+
+{% block body %}
+<style>
+    h2 {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    p {
+        margin: 20px 20px;
+    }
+</style>
+<h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
+<p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
+
+<h3 style="text-align: center">Engine Configurations for Total Time</h3>
+
+<script>
+  var vlSpec = {
+    "width": "container",
+    "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+    "data": {"url": "/"}
+  }
+</script>
+{% endblock %}
