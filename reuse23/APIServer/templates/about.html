@@ -1,10 +1,105 @@
 {% extends 'base.html' %}
 
 
-{% block title %}About Us{% endblock %}
+{% block title %}About Our Team{% endblock %}
 
 
 {% block body %}
-<h1 style="text-align: center;">About Us</h1>
-<p>Throughout the summer of 2023 in the Carnegie Mellon University REUSE program, this Wasm Benchmarking project was developed by Alexa Halim and Carly Venenciano under the supervision of Ben Titzer. </p>
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    }
+
+    .circular-image {
+    width: 300px;
+    height : 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bio {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    h2 {
+        padding-top: 10px;
+        padding-bottom: 8px;
+        line-height: 0;
+    }
+
+    p {
+        padding-top: 0;
+        line-height: 0;
+    }
+
+    h2 a {
+        color: black;
+        text-decoration: none;
+    }
+
+    h2 a:hover {
+        color: #3D59AB;
+    }
+
+
+</style>
+
+<h1 style="text-align: center; padding: 20px 0;">About Our Team</h1>
+<p style="padding-bottom: 20px;">The WebAssembly Benchmarking project is a part of Carnegie Mellon's REUSE program.</p>
+<div class="grid-container">
+    <div class="bio">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Carly-Venenciano-Headshot.jpg') }}" alt="Carly Venenciano Headshot" style="height: 450px; width: auto;">
+        </div>
+        <h2><a href="/about/carly-venenciano">Carly Venenciano</a></h2>
+        <p>REUSE 2023 Student</p>
+    </div>
+    <div class="bio">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Alexa-Halim-Headshot.jpg') }}" alt="Alexa Halim Headshot" style="height: 400px; width: auto;">
+        </div>
+        <h2><a href="/about/alexa-halim">Alexa Halim</a></h2>
+        <p>REUSE 2023 Student</p>
+    </div>
+    <div class="bio">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Ben-Titzer-Headshot.png') }}" alt="Ben L. Titzer Headshot">
+        </div>
+        <h2><a href="/about/ben-l-titzer">Ben L. Titzer</a></h2>
+        <p>Principal Researcher</p>
+    </div>
+    <div class="bio">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Heather-Miller-Headshot.jpeg') }}" alt="Heather Miller Headshot">
+        </div>
+        <h2><a href="/about/heather-miller">Heather Miller</a></h2>
+        <p>Associate Professor</p>
+    </div>
+    <div class="bio">
+        <div class="circular-image">
+            <!-- <img src="{{ url_for('static', filename='imgs/Heather-Miller-Headshot.jpeg') }}" alt="Heather Miller Headshot"> -->
+        </div>
+        <h2>John Pluchino</h2>
+        <p>REUSE 2022 Student</p>
+    </div>
+    <div class="bio">
+        <div class="circular-image">
+            <!-- <img src="{{ url_for('static', filename='imgs/Heather-Miller-Headshot.jpeg') }}" alt="Heather Miller Headshot"> -->
+        </div>
+        <h2>Akshath Karanam</h2>
+        <p>2023 Master's Student</p>
+    </div>
+</div>
 {% endblock %}

@@ -2,27 +2,304 @@
 
 {% block title %}Full Data{% endblock %}
 
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.9.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
+{% endblock %} 
+
 {% block body %}
 <style>
+    .box {
+        padding: 0 15px;
+    }
+
     h2 {
         padding: 0 20px;
         text-align: center;
     }
 
-    p {
-        margin: 20px 20px;
+    h3 {
+      text-align: center;
     }
+
+    p {
+        margin: 0 20px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .search-input {
+      font-size: 16px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      border: groove;
+    }
+
 </style>
 <h1 style="padding-top: 20px;">WebAssembly Benchmarking Full Data</h1>
-<p style="padding-bottom: 20px;">Here is the detailed data from our experiments.</p>
+<p style="padding-bottom: 10px;">Explore the detailed data below.</p>
+<p style="padding-bottom: 20px;"><i>Note: Some graphs are inaccurate due to measurement error which produced 'negative' time</i></p>
 
-<h3 style="text-align: center">Engine Configurations for Total Time</h3>
+<table style="width: 100%; padding: 25px 20px;">
+  <thead>
+    <th style="text-align: center; width: 50%" colspan="1">
+      <h3 id="graph-title">iwasm Engine Total Time by Configuration</h3> 
+      <label style="text-align: center;"for="graph-select">Select Engine</label>
+      <select id="graph-select">
+        {% for engine in ['iwasm', 'jsc', 'sm', 'v8', 'wasm3', 'wasmer', 'wasmtime', 'wazero', 'wizard'] %}
+        <option value="{{ engine }}">{{ engine }}</option>
+        {% endfor %}
+      </select>
+    </th>
+    <th style="text-align: center;" colspan="1">
+      <h3 id="graph-title-2">iwasm Engine Main Time by Configuration</h3>
+      <label style="text-align: center;"for="graph-select-2">Select Engine</label>
+      <select id="graph-select-2">
+        {% for engine in ['iwasm', 'jsc', 'sm', 'v8', 'wasm3', 'wasmer', 'wasmtime', 'wazero', 'wizard'] %}
+        <option value="{{ engine }}">{{ engine }}</option>
+        {% endfor %}
+      </select>
+    </th>
+  </thead>
+    <tr>
+      <td><div style="display:block; text-align: center;" id="vis"></div></td>
+      <td><div style="display:block; text-align: center;" id="vis2"></div></td>
+    </tr> 
+  </table>
+
+<<<<<<< HEAD
+  <!-- table code -->
+=======
+// code for the searchable table;
+>>>>>>> 5e733517d66117760eeb2905c8ae6e3f34fc9805
+<!-- <div class="box" style="padding-top: 40px;">
+  <table>
+    <tr>
+      {% for header in headers %}
+      <th>
+        <input type="text" class="search-input" placeholder="{{header}}">
+      </th>
+      {% endfor %}
+    </tr>
+    {% for row in data %}
+    <tr>
+      {% for cell in row %}
+      <td>{{cell}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+</div> -->
 
 <script>
-  var vlSpec = {
+// code for the searchable table; code from: https://www.youtube.com/watch?v=qp7PdguA0Vg
+// document.addEventListener("DOMContentLoaded", () => {
+//   document.querySelectorAll(".search-input").forEach(inputField => {
+//     const tableRows = inputField.closest("table").querySelectorAll("tbody tr");
+//     const headerCell = inputField.closest("th");
+//     const otherHeaderCells = inputField.closest("tr").querySelectorAll("th");
+
+//     console.log(tableRows);
+//     console.log(headerCell);
+//     console.log(otherHeaderCells);
+//   });
+// });
+
+// code for the graphs
+    var graphConfigurations = {
+    'iwasm': {
+      'title': 'iwasm Engine Total Time by Configuration',
+      'url': '/calculate-error/iwasm'
+    },
+    'jsc': {
+      'title': 'JavaScriptCore Engine Total Time by Configuration',
+      'url': '/calculate-error/jsc'
+    },
+    'sm': {
+      'title': 'SpiderMonkey Engine Total Time by Configuration',
+      'url': '/calculate-error/sm'
+    },
+    'v8': {
+      'title': 'V8 Engine Total Time by Configuration',
+      'url': '/calculate-error/v8'
+    },
+    'wasm3': {
+      'title': 'Wasm3 Engine Total Time',
+      'url': '/calculate-error/wasm3'
+    },
+    'wasmer': {
+      'title': 'Wasmer Engine Total Time',
+      'url': '/calculate-error/wasmer'
+    },
+    'wasmtime': {
+      'title': 'wasmtime Engine Total Time',
+      'url': '/calculate-error/wasmtime'
+    },
+    'wazero': {
+      'title': 'wazero Engine Total Time',
+      'url': '/calculate-error/wazero'
+    },
+    'wizard': {
+      'title': 'Wizard Engine Total Time by Configuration',
+      'url': '/calculate-error/wizeng'
+    }
+  };
+
+  var graphConfigurations2 = {
+    'iwasm': {
+      'title': 'iwasm Engine Main Time by Configuration',
+      'url': '/calculate-error2/iwasm'
+    },
+    'jsc': {
+      'title': 'JavaScriptCore Engine Main Time by Configuration',
+      'url': '/calculate-error2/jsc'
+    },
+    'sm': {
+      'title': 'SpiderMonkey Engine Main Time by Configuration',
+      'url': '/calculate-error2/sm'
+    },
+    'v8': {
+      'title': 'V8 Engine Main Time by Configuration',
+      'url': '/calculate-error2/v8'
+    },
+    'wasm3': {
+      'title': 'Wasm3 Engine Main Time',
+      'url': '/calculate-error2/wasm3'
+    },
+    'wasmer': {
+      'title': 'Wasmer Engine Main Time',
+      'url': '/calculate-error2/wasmer'
+    },
+    'wasmtime': {
+      'title': 'wasmtime Engine Main Time',
+      'url': '/calculate-error2/wasmtime'
+    },
+    'wazero': {
+      'title': 'wazero Engine Main Time',
+      'url': '/calculate-error2/wazero'
+    },
+    'wizard': {
+      'title': 'Wizard Engine Main Time by Configuration',
+      'url': '/calculate-error2/wizeng'
+    }
+  };
+
+  var errorBand = {
     "width": "container",
     "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-    "data": {"url": "/"}
+    "data": {"url": "/calculate-error/iwasm"},
+    "layer": [
+      {
+        "mark": "errorband",
+        "encoding": {
+          "y": {
+            "field": "pct95",
+            "type": "quantitative",
+            "scale": {"zero": false},
+            "title": "Total Time (5%-95% CIs)"
+          },
+          "y2": {"field": "pct5"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "y": {"field": "total_time", "type": "quantitative"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      }
+    ]
+  };
+  vegaEmbed('#vis', errorBand);
+
+  var errorBand2 = {
+    "width": "container",
+    "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
+    "data": {"url": "/calculate-error2/iwasm"},
+    "layer": [
+      {
+        "mark": "errorband",
+        "encoding": {
+          "y": {
+            "field": "pct95",
+            "type": "quantitative",
+            "scale": {"zero": false},
+            "title": "Main Time (5%-95% CIs)"
+          },
+          "y2": {"field": "pct5"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "y": {"field": "main_time", "type": "quantitative"},
+          "x": {"field": "experiment_date", "timeUnit": "yearmonthdate", "title": "Experiment Date"},
+          "color": {
+            "field": "config", 
+            "type": "nominal"
+          }
+        }
+      }
+    ]
+  };
+  vegaEmbed('#vis2', errorBand2);
+
+  const vis = document.getElementById('vis');
+  const vis2 = document.getElementById('vis2');
+  const select = document.getElementById('graph-select');
+  const select2 = document.getElementById('graph-select-2');
+
+  function renderGraph(spec) {
+    vegaEmbed('#vis', spec);
   }
+
+  function renderSecondGraph(spec) {
+    vegaEmbed('#vis2', spec)
+  }
+
+  select.addEventListener('change', function () {
+    const selectedGraphType = select.value;
+    const newSpec = {
+        ...errorBand,
+        "data": {"url": graphConfigurations[selectedGraphType].url}
+    };
+    if (selectedGraphType === 'wasm3' || selectedGraphType === 'wasmer' || selectedGraphType === 'wasmtime' || selectedGraphType === 'wazero') {
+      newSpec.layer[0].encoding.color.legend = null;
+    }
+    document.getElementById('graph-title').innerText = graphConfigurations[selectedGraphType].title;
+    renderGraph(newSpec);
+  });
+
+  select2.addEventListener('change', function () {
+    const selectedGraphType = select2.value;
+    const newSpec2 = {
+      ...errorBand2,
+      "data": {"url":graphConfigurations2[selectedGraphType].url}
+    };
+    if (selectedGraphType === 'wasm3' || selectedGraphType === 'wasmer' || selectedGraphType === 'wasmtime' || selectedGraphType === 'wazero') {
+      newSpec2.layer[0].encoding.color.legend = null;
+    }
+    document.getElementById('graph-title-2').innerText = graphConfigurations2[selectedGraphType].title;
+    renderSecondGraph(newSpec2);
+  });
+
+  renderGraph(errorBand);
+  renderGraph(errorBand2);
 </script>
 {% endblock %}

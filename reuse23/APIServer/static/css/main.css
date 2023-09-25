@@ -41,16 +41,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.grid-container {
-    display: grid;
-    grid: auto auto;
-    grid-gap: 10px;
-    padding: 10px;
-}
-.grid-container > div {
-    padding: 20px 0;
-}
-
 /* navigation bar */
 .navbar {
     list-style-type: none;
@@ -100,17 +90,16 @@ body {
     text-align: center;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
-    margin: 15px 10px;
     text-decoration: none;
 }
 
 .dropdown .dropbtn {
     font-size: 20px;  
     color: white;
-    padding: 14px 30px;
+    /* padding: 14px 30px; */
+    /* margin: 15px 10px; */
     background-color: #3D59AB;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0;
     font-style: normal; 
     font-variant: normal; 
     font-weight: 550; 
@@ -121,14 +110,12 @@ body {
     display: none;
     position: absolute;
     background-color: #3D59AB;
-    width: 18%;
+    width: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
-/* some reason not working/being read in the html */
 .dropdown .dropdown-content a {
-    padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
@@ -194,7 +181,6 @@ footer {
 
 .text-box p {
     font-size: 14px;
-    opacity: 0; /* Initially hide the text */
     transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
     text-align: left;
   }
@@ -210,7 +196,6 @@ footer {
   
 .text-box li {
     font-size: 14px;
-    opacity: 0; /* Initially hide the list items */
     transition: opacity 0.5s ease; /* Add a transition for smooth fade-in effect */
 }
   
@@ -218,13 +203,13 @@ footer {
     opacity: 1; /* Make the list items visible on hover */
 }
 
+/* code for the research overview page and about page */
 img {
-    max-width: 600px;
-    /* height: auto; */
-    margin: 0 10px;
+    max-width: 700px;
+    height: auto;
 }
 
 .box {
-    overflow: auto; /* Add this to create a scrollable area */
+    overflow: auto;
 }
   

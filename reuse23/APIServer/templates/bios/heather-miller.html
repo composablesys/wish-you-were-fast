@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Heather Miller - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Heather-Miller-Headshot.jpeg') }}" alt="Heather Miller Headshot">
+        </div>
+        <h2 style="text-align: center;">Heather Miller</h2>
+        <p style="text-align: center; line-height: 10px;">heather.miller@cs.cmu.edu</p>
+        <p style="text-align: center; line-height: 10px;"><a href="https://heather.miller.am/">Website</a></p>
+    </div>
+    <div class="div big">
+        <p>Heather is interested in various flavors of distributed and concurrent computation, often from the perspective of programming languages:</p>
+        <ul>
+            <li>data-centric</li>
+            <li>data-intensive (big data)</li>
+            <li>eventually-consistent (edge computing)</li>
+        </ul> 
+        <p>A major recurring theme in her work is <i><b>composability</b></i>. She seeks to enable the construction of complex distributed systems via 
+            the composition of well-understood components that are correct by construction.
+        </p>
+        <p>Some of her projects include programming models and type systems to facilitate the design of new, functional distributed systems, such as 
+            <a href="https://speakerdeck.com/heathermiller/spores-distributable-functions-in-scala">distributable closures</a>, 
+            <a href="https://speakerdeck.com/heathermiller/instant-pickles-generating-object-oriented-pickler-combinators-for-fast-and-extensible-serialization">flexible, extensible, and performant serialization</a>, 
+            asynchronous and concurrent programming via <a href="https://speakerdeck.com/heathermiller/futures-and-promises-in-scala-2-dot-10">futures and promises</a>, and 
+            <a href="https://github.com/heathermiller/scala-dataflow/raw/master/reports/lcpc-pres/lcpc-pres.pdf">deterministic concurrent dataflow</a>.
+        </p>
+        <p>She works on and around the <a href="https://scala-lang.org/">Scala</a> programming language.</p>
+    </div>
+</div>
+{% endblock %}
