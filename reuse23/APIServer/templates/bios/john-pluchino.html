@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}John Pluchino - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <!-- <img src="{{ url_for('static', filename='imgs/Carly-Venenciano-Headshot.jpg') }}" alt="Carly Venenciano Headshot" style="height: 450px; width: auto;"> -->
+        </div>
+        <h2 style="text-align: center;">John Pluchino</h2>
+        <p style="text-align: center; line-height: 10px;">johnplio217@gmail.com</p>
+        <p style="text-align: center; line-height: 10px;"><a href="https://www.linkedin.com/in/john-pluchino-51482a286/">LinkedIn</a></p>
+    </div>
+    <div class="div big">
+        <p>John is a electrical engineering student at The Cooper Union, class of 2024, with a focus in computer engineering and software. He has experience and interest in low level 
+            programming, but is open to exploring other areas of computer science. He has also recently been interested in deep learning.
+        </p> 
+    </div>
+</div>
+{% endblock %}

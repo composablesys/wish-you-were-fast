@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Carly Venenciano - WebAssembly Benchmarking{% endblock %}
+
+{% block body %}
+<style>
+    #outer {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+    }
+
+    .div {
+        width: 70%;
+        flex: 0 0 50px;
+        margin: 5px;
+        padding: 0 20px;
+    }
+
+    .big {
+        flex-basis: auto;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .circular-image {
+        width: 300px;
+        height : 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    
+    .circular-image img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        text-align: left;
+        text-decoration: none;
+    }
+
+    a {
+        color: #3D59AB;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color:#233a82;
+    }
+
+</style>
+
+<div id="outer">
+    <div class="div">
+        <div class="circular-image">
+            <img src="{{ url_for('static', filename='imgs/Akshath-Karanam-Headshot.jpg') }}" alt="Akshath Karanam Headshot" style="height: 450px; width: auto;">
+        </div>
+        <h2 style="text-align: center;">Akshath Karanam</h2>
+        <p style="text-align: center; line-height: 10px;">akshathkaranam@gmail.com</p>
+        <p style="text-align: center; line-height: 10px;"><a href="https://www.linkedin.com/in/akaranam1">LinkedIn</a></p>
+    </div>
+    <div class="div big">
+        <p>Akshath is a Software Development Engineer at Salesforce. He graduated from CMU in 2023 with a Master's in 
+            Electrical and Computer Engineering. Akshath is passionate about large-scale distributed systems, database internals and storage systems. 
+        </p>
+    </div>
+</div>
+{% endblock %}

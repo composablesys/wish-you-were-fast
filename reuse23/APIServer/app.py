@@ -12,11 +12,11 @@ nightlyRunID = 'NIGHTLY_RUN'  # Data is tagged with this in the database to show
 
 app = Flask(__name__)
 
-with open('config.json', 'r') as config_file:
-    config_data = json.load(config_file)
-    db = config_data['db']
-    user = config_data['user']
-    pwd = config_data['pwd']
+# with open('config.json', 'r') as config_file:
+#     config_data = json.load(config_file)
+#     db = config_data['db']
+#     user = config_data['user']
+#     pwd = config_data['pwd']
 
 @app.after_request
 def set_cors(response):
@@ -234,4 +234,4 @@ class geomeanCalc(Resource):
          return "Provide a different experiment."
 '''
 if __name__ == "__main__":
-   app.run(host='grammont.lan.local.cmu.edu',port=6363, debug=True)
+   app.run(host='0.0.0.0', port=8080, debug=True)
