@@ -1,56 +1,98 @@
 # Wasm Benchmarking Scripts
 
-## How to build and update engines
-Consult the `ENGINELOG.md` located in this directory for instructions on how to build each engine. Create an `engines.json` file in the directory in which the engines are built and populate it with the first build information. To check and update the engines, you run the `build.py` script in the home directory.
+## Overview
+- `build.py` is for building engines
+- `run.py` is for running experiments
+- `summarize.py` is for uploading data into the database
 
-### How to run script
-- Set BUILD_DIR (directory to put the built engines in)
-- Execute command: $ python3 wish-you-were-fast/reuse23/build.py
+## Build and Update Engines
+1. First consult the `ENGINELOG.md` located in this directory for instructions on how to build each engine. 
+2. Create an `engines.json` file in the directory in which the engines are built and populate it with the first build information. 
+3. To check and update the engines, run the `build.py` script in the home directory.
 
-Notes:
-- Script assumes its being ran in home directory so hardcoded paths reflect that
-- Script assumes the json file already contains a dictionary for each engine and list of dictionaries of each first build in order to add the data for a new engine version
-- Script attempts to build all engines listed in `common.py` in the `assign_engines()` function.
-- You must manually add update ENGINELOG.md when engines are updated and experiments are run.
+### How to run `build.py`
+This script should be ran in the home directory and `engines.json` must exist with a dictionary for each engine and its build. The script will attempt to build all engines listed in `common.py` in the `assign_engines()` function. 
 
-## How to run experiments
-### How to run script
-- Set DATA_DIR (directory to put the data), EXP (defaults to 'execution'), and BTIME_OPTIONS(if applicable)
-- Execute command: $ python3 wish-you-were-fast/reuse23/run.py
+1. Set 'BUILD_DIR' to the directory for building engines.
+```
+$ export BUILD_DIR=wish-you-were-fast/reuse23/build
+```
+2. Run the script with the following command:
+```
+$ python3 wish-you-were-fast/reuse23/build.py
+```
+3. Manually update `ENGINELOG.md` with required information (date, version, etc.).
 
-Notes:
-- Script assumes its being ran in home directory so hardcoded paths reflect that
-    - data_dir,cmd, and wasmfile
-    - $ python3 wish-you-were-fast/reuse23/run.py 
-- Script assumes btime and jsvu are functions on the server
-- If only certain engines have a new verison that must be tested, you must manually change the configs in `common.py` to run the experiments on those specifically.
 
-## How to upload experiment data to the database
-### How to run script
-1. Make a configuration file 'config.json' in the same folder as summarize.py
-2. In the file, assign the following variable to your specific access keys
+## Run Experiments
+1. After building engines, make sure symlinks are updated in the `reuse23/engines` directory. Navigate to `wish-you-were-fast/reuse23/engines` and excute the following command:
+```
+# If symlink already exists
+$ ln -sf ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
+
+# If creating a new symlink
+$ ln -s ~/wish-you-were-fast/reuse23/build/<engine name>/<engine-version> ./<engine name>-link
+```    
+### How to run `run.py`
+This script should be ran in the home directory and btime must be installed. Running experiments on specific configs must be changed in `common.py` manually. 
+
+1. Set `DATA_DIR` to path where experiment folders and datafiles will be created. 
+```
+$ export DATA_DIR=~/wish-you-were-fast/reuse23/
+```
+2. (Optional) Set variable for experiment type and btime options. Defaults are `EXP=execution` and `BTIME_OPTIONS=-l`.
+```
+# Options: speedup, execution, startup
+$ export EXP=speedup 
+
+# Options: -l, -f (for zero files)
+$ export BTIME_OPTIONS=-f
+```
+2. Run the script from the home directory with the following command:
+```
+$ python3 wish-you-were-fast/reuse23/run.py
+```
+
+## Summarize and Upload Data
+This script should be ran in the directory where `summarize.py` is located. All datafiles must have title format of `suite.line-item.config.txt` (ex. `polybench.trmm.wasm3.txt`, `ostrich0.SRAD.wizeng-int.txt`).
+
+### How to run `summarize.py`
+1. Create a configuration file `config.json` in the same folder as `summarize.py`.
+2. In the file, assign the following variable to your specific access keys.
+```
     {
     "db": "database_name",
     "user": "username",
     "pwd": "password", 
     }
-3. Set the data directory path using 'export DATA_DIR=/path/to/parent-directory/of/data/' 
-    ex. export DATA_DIR=/home/alexahalim/test-data-ryzen-9/
-    *** DATA_DIR can be initialized at the same time as the other variables
-    *** EXP is the sub-directory in which all data from an experiment is stored (ex: speedup)
+```
+3. Set `DATA_DIR` to path where experiment folders and datafiles exist. 
+```
+$ export DATA_DIR=~/wish-you-were-fast/reuse23/
+``` 
+4. (Optional) Print out the data into a table with option to view specific experiments, suites, and configs.
+```
+# View all data
+$ python3 summarize.py TABLE --data_dir=$DATA_DIR
 
-TABLE Command
-4. Run the script with option to set EXP= SUITES= and CONFIGS= :
-    'python3 summarize.py TABLE --data_dir $DATA_DIR'
+# View specific data
+$ EXP=execution SUITES='ostrich libsodium' CONFIGS='wasm3' python3 summarize.py TABLE --data_dir=$DATA_DIR
+```
+5. Upload data to either `summary` or `raw` table with option to upload only specific data.
+```
+# Upload all the data to summary
+$ python3 summarize.py UPLOAD_SUM --data_dir=$DATA_DIR
 
-UPLOAD Commands
-5. Run the script with option to set METRIC_TYPE=, EXP=, EXP_LABEL=, MACHINE=, and TABLE_NAME=
-    '*variable instatiations* python3 summarize.py UPLOAD_SUM --data_dir $DATA_DIR'
-    '*variable instatiations* python3 summarize.py UPLOAD_RAW --data_dir $DATA_DIR'
+# Upload all data to raw
+$ python3 summarize.py UPLOAD_RAW --data_dir=$DATA_DIR
 
-Notes:
-- This script assumes data files are all in the format: 'suite.line_item.config.txt
-- This scripts assumes it is being ran in the directory in which the file is located.
+# Variable options to instatiate before running command: metric type, experiment, experiment lable, machine
+METRIC_TYPE=
+EXP=
+EXP_LABEL=
+MACHINE=
+TABLE_NAME
+```
 
 ### The PostGreSQL Database Tables
 (Add documentation about what is displayed and noted in the tables.)
