@@ -12,11 +12,13 @@ nightlyRunID = 'NIGHTLY_RUN'  # Data is tagged with this in the database to show
 
 app = Flask(__name__)
 
-# with open('config.json', 'r') as config_file:
-#     config_data = json.load(config_file)
-#     db = config_data['db']
-#     user = config_data['user']
-#     pwd = config_data['pwd']
+with open('config.json', 'r') as config_file:
+   config_data = json.load(config_file)
+   host = config_data['host']
+   port = config_data['port']
+   dbname = config_data['dbname']
+   user = config_data['user']
+   pwd = config_data['pwd']
 
 @app.after_request
 def set_cors(response):
@@ -61,7 +63,7 @@ def methodology():
 def fullData():
       headers = ['Benchmark Suite', 'Benchmark Item', 'Engine', 'Version', 'Config', 'Metric Type', 'Avg', '5th Percentile', 
                '95th Percentile', 'Min', 'Max', 'Timestamp']
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT benchmark_suite, benchmark_item, engine, version, config, metric_type, avg, percentile_5, percentile_95, min, max, time FROM summary")
       data = cur.fetchall()
@@ -76,7 +78,7 @@ api = Api(app) # initialize AFTER @app.route('/') to show landing page
 class getExecution(Resource):
    def get(self):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host,port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT engine FROM summary WHERE metric_type = %s", ("total_time",)) 
       engines = cur.fetchall()
@@ -99,7 +101,7 @@ class getExecution(Resource):
 class getSuites(Resource):
    def get(self, engine):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"total_time"))
       exp_dates = cur.fetchall()
@@ -119,7 +121,7 @@ class getSuites(Resource):
 class getExecution(Resource):
    def get(self):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT engine FROM summary WHERE metric_type = %s", ("main_time",)) 
       engines = cur.fetchall()
@@ -142,7 +144,7 @@ class getExecution(Resource):
 class getSuites(Resource):
    def get(self, engine):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"main_time"))
       exp_dates = cur.fetchall()
@@ -162,7 +164,7 @@ class getSuites(Resource):
 class getSuites(Resource):
    def get(self, engine):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"total_time"))
       exp_dates = cur.fetchall()
@@ -188,7 +190,7 @@ class getSuites(Resource):
 class getSuites(Resource):
    def get(self, engine):
       results = []
-      conn = psycopg2.connect(database=db,user=user,password=pwd)
+      conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
       cur = conn.cursor()
       cur.execute("SELECT DISTINCT exp_date FROM summary WHERE engine = %s and metric_type = %s", (engine,"main_time"))
       exp_dates = cur.fetchall()
