@@ -11,7 +11,7 @@
 3. To check and update the engines, run the `build.py` script in the home directory.
 
 ### How to run `build.py`
-This script should be ran in the home directory and `engines.json` must exist with a dictionary for each engine and its build. The script will attempt to build all engines listed in `common.py` in the `assign_engines()` function. 
+This script should be run in the home directory and `engines.json` must exist with a dictionary for each engine and its build. The script will attempt to build all engines listed in `common.py` in the `assign_engines()` function. 
 
 1. Set 'BUILD_DIR' to the directory for building engines.
 ```
@@ -25,7 +25,7 @@ python3 wish-you-were-fast/reuse23/build.py
 
 
 ## Run Experiments
-1. After building engines, make sure symlinks are updated in the `reuse23/engines` directory. Navigate to `wish-you-were-fast/reuse23/engines` and excute the following command:
+1. After building engines, make sure symlinks are updated in the `reuse23/engines` directory. Navigate to `wish-you-were-fast/reuse23/engines` and execute the following command:
 ```
 # Replacing a symlink
 ln -sf ~/<engine path> ./<engine name-version>-link
@@ -34,7 +34,7 @@ ln -sf ~/<engine path> ./<engine name-version>-link
 ln -s ~/<engine path> ./<engine name-version>-link
 ```    
 ### How to run `run.py`
-This script should be ran in the home directory and btime must be installed. Running experiments on specific configs must be changed in `common.py` manually. 
+This script should be run in the home directory and btime must be installed. Running experiments on specific configs must be changed in `common.py` manually. 
 
 1. Set `DATA_DIR` to path where experiment folders and datafiles will be created. 
 ```
