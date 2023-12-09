@@ -8,7 +8,9 @@ from datetime import datetime, date
 
 with open('config.json', 'r') as config_file:
     config_data = json.load(config_file)
-    db = config_data['db']
+    host = config_data['host']
+    port = config_data['port']
+    dbname = config_data['dbname']
     user = config_data['user']
     pwd = config_data['pwd']
 
@@ -20,7 +22,7 @@ def get_line_items(suite):
     items = []
     for file in os.listdir(PATH):
         if fnmatch.fnmatch(file, suite + '*.txt'): # parse all files for given suite
-            start_index = file.find('.') + 1 # get starting index of line item string
+            start_index = file.find('.') + 1 # get starting index of line item substring
             line_item = file[start_index:end_index(file)]
             if items.count(line_item) == 0: # add new line items to list
                 items.append(line_item)
@@ -337,7 +339,7 @@ def upload_sum(exp_label, machine, table_name):
         elif fnmatch.fnmatch(file, '*0.*.*.txt') and metric_type == 'setup_time' and get_difference(file) != 0:
             insert = get_difference(file)
         else: continue # continue loop if file data unavailable
-        conn = psycopg2.connect(database=db,user=user,password=pwd)
+        conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, avg, percentile_5, percentile_95,
             min, max, time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
@@ -369,7 +371,7 @@ def upload_raw(exp_label, machine, table_name):
         elif metric_type == 'setup_time' and fnmatch.fnmatch(file, '*0.*.*.txt') and get_difference(file) != 0:
             insert = get_raw_samples(file)
         else: continue
-        conn = psycopg2.connect(database=db,user=user,password=pwd)
+        conn = psycopg2.connect(host=host, port=port, database=dbname,user=user,password=pwd)
         cur = conn.cursor()
         cur.execute('''INSERT INTO ''' + table_name + '''(exp_date, exp_label, benchmark_suite, benchmark_item, engine, version, config, machine, metric_type, samples, time) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
@@ -387,11 +389,11 @@ if __name__ == "__main__":
     if data_dir is None:
         print('Data directory not set')
 
-    exp_label = os.environ.get('EXP_LABEL', 'carlexa20')
-    machine = os.environ.get('MACHINE', 'i7-4790')
+    exp_label = os.environ.get('EXP_LABEL', 'ec2_t2.micro_cvenen')
+    machine = os.environ.get('MACHINE', 'ec2_t2.micro')
 
-    table_name = os.environ.get('TABLE_NAME', 'testsummary2')
-    metric_type = os.environ.get('METRIC_TYPE', 'main_time') # for the DB
+    table_name = os.environ.get('TABLE_NAME', 'summary')
+    metric_type = os.environ.get('METRIC_TYPE', 'total_time') # for the DB
     exp = common.exp # for the PrettyTable
 
     suites = common.assign_suites()
