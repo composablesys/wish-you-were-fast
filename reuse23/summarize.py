@@ -392,7 +392,7 @@ if __name__ == "__main__":
     exp_label = os.environ.get('EXP_LABEL', 'ec2_t2.micro_cvenen')
     machine = os.environ.get('MACHINE', 'ec2_t2.micro')
 
-    table_name = os.environ.get('TABLE_NAME', 'summary')
+    # table_name = os.environ.get('TABLE_NAME', 'summary')
     metric_type = os.environ.get('METRIC_TYPE', 'total_time') # for the DB
     exp = common.exp # for the PrettyTable
 
@@ -406,8 +406,10 @@ if __name__ == "__main__":
     if sys.argv[1] == 'TABLE':
         table(suites, configs)
     elif sys.argv[1] == 'UPLOAD_SUM':
+        table_name = os.environ.get('TABLE_NAME', 'summary')
         upload_sum(exp_label, machine, table_name)
     elif sys.argv[1] == 'UPLOAD_RAW':
+        table_name = os.environ.get('TABLE_NAME', 'raw')
         upload_raw(exp_label, machine, table_name)
     else:
         print('No function specified')
