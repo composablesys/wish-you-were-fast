@@ -119,6 +119,7 @@ After data collection, upload data to the database. Install `NumPy` for `summari
 4. Create the metric types
 `CREATE TYPE metric AS ENUM ('main_time', 'total_time', 'setup_time', 'compile_time', 'rss_bytes');`
 5. Create a `summary` table using the following syntax
+```
 CREATE TABLE summary (
    exp_date DATE NOT NULL DEFAULT CURRENT_DATE,
    exp_label VARCHAR NOT NULL,
@@ -136,7 +137,9 @@ CREATE TABLE summary (
    max NUMERIC(10,7) NOT NULL,
    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+```
 6. Create a `raw` table using the following syntax
+```
 CREATE TABLE raw (
    exp_date DATE NOT NULL DEFAULT CURRENT_DATE,
    exp_label VARCHAR NOT NULL,
@@ -150,7 +153,7 @@ CREATE TABLE raw (
    samples NUMERIC(10,7)[] NOT NULL,
    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
+```
 
 ### How to run `summarize.py`
 1. Create a configuration file `config.json` in the same directory as `summarize.py` with the following access keys. Leave host and port as empty strings if unknown.
