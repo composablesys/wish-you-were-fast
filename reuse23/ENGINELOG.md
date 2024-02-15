@@ -135,6 +135,7 @@ Necessary dependencies:
 
 ### V8, SpiderMonkey, JavaScriptCore
 Requires: Node.js
+
 Clone the [jsvu repo](https://github.com/GoogleChromeLabs/jsvu) and follow the instructions. The engines are built in `.jsvu/bin/`. The versions of the engines are in `status.json`. ~~The engines update through build.py running the `jsvu` command.~~
 
 
@@ -143,6 +144,7 @@ Clone the [jsvu repo](https://github.com/GoogleChromeLabs/jsvu) and follow the i
 
 ### Wasmer
 Requires: rustc, cargo
+
 Clone the [Wasmer Repo](https://github.com/wasmerio/wasmer). Verify that `rustc` and `cargo` are updated to version 1.67 (as of 7/20/23). In the repo, execute the following command and ensure [singlepass compiler is enabled](https://docs.wasmer.io/developers/build-from-source)
 ```
 $ make build-wasmer
@@ -152,6 +154,7 @@ The engine is built in the directory `target/release/`. ~~The engine updates thr
 
 ### Wasmtime
 Requires: Rust
+
 Clone the [Wasmtime](https://github.com/bytecodealliance/wasmtime) initialize the git submodules with the following command in the repo.
 ```
 $ git submodule update --init
@@ -172,6 +175,7 @@ $ cargo build --release
 
 ### Wasm3
 Requires: CMake
+
 Clone [Wasm3](https://github.com/wasm3/wasm3) and execute the following commands in the repo.
 ```
 $ mkdir build && cd build
@@ -195,6 +199,7 @@ Clone [Wizard Repo](https://github.com/titzer/wizard-engine/blob/master/doc/Buil
 
 ### Wavm
 Requires: CMake, LLVM
+
 Clone [Wavm](https://github.com/WAVM/WAVM) and follow instructions or execute the following commands.
 ```
 $ mkdir build_dir && cd build_dir
@@ -212,6 +217,7 @@ $ make
 
 ### iWasm
 Requires: CMake
+
 Clone [iWasm](https://github.com/bytecodealliance/wasm-micro-runtime) and follow instructions. Build engine with `Fast JIT` mode. May have to use the following code opposed to repo instructions.
 ```
 $ cd product-mini/platforms/linux/
@@ -230,6 +236,7 @@ $ make
 
 ### Wazero
 Requires: Go
+
 Clone [Wazero](https://github.com/tetratelabs/wazero) and execute the following commands.
 ```
 $ go build
