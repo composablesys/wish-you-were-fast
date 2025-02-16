@@ -1,42 +1,36 @@
-#API Server
+# API Server & Webpage
 
-# Set Up to Run app.py
-1. pip install flask, flask_restx, dateutil.parser, psycopg2, json, fnmatch, math
-2. Make configuration file `config.json` in the same folder as `app.py`
-    * In the file, assign the following variables to your specific access keys
-    ```{
-    "db": "database_name",
+## Install Dependencies
+1. Install flask, flask-restx, psycopg2
+```
+pip install flask flask_restx psycopg2-binary
+
+```
+If an error occurs with [flask.scaffold](https://github.com/python-restx/flask-restx/issues/567), navigate to `flask_restx/api.py` and replace lines 17-20 with the following:
+```
+try:
+    from flask.helpers import _endpoint_from_view_func
+except ImportError:
+    from flask.sansio.scaffold import _endpoint_from_view_func
+```
+2. Install dateutil.parser
+```
+pip3 install python-dateutil
+```
+
+## How to run `app.py`
+1. If not already created, create `config.json` with the following access keys. Leave host and port as empty strings if unknown.
+```
+    {
+    "host": "host",
+    "port": "port",
+    "dbname": "database_name",
     "user": "username",
-    "pwd": "password", 
+    "pwd": "password"
     }
-    ```
-3. In `/wish-you-were-fast/reuse23/APIServer/` run 
 ```
-$ python3 app.py
+2. Run script in the `reuse23/` directory with the following command.
 ```
-4. Open browser and navigate to `grammont.lan.local.cmu.edu:6363`.
-
-# Alexa's Code from Vegalite Graph Testing
-The testgraph3.html and index.html are used in app.py landing page.
-
+python3 APIServer/app.py
 ```
-# working version of main graph with interactive line highlight
-@app.route('/main1')
-def home1():
-   return render_template('testgraph.html')
-
-# working version to use selections to filter data in another graph through changing url
-@app.route('/main2/<string:engine>')
-def home2(engine):
-   return render_template('testgraph2.html', engine=engine)
-
-# working version with clickable main graph that directs to specific engine's graph (main graph but clicking on line will direct to main4 with given engine line)
-@app.route('/main3')
-def home3():
-   return render_template('testgraph3.html')
-
-# working version where clicking on different engines on main graph filters data in another graph
-@app.route('/main4/<string:engine>')
-def home4(engine):
-   return render_template('index.html', engine=engine)
-```
+3. Open browser and navigate to `127.0.0.1:8080`.
