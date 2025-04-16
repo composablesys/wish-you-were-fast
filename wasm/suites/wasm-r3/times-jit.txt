@@ -1,0 +1,154 @@
+/home/titzer/wywf/wasm/suites/wasm-r3/boa.wasm
+pregen:time_us           : 15        μs
+load:time_us             : 692144    μs
+validate:time_us         : 131530    μs
+spc:time_us              : 524777    μs
+start:time_us            : 0         μs
+main:time_us             : 11        μs
+/home/titzer/wywf/wasm/suites/wasm-r3/commanderkeen.wasm
+pregen:time_us           : 12        μs
+load:time_us             : 500719    μs
+validate:time_us         : 54491     μs
+spc:time_us              : 427104    μs
+start:time_us            : 0         μs
+main:time_us             : 94512     μs
+/home/titzer/wywf/wasm/suites/wasm-r3/ffmpeg.wasm
+pregen:time_us           : 14        μs
+load:time_us             : 1033536   μs
+validate:time_us         : 126264    μs
+spc:time_us              : 869535    μs
+start:time_us            : 0         μs
+main:time_us             : 17        μs
+/home/titzer/wywf/wasm/suites/wasm-r3/fib.wasm
+pregen:time_us           : 10        μs
+load:time_us             : 19766     μs
+validate:time_us         : 2667      μs
+spc:time_us              : 16078     μs
+start:time_us            : 0         μs
+main:time_us             : 5886325   μs
+/home/titzer/wywf/wasm/suites/wasm-r3/figma-startpage.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 35096     μs
+validate:time_us         : 4962      μs
+spc:time_us              : 26687     μs
+start:time_us            : 0         μs
+main:time_us             : 30        μs
+/home/titzer/wywf/wasm/suites/wasm-r3/funky-kart.wasm
+pregen:time_us           : 14        μs
+load:time_us             : 693691    μs
+validate:time_us         : 199133    μs
+spc:time_us              : 431009    μs
+start:time_us            : 0         μs
+main:time_us             : 57695     μs
+/home/titzer/wywf/wasm/suites/wasm-r3/game-of-life.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 200       μs
+validate:time_us         : 27        μs
+spc:time_us              : 124       μs
+start:time_us            : 0         μs
+main:time_us             : 17        μs
+/home/titzer/wywf/wasm/suites/wasm-r3/guiicons.wasm
+pregen:time_us           : 10        μs
+load:time_us             : 71082     μs
+validate:time_us         : 8746      μs
+spc:time_us              : 58317     μs
+start:time_us            : 0         μs
+main:time_us             : 23554     μs
+/home/titzer/wywf/wasm/suites/wasm-r3/handy-tools.wasm
+pregen:time_us           : 14        μs
+load:time_us             : 337424    μs
+validate:time_us         : 71271     μs
+spc:time_us              : 225944    μs
+start:time_us            : 0         μs
+main:time_us             : 4376      μs
+/home/titzer/wywf/wasm/suites/wasm-r3/heatmap.wasm
+pregen:time_us           : 15        μs
+load:time_us             : 590447    μs
+validate:time_us         : 130240    μs
+spc:time_us              : 404144    μs
+start:time_us            : 0         μs
+main:time_us             : 27561582  μs
+/home/titzer/wywf/wasm/suites/wasm-r3/jsc.wasm
+pregen:time_us           : 15        μs
+load:time_us             : 1126347   μs
+validate:time_us         : 121878    μs
+spc:time_us              : 951290    μs
+start:time_us            : 0         μs
+main:time_us             : 6499      μs
+/home/titzer/wywf/wasm/suites/wasm-r3/kittygame.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 8057      μs
+validate:time_us         : 1261      μs
+spc:time_us              : 6265      μs
+start:time_us            : 0         μs
+main:time_us             : 113290    μs
+/home/titzer/wywf/wasm/suites/wasm-r3/multiplyDouble.wasm
+pregen:time_us           : 10        μs
+load:time_us             : 18958     μs
+validate:time_us         : 2535      μs
+spc:time_us              : 15480     μs
+start:time_us            : 0         μs
+main:time_us             : 6447267   μs
+/home/titzer/wywf/wasm/suites/wasm-r3/multiplyInt.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 18992     μs
+validate:time_us         : 2538      μs
+spc:time_us              : 15524     μs
+start:time_us            : 0         μs
+main:time_us             : 4861901   μs
+/home/titzer/wywf/wasm/suites/wasm-r3/ogv.wasm
+pregen:time_us           : 10        μs
+load:time_us             : 75        μs
+validate:time_us         : 9         μs
+spc:time_us              : 24        μs
+start:time_us            : 0         μs
+main:time_us             : 7         μs
+/home/titzer/wywf/wasm/suites/wasm-r3/pathfinding.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 101376    μs
+validate:time_us         : 11400     μs
+spc:time_us              : 85707     μs
+start:time_us            : 0         μs
+main:time_us             : 6261351   μs
+/home/titzer/wywf/wasm/suites/wasm-r3/riconpacker.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 89437     μs
+validate:time_us         : 10670     μs
+spc:time_us              : 74309     μs
+start:time_us            : 0         μs
+main:time_us             : 3830      μs
+/home/titzer/wywf/wasm/suites/wasm-r3/rtexviewer.wasm
+pregen:time_us           : 9         μs
+load:time_us             : 52881     μs
+validate:time_us         : 7906      μs
+spc:time_us              : 41524     μs
+start:time_us            : 0         μs
+main:time_us             : 8         μs
+/home/titzer/wywf/wasm/suites/wasm-r3/sandspiel.wasm
+pregen:time_us           : 10        μs
+load:time_us             : 29661     μs
+validate:time_us         : 7243      μs
+spc:time_us              : 20220     μs
+start:time_us            : 0         μs
+main:time_us             : 658961    μs
+/home/titzer/wywf/wasm/suites/wasm-r3/sqlgui.wasm
+pregen:time_us           : 11        μs
+load:time_us             : 126745    μs
+validate:time_us         : 16756     μs
+spc:time_us              : 103146    μs
+start:time_us            : 0         μs
+main:time_us             : 1469      μs
+/home/titzer/wywf/wasm/suites/wasm-r3/video.wasm
+pregen:time_us           : 22        μs
+load:time_us             : 2923      μs
+validate:time_us         : 418       μs
+spc:time_us              : 2253      μs
+start:time_us            : 0         μs
+main:time_us             : 6         μs
+/home/titzer/wywf/wasm/suites/wasm-r3/visual6502remix.wasm
+pregen:time_us           : 15        μs
+load:time_us             : 177057    μs
+validate:time_us         : 22143     μs
+spc:time_us              : 135126    μs
+start:time_us            : 0         μs
+main:time_us             : 68        μs
